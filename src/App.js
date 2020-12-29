@@ -12,12 +12,12 @@ function App() {
     },
     {
       id: "1",
-      backgroundColor: "#3db10a",
+      backgroundColor: "blue",
       text: "Interface Segregation Principle",
     },
     {
       id: "2",
-      backgroundColor: "#3db10a",
+      backgroundColor: "yellow",
       text: "Dependency Inversion",
     },
   ];

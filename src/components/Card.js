@@ -3,6 +3,6 @@ import "../css/Card.css";
 
 export default function Card(props) {
   return (
-    <h1 className="card">{props.text}</h1>
+    <h1 className="card" style={{ backgroundColor: props.backgroundColor }}>{props.text}</h1>
   );
 }
