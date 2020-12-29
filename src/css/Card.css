@@ -1,3 +1,11 @@
 .card {
-  color: blue;
+  background-color: #3db10a;
+  border-radius: 10px;
+  color: white;
+  /* max-width: 10rem; */
+  width: 20em;
+  min-height: 10rem;
+  padding: 1rem;
+  /* font-size: 100%; */
+  font-size: 1em;
 }

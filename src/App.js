@@ -4,18 +4,34 @@ import { useState } from 'react';
 import Card from "./components/Card.js";
 
 function App() {
-  const [text, setText] = useState("Hello there");
-
-  const changeText = () => {
-    setText("wow");
-  }
+  const cards = [
+    {
+      id: "0",
+      backgroundColor: "#3db10a",
+      text: "Liskov Substituion Principle",
+    },
+    {
+      id: "1",
+      backgroundColor: "#3db10a",
+      text: "Interface Segregation Principle",
+    },
+    {
+      id: "2",
+      backgroundColor: "#3db10a",
+      text: "Dependency Inversion",
+    },
+  ];
 
   return (
-    <div>
-      <h1>Hello World</h1>
-      <p>{text}</p>
-      <button onClick={changeText}></button>
-      <Card></Card>
+    <div className="App">
+      <p>Note Cards</p>
+      {cards.map(c => (
+        <Card
+          key={c.id}
+          backgroundColor={c.backgroundColor}
+          text={c.text}
+        ></Card>
+      ))}
     </div>
   );
 }
