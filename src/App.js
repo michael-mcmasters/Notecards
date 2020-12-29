@@ -6,7 +6,7 @@ import Cards from "./components/js/Cards.js";
 function App() {
   return (
     <div className="App">
-      <h1 className="title">Note Cards</h1>
+      <h1 className="title App-logo">Note Cards</h1>
       <Cards></Cards>
     </div>
   );

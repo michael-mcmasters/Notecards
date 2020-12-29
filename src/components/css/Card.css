@@ -8,4 +8,14 @@
   padding: 1rem;
   /* font-size: 100%; */
   font-size: 1em;
+  animation: card-flip infinite 0.8s ease-in;
+}
+
+@keyframes card-flip {
+  from {
+    transform: rotateX(0deg);
+  }
+  to {
+    transform: rotateX(90deg);
+  }
 }
