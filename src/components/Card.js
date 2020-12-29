@@ -1,8 +1,8 @@
 import react from "react";
 import "../css/Card.css";
 
-export default function Card() {
+export default function Card(props) {
   return (
-    <h1 className="card">Liskov Substituion PrincipleLiskov Substituion PrincipleLiskov Substituion PrincipleLiskov Substituion Principle</h1>
+    <h1 className="card">{props.text}</h1>
   );
 }
