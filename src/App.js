@@ -24,7 +24,7 @@ function App() {
 
   return (
     <div className="App">
-      <p>Note Cards</p>
+      <h1 className="title">Note Cards</h1>
       {cards.map(c => (
         <Card
           key={c.id}
