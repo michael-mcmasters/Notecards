@@ -8,6 +8,9 @@
   padding: 1rem;
   /* font-size: 100%; */
   font-size: 1em;
+}
+
+.card:hover {
   animation: card-flip infinite 0.8s ease-in;
 }
 
