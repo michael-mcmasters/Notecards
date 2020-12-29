@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import { useState } from 'react';
-import Card from "./components/Card.js";
+import Card from "./components/js/Card.js";
 
 function App() {
   const cards = [
