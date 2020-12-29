@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import { useState } from 'react';
+import Card from "./components/Card.js";
 
 function App() {
   const [text, setText] = useState("Hello there");
@@ -14,6 +15,7 @@ function App() {
       <h1>Hello World</h1>
       <p>{text}</p>
       <button onClick={changeText}></button>
+      <Card></Card>
     </div>
   );
 }
