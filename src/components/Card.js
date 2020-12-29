@@ -1,7 +1,8 @@
 import react from "react";
+import "../css/Card.css";
 
 export default function Card() {
   return (
-    <h1>This is a test</h1>
+    <h1 className="card">This is a test</h1>
   );
 }
