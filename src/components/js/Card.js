@@ -18,7 +18,7 @@ export default function Card(props) {
 
   return (
     <div>
-      <div className="flip-card" onClick={() => setFlipped(!flipped)} style={{ transform: flipped ? "rotateY(180deg)" : "rotateY(0deg)" }}>
+      <div className="flip-card" onClick={() => setFlipped(!flipped)} style={{ transition: "transform 0.6s", transformStyle: "preserve-3d", transform: flipped ? "rotateY(180deg)" : "rotateY(0deg)" }}>
         <div className="flip-card-inner" style={{ backgroundColor: props.backgroundColor }}>
           <div className="flip-card-front" style={{ backgroundColor: props.backgroundColor }}>
             <h1>{props.text}</h1>
