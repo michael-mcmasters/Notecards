@@ -4,14 +4,6 @@ import "../css/Card.css";
 export default function Card(props) {
   const [flipped, setFlipped] = useState(false);
 
-  const getFlipDirection = () => {
-    if (flipped === true) {
-      return { transform: "rotateY(180deg)" };
-    } else {
-      return { transform: "rotateY(0deg)" };
-    }
-  }
-
   const handleKeyDown = (event) => {
     console.log('A key was pressed', event.keyCode);
   };
@@ -26,7 +18,7 @@ export default function Card(props) {
 
   return (
     <div>
-      <div className="flip-card" onClick={() => setFlipped(!flipped)} style={getFlipDirection()}>
+      <div className="flip-card" onClick={() => setFlipped(!flipped)} style={{ transform: flipped ? "rotateY(180deg)" : "rotateY(0deg)" }}>
         <div className="flip-card-inner" style={{ backgroundColor: props.backgroundColor }}>
           <div className="flip-card-front" style={{ backgroundColor: props.backgroundColor }}>
             <h1>{props.text}</h1>
