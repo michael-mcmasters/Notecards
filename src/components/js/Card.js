@@ -1,7 +1,21 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import "../css/Card.css";
 
 export default function Card(props) {
+  const handleKeyDown = (event) => {
+    console.log('A key was pressed', event.keyCode);
+  };
+
+  // Only runs when component mounts because we pass zero dependencies []
+  useEffect(() => {
+    window.addEventListener('keydown', handleKeyDown);
+
+    // This arrow function is called when the component dismounts.
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
+
   return (
     <div>
       <div className="flip-card">
@@ -18,4 +32,4 @@ export default function Card(props) {
       </div>
     </div>
   );
-}
+};
