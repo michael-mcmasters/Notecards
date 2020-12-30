@@ -16,17 +16,23 @@ export default function Card(props) {
     };
   }, []);
 
+  // transform-style: preserve-3d was not working by assigning with React no matter what I tried. So here I am directly manipulating the CSS file.
+  // This makes the cards look more 3D as they flip.
+  const flipCard = () => {
+    const elements = document.querySelectorAll(".flip-card-inner");
+    elements[props.index].style.transform = flipped ? "rotateY(0deg)" : "rotateY(180deg)";
+    setFlipped(!flipped);
+  }
+
   return (
     <div>
-      <div className="flip-card" onClick={() => setFlipped(!flipped)} style={{ transition: "transform 0.6s", transformStyle: "preserve-3d", transform: flipped ? "rotateY(180deg)" : "rotateY(0deg)" }}>
+      <div className="flip-card" onClick={() => flipCard()}>
         <div className="flip-card-inner" style={{ backgroundColor: props.backgroundColor }}>
           <div className="flip-card-front" style={{ backgroundColor: props.backgroundColor }}>
             <h1>{props.text}</h1>
           </div>
           <div className="flip-card-back" style={{ backgroundColor: props.backgroundColor }}>
-            <h1>John Doe</h1>
-            <p>Architect and Engineer</p>
-            <p>We love that guy</p>
+            <p>Back of card</p>
           </div>
         </div>
       </div>

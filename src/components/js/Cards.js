@@ -24,6 +24,7 @@ export default function App() {
       {cards.map(c => (
         <Card
           key={c.id}
+          index={c.id}
           backgroundColor={c.backgroundColor}
           text={c.text}
         ></Card>
