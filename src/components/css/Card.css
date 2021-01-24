@@ -23,8 +23,8 @@
 
 .flip-card {
   background-color: transparent;
-  width: 400px;
-  height: 400px;
+  width: 800px;
+  height: 550px;
   perspective: 1000px;
   margin: 1rem;
 }
@@ -53,11 +53,13 @@
 
 .flip-card-front {
   background-color: #bbb;
-  color: black;
+  color: #f1faee;
+  font-size: 3rem;
 }
 
 .flip-card-back {
   background-color: #2980b9;
-  color: white;
+  color: #f1faee;
   transform: rotateY(180deg);
+  font-size: 1.7rem;
 }
