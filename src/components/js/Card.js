@@ -29,10 +29,10 @@ export default function Card(props) {
       <div className="flip-card" onClick={() => flipCard()}>
         <div className="flip-card-inner" style={{ backgroundColor: props.backgroundColor }}>
           <div className="flip-card-front" style={{ backgroundColor: props.backgroundColor }}>
-            <h1>{props.text}</h1>
+            <h1>{props.frontText}</h1>
           </div>
           <div className="flip-card-back" style={{ backgroundColor: props.backgroundColor }}>
-            <p>Back of card</p>
+            <p>{props.backText}</p>
           </div>
         </div>
       </div>

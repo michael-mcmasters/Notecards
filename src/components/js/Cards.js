@@ -29,13 +29,14 @@ export default function App() {
     },
   ];
 
+  // Pass the index of the notecard you want.
   const getNoteCard = (i) => {
     return <Card
       key={cards[i].id}
       index={cards[i].id}   // Flip animation needs index. Will not work if you use key as index.
       backgroundColor={cards[i].backgroundColor}
       frontText={cards[i].frontText}
-      text={cards[i].backText}
+      backText={cards[i].backText}
     />
   }
 
