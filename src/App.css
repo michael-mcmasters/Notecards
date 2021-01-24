@@ -4,21 +4,6 @@
   margin: 0 auto;
 }
 
-/* .App-logo {
-  height: 40vmin;
-  pointer-events: none;
-  animation: App-logo-spin infinite 1s linear;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotateX(0deg);
-  }
-  to {
-    transform: rotateX(90deg);
-  }
-} */
-
 .title {
   color: rgb(179, 0, 179);
   padding-bottom: 10px;
