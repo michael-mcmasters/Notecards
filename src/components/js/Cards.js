@@ -1,7 +1,10 @@
+import { useState } from "react";
 import Card from "./Card.js";
 import "../css/Cards.css";
 
 export default function App() {
+  const [cardIndex, setCardIndex] = useState(1);
+
   const cards = [
     {
       id: 0,
@@ -40,11 +43,19 @@ export default function App() {
     />
   }
 
+  const cardss = (cardIndex) => {
+    return (
+      <div className="row">
+        {getNoteCard(cardIndex - 1)}
+        {getNoteCard(cardIndex)}
+        {getNoteCard(cardIndex + 1)}
+      </div>
+    )
+  }
+
   return (
     <div>
-      <div className="row">
-        {getNoteCard(0)}
-      </div>
+      {cardss(cardIndex)}
     </div>
   );
 }

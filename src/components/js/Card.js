@@ -4,7 +4,7 @@ import "../css/Card.css";
 
 export default function Card(props) {
   const [flipped, setFlipped] = useState(false);
-  const [direction, setDirection] = useState("left");
+  const [direction, setDirection] = useState("0vw");
 
   const handleKeyDown = (event) => {
     switch (event.key) {
@@ -26,10 +26,30 @@ export default function Card(props) {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [flipped]);      // Re-renders component whenever flipped value changes.
+  }, [flipped, direction]);      // Re-renders component whenever flipped value changes.
 
-  const handleMoveCard = (direction) => {
-    setDirection((direction === "left") ? "right" : "left");
+  const handleMoveCard = (newDirection) => {
+    // If left, move right
+    if (direction === "-55vw") {
+      if (newDirection === "right") {
+        setDirection("0vw");
+      }
+    }
+    // If center, move left or right
+    else if (direction === "0vw") {
+      if (newDirection === "left") {
+        setDirection("-55vw");
+      }
+      else if (newDirection === "right") {
+        setDirection("55vw");
+      }
+    }
+    // If right, move left
+    else if (direction === "55vw") {
+      if (newDirection === "left") {
+        setDirection("0vw");
+      }
+    }
   }
 
   return (
@@ -73,8 +93,9 @@ const FlipCardContainer = styled.div`
     cursor: pointer;
     position: relative;
     transition: left 0.8s;
-    left: ${props => (props.direction === "left") ? "55vw" : "-55vw"};
+    left: ${props => props.direction};
 `;
+// left: ${props => (props.direction === "left") ? "55vw" : "-55vw"};
 
 const FlipCard = styled.div`
     width: 100%;
