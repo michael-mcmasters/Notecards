@@ -43,12 +43,38 @@ export default function App() {
     />
   }
 
-  const cardss = (cardIndex) => {
+  const cardss = () => {
+    const i = cardIndex;
     return (
       <div className="row">
-        {getNoteCard(cardIndex - 1)}
+        {/* {getNoteCard(cardIndex - 1)}
         {getNoteCard(cardIndex)}
-        {getNoteCard(cardIndex + 1)}
+        {getNoteCard(cardIndex + 1)} */}
+
+        <Card
+          key={-1}
+          index={cards[i].id}   // Flip animation needs index. Will not work if you use key as index.
+          direction={-55}
+          backgroundColor={cards[i].backgroundColor}
+          frontText={cards[i].frontText}
+          backText={cards[i].backText}
+        />
+        <Card
+          key={0}
+          index={cards[i].id}   // Flip animation needs index. Will not work if you use key as index.
+          direction={0}
+          backgroundColor={cards[i].backgroundColor}
+          frontText={cards[i].frontText}
+          backText={cards[i].backText}
+        />
+        <Card
+          key={1}
+          index={cards[i].id}   // Flip animation needs index. Will not work if you use key as index.
+          direction={55}
+          backgroundColor={cards[i].backgroundColor}
+          frontText={cards[i].frontText}
+          backText={cards[i].backText}
+        />
       </div>
     )
   }

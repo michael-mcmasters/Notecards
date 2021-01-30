@@ -4,7 +4,7 @@ import "../css/Card.css";
 
 export default function Card(props) {
   const [flipped, setFlipped] = useState(false);
-  const [direction, setDirection] = useState("0vw");
+  const [direction, setDirection] = useState(0);
 
   const handleKeyDown = (event) => {
     switch (event.key) {
@@ -21,6 +21,10 @@ export default function Card(props) {
   };
 
   useEffect(() => {
+    setDirection(props.direction);
+  }, []);
+
+  useEffect(() => {
     window.addEventListener('keydown', handleKeyDown);
 
     return () => {
@@ -29,27 +33,34 @@ export default function Card(props) {
   }, [flipped, direction]);      // Re-renders component whenever flipped value changes.
 
   const handleMoveCard = (newDirection) => {
-    // If left, move right
-    if (direction === "-55vw") {
-      if (newDirection === "right") {
-        setDirection("0vw");
-      }
+    if (newDirection === "left") {
+      setDirection(direction - 55);
     }
-    // If center, move left or right
-    else if (direction === "0vw") {
-      if (newDirection === "left") {
-        setDirection("-55vw");
-      }
-      else if (newDirection === "right") {
-        setDirection("55vw");
-      }
+    else if (newDirection === "right") {
+      setDirection(direction + 55);
     }
-    // If right, move left
-    else if (direction === "55vw") {
-      if (newDirection === "left") {
-        setDirection("0vw");
-      }
-    }
+
+    // // If left, move right
+    // if (direction === "-55vw") {
+    //   if (newDirection === "right") {
+    //     setDirection("0vw");
+    //   }
+    // }
+    // // If center, move left or right
+    // else if (direction === "0vw") {
+    //   if (newDirection === "left") {
+    //     setDirection("-55vw");
+    //   }
+    //   else if (newDirection === "right") {
+    //     setDirection("55vw");
+    //   }
+    // }
+    // // If right, move left
+    // else if (direction === "55vw") {
+    //   if (newDirection === "left") {
+    //     setDirection("0vw");
+    //   }
+    // }
   }
 
   return (
@@ -69,7 +80,7 @@ export default function Card(props) {
     // </div>
 
     <div>
-      <FlipCardContainer direction={direction}>
+      <FlipCardContainer direction={`${direction}vw`}>
         <FlipCard flipped={flipped} onClick={() => setFlipped(!flipped)}>
           <Front backgroundColor={props.backgroundColor}>
             <h1>{props.frontText}</h1>
