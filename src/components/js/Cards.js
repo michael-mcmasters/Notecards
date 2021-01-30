@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Card from "./Card.js";
 import "../css/Cards.css";
 
 export default function App() {
   const [cardIndex, setCardIndex] = useState(1);
+  const [flipped, setFlipped] = useState(false);
 
   const cards = [
     {
@@ -32,11 +33,36 @@ export default function App() {
     },
   ];
 
+  useEffect(() => {
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  });
+
+  const handleKeyDown = (event) => {
+    switch (event.key) {
+      case " ":                   // space key
+        setFlipped(!flipped);
+        break;
+      case "ArrowLeft":
+        if (cardIndex >= 0) setCardIndex(cardIndex - 1);
+        break;
+      case "ArrowRight":
+        if (cardIndex <= cards.length - 1) setCardIndex(cardIndex + 1);
+        break;
+    }
+  };
+
   // Pass the index of the notecard you want.
-  const getNoteCard = (i) => {
+  const getNoteCard = (i, position) => {
+    if (i < 0 || i > cards.length - 1) return "";   // edge case: make sure index is in range
+
     return <Card
       key={cards[i].id}
       index={cards[i].id}   // Flip animation needs index. Will not work if you use key as index.
+      position={position}
       backgroundColor={cards[i].backgroundColor}
       frontText={cards[i].frontText}
       backText={cards[i].backText}
@@ -46,9 +72,9 @@ export default function App() {
   const cardss = (cardIndex) => {
     return (
       <div className="row">
-        {getNoteCard(cardIndex - 1)}
-        {getNoteCard(cardIndex)}
-        {getNoteCard(cardIndex + 1)}
+        {getNoteCard(cardIndex - 1, "left")}
+        {getNoteCard(cardIndex, "center")}
+        {getNoteCard(cardIndex + 1, "right")}
       </div>
     )
   }

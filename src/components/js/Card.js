@@ -26,29 +26,37 @@ export default function Card(props) {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [flipped, direction]);      // Re-renders component whenever flipped value changes.
+  }, [flipped, direction]);
 
   const handleMoveCard = (newDirection) => {
     // If left, move right
-    if (direction === "-55vw") {
-      if (newDirection === "right") {
-        setDirection("0vw");
-      }
-    }
-    // If center, move left or right
-    else if (direction === "0vw") {
-      if (newDirection === "left") {
-        setDirection("-55vw");
-      }
-      else if (newDirection === "right") {
-        setDirection("55vw");
-      }
-    }
-    // If right, move left
-    else if (direction === "55vw") {
-      if (newDirection === "left") {
-        setDirection("0vw");
-      }
+    // if (direction === "-55vw") {
+    //   if (newDirection === "right") {
+    //     setDirection("0vw");
+    //   }
+    // }
+    // // If center, move left or right
+    // else if (direction === "0vw") {
+    //   if (newDirection === "left") {
+    //     setDirection("-55vw");
+    //   }
+    //   else if (newDirection === "right") {
+    //     setDirection("55vw");
+    //   }
+    // }
+    // // If right, move left
+    // else if (direction === "55vw") {
+    //   if (newDirection === "left") {
+    //     setDirection("0vw");
+    //   }
+    // }
+
+    if (props.direction === "left") {
+      setDirection("-55vw");
+    } else if (props.direction === "center") {
+      setDirection("0vw");
+    } else if (props.direction === "right") {
+      setDirection("55vw");
     }
   }
 
