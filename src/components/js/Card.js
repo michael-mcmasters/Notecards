@@ -26,14 +26,23 @@ export default function Card(props) {
 
   return (
     <div>
-      <div className="flip-card" onClick={() => flipCard()}>
-        <div className="flip-card-inner" style={{ backgroundColor: props.backgroundColor }}>
-          <div className="flip-card-front" style={{ backgroundColor: props.backgroundColor }}>
+
+      <div className="maincontainer" onClick={() => flipCard()}>
+        <div className="thecard" style={{ backgroundColor: props.backgroundColor }}>
+          <div className="thefront" style={{ backgroundColor: props.backgroundColor }}>
             <h1>{props.frontText}</h1>
           </div>
-          <div className="flip-card-back" style={{ backgroundColor: props.backgroundColor }}>
+          <div className="theback" style={{ backgroundColor: props.backgroundColor }}>
             <p>{props.backText}</p>
           </div>
+        </div>
+      </div>
+
+      <div class="maincontainer">
+        <div class="thecard">
+          <div class="thefront"><h1>Front of Card</h1><p>This is the front of the card. It contains important information. Please see overleaf for more details.</p></div>
+          <div class="theback"><h1>Back of Card</h1><p>{props.backText}</p>
+            <button>Submit</button></div>
         </div>
       </div>
     </div>
