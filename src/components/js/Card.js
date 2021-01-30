@@ -34,8 +34,8 @@ export default function Card(props) {
 
   return (
     // <div>
-    //   <div className="card-container">
-    //     <div className="card" onClick={() => handleCardFlip()}>
+    //   <div className="flip-card-container">
+    //     <div className="flip-card" onClick={() => handleCardFlip()}>
     //       <div className="front" style={{ background: props.backgroundColor }}>
     //         <h1>{props.frontText}</h1>
     //         <p>This is the front of the card. It contains important information. Please see overleaf for more details.</p>
@@ -49,8 +49,8 @@ export default function Card(props) {
     // </div>
 
     <div>
-      <CardContainer direction={direction}>
-        <Cardd flipped={flipped} onClick={() => setFlipped(!flipped)}>
+      <FlipCardContainer direction={direction}>
+        <FlipCard flipped={flipped} onClick={() => setFlipped(!flipped)}>
           <Front backgroundColor={props.backgroundColor}>
             <h1>{props.frontText}</h1>
             <p>This is the front of the card. It contains important information. Please see overleaf for more details.</p>
@@ -59,13 +59,13 @@ export default function Card(props) {
             <p>{props.backText}</p>
             <button>Submit</button>
           </Back>
-        </Cardd>
-      </CardContainer>
+        </FlipCard>
+      </FlipCardContainer>
     </div>
   );
 };
 
-const CardContainer = styled.div`
+const FlipCardContainer = styled.div`
     width: 250px;
     height: 320px;
     background: none;
@@ -76,7 +76,7 @@ const CardContainer = styled.div`
     left: ${props => (props.direction === "left") ? "55vw" : "-55vw"};
 `;
 
-const Cardd = styled.div`
+const FlipCard = styled.div`
     width: 100%;
     height: 100%;
     border-radius: 10px;
