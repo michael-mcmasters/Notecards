@@ -42,20 +42,20 @@
 } */
 
 /* THE MAINCONTAINER HOLDS EVERYTHING */
-.maincontainer {
+.card-container {
   /* position: absolute; */
   width: 250px;
   height: 320px;
   background: none;
   top: 50%;
   left: 50%;
-  border: 1px solid red;
+  /* border: 1px solid red; */
   margin: 2rem;
   /* transform: translate(-50%, -50%); */
 }
 
 /* THE CARD HOLDS THE FRONT AND BACK FACES */
-.thecard {
+.card {
   /* position: relative; */
   /* top: 0; */
   /* left: 0; */
@@ -64,15 +64,16 @@
   border-radius: 10px;
   transform-style: preserve-3d;
   transition: all 0.8s ease;
+  /* background-color: red; */
 }
 
-/* THE PSUEDO CLASS CONTROLS THE FLIP ON MOUSEOVER AND MOUSEOUT */
-.thecard:hover {
-  transform: rotateY(180deg);
-}
+/* THE PSUEDO CLASS CONTROLS THE FLIP ON MOUSEOVER AND MOUSEOUT
+/* .card:hover {
+  transform: rotateY(180deg); */
+/* } */
 
 /* THE FRONT FACE OF THE CARD, WHICH SHOWS BY DEFAULT */
-.thefront {
+.front {
   /* position: absolute; */
   top: 0;
   left: 0;
@@ -82,12 +83,12 @@
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   overflow: hidden;
-  background: #ffc728;
+  /* background: #ffc728; */
   color: #000;
 }
 
 /* THE BACK FACE OF THE CARD, WHICH SHOWS ON MOUSEOVER */
-.theback {
+.back {
   position: absolute;
   top: 0;
   left: 0;
