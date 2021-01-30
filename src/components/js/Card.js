@@ -7,24 +7,28 @@ export default function Card(props) {
   const [direction, setDirection] = useState("left");
 
   const handleKeyDown = (event) => {
-    if (event.key === "ArrowRight") {
-      handleMovingCard("left")
-    } else if (event.key === "ArrowLeft") {
-      handleMovingCard("right");
-    } else if (event.key === " ") { // space key
-      setFlipped(!flipped);
+    switch (event.key) {
+      case " ":                   // space key
+        setFlipped(!flipped);
+        break;
+      case "ArrowLeft":
+        handleMoveCard("left");
+        break;
+      case "ArrowRight":
+        handleMoveCard("right");
+        break;
     }
   };
 
   useEffect(() => {
     window.addEventListener('keydown', handleKeyDown);
 
-    return () => {    // This arrow function is called when the component dismounts.
+    return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [flipped]); // Re-renders component whenever flipped value changes.
+  }, [flipped]);      // Re-renders component whenever flipped value changes.
 
-  const handleMovingCard = (direction) => {
+  const handleMoveCard = (direction) => {
     setDirection((direction === "left") ? "right" : "left");
   }
 
@@ -69,8 +73,8 @@ const CardContainer = styled.div`
     cursor: pointer;
     position: relative;
     transition: left 0.8s;
-    left: ${props => (props.direction === "left") ? "-55vw" : "55vw"};
-  `;
+    left: ${props => (props.direction === "left") ? "55vw" : "-55vw"};
+`;
 
 const Cardd = styled.div`
     width: 100%;
@@ -79,7 +83,7 @@ const Cardd = styled.div`
     transform-style: preserve-3d;
     transition: all 0.8s ease;
     transform: ${props => props.flipped ? "rotateY(180deg)" : "rotateY(0deg)"};
-  `;
+`;
 
 const Front = styled.div`
     top: 0;
@@ -92,7 +96,7 @@ const Front = styled.div`
     overflow: hidden;
     
     background-color: ${props => props.backgroundColor};
-    `;
+`;
 
 const Back = styled.div`
     position: absolute;
@@ -107,4 +111,4 @@ const Back = styled.div`
     color: #333;
     text-align: center;
     transform: rotateY(180deg);
-  `;
+`;
