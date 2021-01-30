@@ -6,29 +6,29 @@ export default function Card(props) {
   const [flipped, setFlipped] = useState(false);
   const [direction, setDirection] = useState("0vw");
 
-  const handleKeyDown = (event) => {
-    switch (event.key) {
-      case " ":                   // space key
-        setFlipped(!flipped);
-        break;
-      case "ArrowLeft":
-        handleMoveCard("left");
-        break;
-      case "ArrowRight":
-        handleMoveCard("right");
-        break;
-    }
-  };
+  // const handleKeyDown = (event) => {
+  //   switch (event.key) {
+  //     case " ":                   // space key
+  //       setFlipped(!flipped);
+  //       break;
+  //     case "ArrowLeft":
+  //       handleMoveCard("left");
+  //       break;
+  //     case "ArrowRight":
+  //       handleMoveCard("right");
+  //       break;
+  //   }
+  // };
 
   useEffect(() => {
-    window.addEventListener('keydown', handleKeyDown);
+    // window.addEventListener('keydown', handleKeyDown);
 
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [flipped, direction]);
+    // return () => {
+    //   window.removeEventListener('keydown', handleKeyDown);
+    // };
+  }, [flipped, direction, props.position]);
 
-  const handleMoveCard = (newDirection) => {
+  const getPosition = (position) => {
     // If left, move right
     // if (direction === "-55vw") {
     //   if (newDirection === "right") {
@@ -51,12 +51,15 @@ export default function Card(props) {
     //   }
     // }
 
-    if (props.direction === "left") {
-      setDirection("-55vw");
-    } else if (props.direction === "center") {
-      setDirection("0vw");
-    } else if (props.direction === "right") {
-      setDirection("55vw");
+    if (position === "left") {
+      //return "-55vw";
+      setDirection(props.direction);
+    } else if (position === "center") {
+      //return "0vw";
+      setDirection(props.direction);
+    } else if (position === "right") {
+      //return "55vw";
+      setDirection(props.direction);
     }
   }
 
@@ -77,7 +80,7 @@ export default function Card(props) {
     // </div>
 
     <div>
-      <FlipCardContainer direction={direction}>
+      <FlipCardContainer direction={props.position}>
         <FlipCard flipped={flipped} onClick={() => setFlipped(!flipped)}>
           <Front backgroundColor={props.backgroundColor}>
             <h1>{props.frontText}</h1>
