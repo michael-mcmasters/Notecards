@@ -42,15 +42,9 @@ export default function App() {
 
   return (
     <div>
-      {/* <div class="row">
+      <div className="row">
         {getNoteCard(0)}
-        {getNoteCard(1)}
       </div>
-      <div class="row">
-        {getNoteCard(2)}
-        {getNoteCard(3)}
-      </div> */}
-      {getNoteCard(0)}
     </div>
   );
 }

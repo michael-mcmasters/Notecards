@@ -51,7 +51,7 @@
 
   position: relative;
   transition: left 0.8s;
-  left: 100px;
+  /* left: 100px; */
 }
 
 /* THE CARD HOLDS THE FRONT AND BACK FACES */

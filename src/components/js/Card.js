@@ -32,7 +32,7 @@ export default function Card(props) {
 
   const moveCard = (direction) => {
     const elements = document.querySelectorAll(".card-container");
-    elements[props.index].style.left = (direction === "left") ? "300px" : "-300px";
+    elements[props.index].style.left = (direction === "left") ? "55vw" : "-55vw";
   }
 
   return (
