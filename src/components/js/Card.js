@@ -6,15 +6,16 @@ export default function Card(props) {
 
   const handleKeyDown = (event) => {
     console.log('A key was pressed', event.keyCode);
+    flipCard();
   };
 
-  useEffect(() => {   // Only runs when component mounts because we pass zero dependencies []
+  useEffect(() => {
     window.addEventListener('keydown', handleKeyDown);
 
     return () => {    // This arrow function is called when the component dismounts.
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, []);
+  }, []); // Only runs when component mounts because we pass zero dependencies []
 
   // transform-style: preserve-3d was not working by assigning with React no matter what I tried. So here I am directly manipulating the CSS file.
   // This makes the cards look more 3D as they flip.
