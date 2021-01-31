@@ -92,7 +92,7 @@ export default function Card(props) {
     //   </div>
     // </div>
 
-    <FlipCardContainer direction={`${direction}vw`} transition={transition}>
+    <FlipCardContainer direction={direction} transition={transition}>
       <FlipCard flipped={flipped} onClick={() => setFlipped(!flipped)}>
         <Front backgroundColor={props.backgroundColor}>
           <h1>{props.frontText}</h1>
@@ -115,7 +115,7 @@ const FlipCardContainer = styled.div`
     cursor: pointer;
     position: absolute;
     transition: ${props => props.transition};
-    left: ${props => props.direction};
+    left: ${props => `${props.direction - 15}vw`};
 `;
 // transition: left 0.8s;
 
