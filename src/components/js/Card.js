@@ -111,12 +111,12 @@ const FlipCardContainer = styled.div`
     width: 250px;
     height: 320px;
     background: none;
-    margin: 2rem;
+    margin: 0;
     cursor: pointer;
-    position: relative;
+    position: absolute;
     transition: ${props => props.transition};
     left: ${props => props.direction};
-    `;
+`;
 // transition: left 0.8s;
 
 const FlipCard = styled.div`
@@ -126,11 +126,9 @@ const FlipCard = styled.div`
     transform-style: preserve-3d;
     transition: all 0.8s ease;
     transform: ${props => props.flipped ? "rotateY(180deg)" : "rotateY(0deg)"};
-    `;
+`;
 
 const Front = styled.div`
-    top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
     border-radius: 10px;
