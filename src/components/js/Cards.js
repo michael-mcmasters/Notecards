@@ -7,6 +7,12 @@ export default function App() {
 
   const cards = [
     {
+      id: -1,
+      backgroundColor: "#31587A",
+      frontText: "Dummy Card ",
+      backText: "This is a dummy card, meaning the index was out of range because there is no card here. So this is a placeholder so that the card carousel will still work",
+    },
+    {
       id: 0,
       backgroundColor: "#31587A",
       frontText: "Linked List",
@@ -30,90 +36,128 @@ export default function App() {
       frontText: "Queue",
       backText: "Queues process elements in the order that they were entered rather than the most recent element. This means that they follow the first in first out principle. One end is always used to insert data and the other end is used to remove data. This means that it ensures that the oldest data is processed first. The advantages of this data structure is the dynamic size, that it orders data in the order it was received, and it has a low runtime. The disadvantage of the first out first in principle is that it can only retrieve the oldest element.",
     },
+    {
+      id: 4,
+      backgroundColor: "#31587A",
+      frontText: "Queue",
+      backText: "Queues process elements in the order that they were entered rather than the most recent element. This means that they follow the first in first out principle. One end is always used to insert data and the other end is used to remove data. This means that it ensures that the oldest data is processed first. The advantages of this data structure is the dynamic size, that it orders data in the order it was received, and it has a low runtime. The disadvantage of the first out first in principle is that it can only retrieve the oldest element.",
+    },
+    {
+      id: 5,
+      backgroundColor: "#31587A",
+      frontText: "Queue",
+      backText: "Queues process elements in the order that they were entered rather than the most recent element. This means that they follow the first in first out principle. One end is always used to insert data and the other end is used to remove data. This means that it ensures that the oldest data is processed first. The advantages of this data structure is the dynamic size, that it orders data in the order it was received, and it has a low runtime. The disadvantage of the first out first in principle is that it can only retrieve the oldest element.",
+    },
+    {
+      id: 6,
+      backgroundColor: "#31587A",
+      frontText: "Queue",
+      backText: "Queues process elements in the order that they were entered rather than the most recent element. This means that they follow the first in first out principle. One end is always used to insert data and the other end is used to remove data. This means that it ensures that the oldest data is processed first. The advantages of this data structure is the dynamic size, that it orders data in the order it was received, and it has a low runtime. The disadvantage of the first out first in principle is that it can only retrieve the oldest element.",
+    },
+    {
+      id: 7,
+      backgroundColor: "#31587A",
+      frontText: "Queue",
+      backText: "Queues process elements in the order that they were entered rather than the most recent element. This means that they follow the first in first out principle. One end is always used to insert data and the other end is used to remove data. This means that it ensures that the oldest data is processed first. The advantages of this data structure is the dynamic size, that it orders data in the order it was received, and it has a low runtime. The disadvantage of the first out first in principle is that it can only retrieve the oldest element.",
+    },
   ];
 
-  // Pass the index of the notecard you want.
-  const getNoteCard = (i) => {
-    return <Card
-      key={cards[i].id}
-      index={cards[i].id}   // Flip animation needs index. Will not work if you use key as index.
-      backgroundColor={cards[i].backgroundColor}
-      frontText={cards[i].frontText}
-      backText={cards[i].backText}
-    />
-  }
+  // Returns an array of cards next to the card with the given index. Makes sure the indexed card is at the center of the page.
+  // If there are no cards beside the given card, it creates dummy cards as a placeholder.
+  const getNoteCards = (index) => {
+    let cardsArr = [];
 
-  const cardss = () => {
-    const i = cardIndex;
-    return (
-      <div className="row">
-        {/* {getNoteCard(cardIndex - 1)}
-        {getNoteCard(cardIndex)}
-        {getNoteCard(cardIndex + 1)} */}
+    let direction = -150;
+    for (let i = index - 1; i <= index + 5; i++) {
+      if (i < 0 || i > cards.length) {              // Use dummy card if index is out of range (meaning there are no cards beside this card).
+        i = 0;
+      }
+      cardsArr.push(<Card
+        key={i}
+        index={cards[i].id}                         // Flip animation needs index. Will not work if you use key as index.
+        direction={direction}
+        backgroundColor={cards[i].backgroundColor}
+        frontText={cards[i].frontText}
+        backText={cards[i].backText}
+      />);
 
-        <Card
-          key={-3}
-          index={cards[i].id}   // Flip animation needs index. Will not work if you use key as index.
-          direction={-150}
-          backgroundColor={cards[i].backgroundColor}
-          frontText={cards[i].frontText}
-          backText={cards[i].backText}
-        />
-        <Card
-          key={-2}
-          index={cards[i].id}   // Flip animation needs index. Will not work if you use key as index.
-          direction={-100}
-          backgroundColor={cards[i].backgroundColor}
-          frontText={cards[i].frontText}
-          backText={cards[i].backText}
-        />
-        <Card
-          key={-1}
-          index={cards[i].id}   // Flip animation needs index. Will not work if you use key as index.
-          direction={-50}
-          backgroundColor={cards[i].backgroundColor}
-          frontText={cards[i].frontText}
-          backText={cards[i].backText}
-        />
-        <Card
-          key={0}
-          index={cards[i].id}   // Flip animation needs index. Will not work if you use key as index.
-          direction={0}
-          backgroundColor={"blue"}
-          frontText={cards[i].frontText}
-          backText={cards[i].backText}
-        />
-        <Card
-          key={1}
-          index={cards[i].id}   // Flip animation needs index. Will not work if you use key as index.
-          direction={50}
-          backgroundColor={cards[i].backgroundColor}
-          frontText={cards[i].frontText}
-          backText={cards[i].backText}
-        />
-        <Card
-          key={2}
-          index={cards[i].id}   // Flip animation needs index. Will not work if you use key as index.
-          direction={100}
-          backgroundColor={cards[i].backgroundColor}
-          frontText={cards[i].frontText}
-          backText={cards[i].backText}
-        />
-        <Card
-          key={3}
-          index={cards[i].id}   // Flip animation needs index. Will not work if you use key as index.
-          direction={150}
-          backgroundColor={cards[i].backgroundColor}
-          frontText={cards[i].frontText}
-          backText={cards[i].backText}
-        />
-      </div>
-    )
+      direction += 50;
+    }
+    return cardsArr;
   }
 
   return (
     <div>
-      {cardss(cardIndex)}
+      {getNoteCards(1)}
     </div>
   );
 }
+
+
+
+
+
+  // // Longer way of doing it without a for-loop
+  // const getCards = () => {
+  //   const i = cardIndex;
+  //   return (
+  //     <div className="row">
+  //       <Card
+  //         key={-3}
+  //         index={cards[i].id}   // Flip animation needs index. Will not work if you use key as index.
+  //         direction={-150}
+  //         backgroundColor={cards[i].backgroundColor}
+  //         frontText={cards[i].frontText}
+  //         backText={cards[i].backText}
+  //       />
+  //       <Card
+  //         key={-2}
+  //         index={cards[i].id}   // Flip animation needs index. Will not work if you use key as index.
+  //         direction={-100}
+  //         backgroundColor={cards[i].backgroundColor}
+  //         frontText={cards[i].frontText}
+  //         backText={cards[i].backText}
+  //       />
+  //       <Card
+  //         key={-1}
+  //         index={cards[i].id}   // Flip animation needs index. Will not work if you use key as index.
+  //         direction={-50}
+  //         backgroundColor={cards[i].backgroundColor}
+  //         frontText={cards[i].frontText}
+  //         backText={cards[i].backText}
+  //       />
+  //       <Card
+  //         key={0}
+  //         index={cards[i].id}   // Flip animation needs index. Will not work if you use key as index.
+  //         direction={0}
+  //         backgroundColor={"blue"}
+  //         frontText={cards[i].frontText}
+  //         backText={cards[i].backText}
+  //       />
+  //       <Card
+  //         key={1}
+  //         index={cards[i].id}   // Flip animation needs index. Will not work if you use key as index.
+  //         direction={50}
+  //         backgroundColor={cards[i].backgroundColor}
+  //         frontText={cards[i].frontText}
+  //         backText={cards[i].backText}
+  //       />
+  //       <Card
+  //         key={2}
+  //         index={cards[i].id}   // Flip animation needs index. Will not work if you use key as index.
+  //         direction={100}
+  //         backgroundColor={cards[i].backgroundColor}
+  //         frontText={cards[i].frontText}
+  //         backText={cards[i].backText}
+  //       />
+  //       <Card
+  //         key={3}
+  //         index={cards[i].id}   // Flip animation needs index. Will not work if you use key as index.
+  //         direction={150}
+  //         backgroundColor={cards[i].backgroundColor}
+  //         frontText={cards[i].frontText}
+  //         backText={cards[i].backText}
+  //       />
+  //     </div>
+  //   )
+  // }
