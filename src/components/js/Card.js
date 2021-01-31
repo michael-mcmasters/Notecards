@@ -35,8 +35,8 @@ export default function Card(props) {
 
   const handleMoveCard = (newDirection) => {
     if (newDirection === "left") {
-      if (direction <= -100) {
-        setDirection(100);
+      if (direction <= -150) {
+        setDirection(150);
         setTransition("");
       } else {
         setDirection(direction - 50);
@@ -44,8 +44,8 @@ export default function Card(props) {
       }
     }
     else if (newDirection === "right") {
-      if (direction >= 100) {
-        setDirection(-100);
+      if (direction >= 150) {
+        setDirection(-150);
         setTransition("");
       } else {
         setDirection(direction + 50);

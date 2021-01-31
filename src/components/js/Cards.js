@@ -52,6 +52,14 @@ export default function App() {
         {getNoteCard(cardIndex + 1)} */}
 
         <Card
+          key={-3}
+          index={cards[i].id}   // Flip animation needs index. Will not work if you use key as index.
+          direction={-150}
+          backgroundColor={cards[i].backgroundColor}
+          frontText={cards[i].frontText}
+          backText={cards[i].backText}
+        />
+        <Card
           key={-2}
           index={cards[i].id}   // Flip animation needs index. Will not work if you use key as index.
           direction={-100}
@@ -87,6 +95,14 @@ export default function App() {
           key={2}
           index={cards[i].id}   // Flip animation needs index. Will not work if you use key as index.
           direction={100}
+          backgroundColor={cards[i].backgroundColor}
+          frontText={cards[i].frontText}
+          backText={cards[i].backText}
+        />
+        <Card
+          key={3}
+          index={cards[i].id}   // Flip animation needs index. Will not work if you use key as index.
+          direction={150}
           backgroundColor={cards[i].backgroundColor}
           frontText={cards[i].frontText}
           backText={cards[i].backText}
