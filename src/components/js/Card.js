@@ -35,20 +35,20 @@ export default function Card(props) {
 
   const handleMoveCard = (newDirection) => {
     if (newDirection === "left") {
-      if (direction <= -110) {
-        setDirection(110);
+      if (direction <= -100) {
+        setDirection(100);
         setTransition("");
       } else {
-        setDirection(direction - 55);
+        setDirection(direction - 50);
         setTransition("all 0.8s ease");
       }
     }
     else if (newDirection === "right") {
-      if (direction >= 110) {
-        setDirection(-110);
+      if (direction >= 100) {
+        setDirection(-100);
         setTransition("");
       } else {
-        setDirection(direction + 55);
+        setDirection(direction + 50);
         setTransition("all 0.8s ease");
       }
     }
@@ -107,6 +107,8 @@ export default function Card(props) {
   );
 };
 
+// left moves card into position, pushing it away from the left.
+// transform offsets half of card's width so it centers around its own axis.
 const FlipCardContainer = styled.div`
     width: 250px;
     height: 320px;
@@ -115,9 +117,11 @@ const FlipCardContainer = styled.div`
     cursor: pointer;
     position: absolute;
     transition: ${props => props.transition};
-    left: ${props => `${props.direction - 15}vw`};
-`;
-// transition: left 0.8s;
+    
+    left: ${props => props.direction}%;
+    transform: translateX(-50%);
+    -webkit-transform:translateX(-50%);
+    `;
 
 const FlipCard = styled.div`
     width: 100%;
