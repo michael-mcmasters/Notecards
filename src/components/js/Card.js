@@ -5,6 +5,7 @@ import "../css/Card.css";
 export default function Card(props) {
   const [flipped, setFlipped] = useState(false);
   const [direction, setDirection] = useState(0);
+  const [transition, setTransition] = useState("");
 
   const handleKeyDown = (event) => {
     switch (event.key) {
@@ -34,10 +35,22 @@ export default function Card(props) {
 
   const handleMoveCard = (newDirection) => {
     if (newDirection === "left") {
-      setDirection(direction - 55);
+      if (direction <= -110) {
+        setDirection(110);
+        setTransition("");
+      } else {
+        setDirection(direction - 55);
+        setTransition("all 0.8s ease");
+      }
     }
     else if (newDirection === "right") {
-      setDirection(direction + 55);
+      if (direction >= 110) {
+        setDirection(-110);
+        setTransition("");
+      } else {
+        setDirection(direction + 55);
+        setTransition("all 0.8s ease");
+      }
     }
 
     // // If left, move right
@@ -79,20 +92,18 @@ export default function Card(props) {
     //   </div>
     // </div>
 
-    <div>
-      <FlipCardContainer direction={`${direction}vw`}>
-        <FlipCard flipped={flipped} onClick={() => setFlipped(!flipped)}>
-          <Front backgroundColor={props.backgroundColor}>
-            <h1>{props.frontText}</h1>
-            <p>This is the front of the card. It contains important information. Please see overleaf for more details.</p>
-          </Front>
-          <Back>
-            <p>{props.backText}</p>
-            <button>Submit</button>
-          </Back>
-        </FlipCard>
-      </FlipCardContainer>
-    </div>
+    <FlipCardContainer direction={`${direction}vw`} transition={transition}>
+      <FlipCard flipped={flipped} onClick={() => setFlipped(!flipped)}>
+        <Front backgroundColor={props.backgroundColor}>
+          <h1>{props.frontText}</h1>
+          <p>This is the front of the card. It contains important information. Please see overleaf for more details.</p>
+        </Front>
+        <Back>
+          <p>{props.backText}</p>
+          <button>Submit</button>
+        </Back>
+      </FlipCard>
+    </FlipCardContainer>
   );
 };
 
@@ -103,10 +114,10 @@ const FlipCardContainer = styled.div`
     margin: 2rem;
     cursor: pointer;
     position: relative;
-    transition: left 0.8s;
+    transition: ${props => props.transition};
     left: ${props => props.direction};
-`;
-// left: ${props => (props.direction === "left") ? "55vw" : "-55vw"};
+    `;
+// transition: left 0.8s;
 
 const FlipCard = styled.div`
     width: 100%;
@@ -115,7 +126,7 @@ const FlipCard = styled.div`
     transform-style: preserve-3d;
     transition: all 0.8s ease;
     transform: ${props => props.flipped ? "rotateY(180deg)" : "rotateY(0deg)"};
-`;
+    `;
 
 const Front = styled.div`
     top: 0;
