@@ -3,9 +3,18 @@ import styled, { css } from "styled-components";
 import "../css/Card.css";
 
 export default function Card(props) {
+
+  //let { index, backgroundColor, frontText, backText, getNewData } = props;
+
   const [flipped, setFlipped] = useState(false);
   const [direction, setDirection] = useState(props.direction);
   const [transition, setTransition] = useState("");
+  const [index, setIndex] = useState(props.index);
+  const [backgroundColor, setBackgroundColor] = useState(props.backgroundColor);
+  const [frontText, setFrontText] = useState(props.frontText);
+  const [backText, setBackText] = useState(props.backText);
+
+  const [cardId, setCardId] = useState(props.index);
 
   useEffect(() => {
     window.addEventListener('keydown', handleKeyDown);
@@ -46,6 +55,18 @@ export default function Card(props) {
       if (direction >= 150) {
         setDirection(-150);
         setTransition("");
+        const newData = props.getNewData(index);
+
+        // 0 1 2 3 4
+        // 5 0 1 2 3
+        // 4 5 0 1 2
+
+        setIndex(index + 6);
+        setBackgroundColor(newData.backgroundColor);
+        setFrontText(newData.frontText);
+        setBackText(newData.backText);
+        setCardId(newData.id);
+
       } else {
         setDirection(direction + 50);
         setTransition("all 0.8s ease");
@@ -56,12 +77,14 @@ export default function Card(props) {
   return (
     <FlipCardContainer direction={direction} transition={transition}>
       <FlipCard flipped={flipped} onClick={() => setFlipped(!flipped)}>
-        <Front backgroundColor={props.backgroundColor}>
-          <h1>{props.frontText}</h1>
+        <Front backgroundColor={backgroundColor}>
+          <h1>{index}</h1>
+          <h1>{cardId}</h1>
+          <h1>{frontText}</h1>
           <p>This is the front of the card. It contains important information. Please see overleaf for more details.</p>
         </Front>
         <Back>
-          <p>{props.backText}</p>
+          <p>{backText}</p>
           <button>Submit</button>
         </Back>
       </FlipCard>
