@@ -14,7 +14,7 @@ export default function Card(props) {
   const [frontText, setFrontText] = useState(props.frontText);
   const [backText, setBackText] = useState(props.backText);
 
-  const [cardId, setCardId] = useState(props.index);
+  // const [cardId, setCardId] = useState(props.index);
 
   useEffect(() => {
     window.addEventListener('keydown', handleKeyDown);
@@ -22,7 +22,7 @@ export default function Card(props) {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [flipped, direction]);      // Re-renders component whenever flipped value changes.
+  }, [flipped, direction, index]);      // Re-renders component whenever flipped value changes.
 
   // Left/right to move card. Space key to flip.
   const handleKeyDown = (event) => {
@@ -38,26 +38,31 @@ export default function Card(props) {
         break;
     }
   };
+  //  0  1  2  3  4  5  6
+  // +7 +7 +7 +7 +7 +7 +7
+  //  7  8  9 10 11 12 13
+
+  // 0 1 2 3 4 5 6
+  // 1 2 3 4 5 6 7
+  // 2 3 4 5 6 7 8    // move right
+  // 1 2 3 4 5 6 7
 
   // Object pooling: There are only 7 cards at a given time.
   // Arrow keys move the card. When the card is off screen, it repositions to the opposing side of the screen and receives its new props data to display its new card information.
   const handleMoveCard = (newDirection) => {
     if (newDirection === "left") {
-      if (direction <= -150) {
-        setDirection(150);
+      if (direction <= 0) {
+        setDirection(100);
         setTransition("");                  // Move to opposing screen. Remove transition affect so user doesn't see it move.
 
-        //  0  1  2  3  4  5  6
-        // +7 +7 +7 +7 +7 +7 +7
-        //  7  8  9 10 11 12 13
-        const newIndex = index + 7;
+        const newIndex = index + 3;
         const [newData, indexInRange] = props.getNewData(newIndex);
         if (indexInRange) {
-          setIndex(index + 7);
+          setIndex(index + 3);
           setBackgroundColor(newData.backgroundColor);
           setFrontText(newData.frontText);
           setBackText(newData.backText);
-          setCardId(newData.id);
+          // setCardId(newData.id);
         }
       } else {
         setDirection(direction - 50);
@@ -65,18 +70,20 @@ export default function Card(props) {
       }
     }
     else if (newDirection === "right") {
-      if (direction >= 150) {
-        setDirection(-150);
+      if (direction >= 100) {
+        setDirection(0);
         setTransition("");
 
+        const newIndex = index - 3;
+        const [newData, indexInRange] = props.getNewData(newIndex);
+        if (indexInRange) {
+          setIndex(index - 3);
+          setBackgroundColor(newData.backgroundColor);
+          setFrontText(newData.frontText);
+          setBackText(newData.backText);
+          // setCardId(newData.id);
 
-        const newIndex = index - 7;
-        setIndex(index - 7);
-        const newData = props.getNewData(newIndex);
-        setBackgroundColor(newData.backgroundColor);
-        setFrontText(newData.frontText);
-        setBackText(newData.backText);
-        setCardId(newData.id);
+        }
 
       } else {
         setDirection(direction + 50);
@@ -89,8 +96,16 @@ export default function Card(props) {
     <FlipCardContainer direction={direction} transition={transition}>
       <FlipCard flipped={flipped} onClick={() => setFlipped(!flipped)}>
         <Front backgroundColor={backgroundColor}>
-          <h1>{index}</h1>
-          <h1>{cardId}</h1>
+          <div className="flex">
+            <div className="width">
+              <p>index: {index}</p>
+              {/* <p>id: {cardId}a</p> */}
+            </div>
+            <div className="width">
+              <p>index: {index}</p>
+              {/* <p>id: {cardId}</p> */}
+            </div>
+          </div>
           <h1>{frontText}</h1>
           <p>This is the front of the card. It contains important information. Please see overleaf for more details.</p>
         </Front>

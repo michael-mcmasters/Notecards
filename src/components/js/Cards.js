@@ -169,7 +169,7 @@ export default function App() {
   const i = cardIndex;
   return (
     <div className="row">
-      <Card
+      {/* <Card
         key={-3}
         index={cards[0].id}   // Flip animation needs index. Will not work if you use key as index.
         direction={-150}
@@ -198,7 +198,7 @@ export default function App() {
         frontText={cards[2].frontText}
         backText={cards[2].backText}
         getNewData={getNewData}
-      />
+      /> */}
       <Card
         key={0}
         index={cards[3].id}   // Flip animation needs index. Will not work if you use key as index.
@@ -229,7 +229,7 @@ export default function App() {
         backText={cards[5].backText}
         getNewData={getNewData}
       />
-      <Card
+      {/* <Card
         key={3}
         index={cards[6].id}   // Flip animation needs index. Will not work if you use key as index.
         direction={150}
@@ -238,7 +238,7 @@ export default function App() {
         frontText={cards[6].frontText}
         backText={cards[6].backText}
         getNewData={getNewData}
-      />
+      /> */}
     </div>
   )
 }
