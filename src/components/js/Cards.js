@@ -156,14 +156,13 @@ export default function App() {
   //   return cardsArr;
   // }
 
+  // Tuple. First value is the new card.
+  // Second value returns true if the new card exists or false if it does not exist (meaning the index is out of range).
   const getNewData = (index) => {
-    let newIndex = index + 1;
-    if (newIndex < cards.length) {
-      console.log(newIndex)
-      return cards[newIndex];
+    if (index > 0 && index < cards.length) {
+      return [cards[index], true];
     }
-    console.log(0)
-    return cards[0]
+    return [cards[0], false];
   }
 
   // Longer way of doing it without a for-loop
@@ -174,6 +173,7 @@ export default function App() {
         key={-3}
         index={cards[0].id}   // Flip animation needs index. Will not work if you use key as index.
         direction={-150}
+        jumpAmount={1}
         backgroundColor={cards[0].backgroundColor}
         frontText={cards[0].frontText}
         backText={cards[0].backText}
@@ -183,6 +183,7 @@ export default function App() {
         key={-2}
         index={cards[1].id}   // Flip animation needs index. Will not work if you use key as index.
         direction={-100}
+        jumpAmount={2}
         backgroundColor={cards[1].backgroundColor}
         frontText={cards[1].frontText}
         backText={cards[1].backText}
@@ -192,6 +193,7 @@ export default function App() {
         key={-1}
         index={cards[2].id}   // Flip animation needs index. Will not work if you use key as index.
         direction={-50}
+        jumpAmount={3}
         backgroundColor={cards[2].backgroundColor}
         frontText={cards[2].frontText}
         backText={cards[2].backText}
@@ -201,6 +203,7 @@ export default function App() {
         key={0}
         index={cards[3].id}   // Flip animation needs index. Will not work if you use key as index.
         direction={0}
+        jumpAmount={4}
         backgroundColor={"blue"}
         frontText={cards[3].frontText}
         backText={cards[3].backText}
@@ -210,6 +213,7 @@ export default function App() {
         key={1}
         index={cards[4].id}   // Flip animation needs index. Will not work if you use key as index.
         direction={50}
+        jumpAmount={5}
         backgroundColor={cards[4].backgroundColor}
         frontText={cards[4].frontText}
         backText={cards[4].backText}
@@ -219,6 +223,7 @@ export default function App() {
         key={2}
         index={cards[5].id}   // Flip animation needs index. Will not work if you use key as index.
         direction={100}
+        jumpAmount={6}
         backgroundColor={cards[5].backgroundColor}
         frontText={cards[5].frontText}
         backText={cards[5].backText}
@@ -228,6 +233,7 @@ export default function App() {
         key={3}
         index={cards[6].id}   // Flip animation needs index. Will not work if you use key as index.
         direction={150}
+        jumpAmount={7}
         backgroundColor={cards[6].backgroundColor}
         frontText={cards[6].frontText}
         backText={cards[6].backText}

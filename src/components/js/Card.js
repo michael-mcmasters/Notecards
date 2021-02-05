@@ -46,6 +46,19 @@ export default function Card(props) {
       if (direction <= -150) {
         setDirection(150);
         setTransition("");                  // Move to opposing screen. Remove transition affect so user doesn't see it move.
+
+        //  0  1  2  3  4  5  6
+        // +7 +7 +7 +7 +7 +7 +7
+        //  7  8  9 10 11 12 13
+        const newIndex = index + 7;
+        const [newData, indexInRange] = props.getNewData(newIndex);
+        if (indexInRange) {
+          setIndex(index + 7);
+          setBackgroundColor(newData.backgroundColor);
+          setFrontText(newData.frontText);
+          setBackText(newData.backText);
+          setCardId(newData.id);
+        }
       } else {
         setDirection(direction - 50);
         setTransition("all 0.8s ease");     // Re-add transition affect.
@@ -55,13 +68,11 @@ export default function Card(props) {
       if (direction >= 150) {
         setDirection(-150);
         setTransition("");
-        const newData = props.getNewData(index);
 
-        // 0 1 2 3 4
-        // 5 0 1 2 3
-        // 4 5 0 1 2
 
-        setIndex(index + 6);
+        const newIndex = index - 7;
+        setIndex(index - 7);
+        const newData = props.getNewData(newIndex);
         setBackgroundColor(newData.backgroundColor);
         setFrontText(newData.frontText);
         setBackText(newData.backText);
