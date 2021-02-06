@@ -153,9 +153,9 @@ function getCards() {
   return [
     {
       id: 0,
-      backgroundColor: "#31587A",
-      frontText: "Dummy Card ",
-      backText: "This is a dummy card, meaning the index was out of range because there is no card here. So this is a placeholder so that the card carousel will still work",
+      backgroundColor: "#",
+      frontText: " ",
+      backText: ""
     },
     {
       id: 1,

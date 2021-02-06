@@ -102,16 +102,14 @@ export default function Card(props) {
         <Front backgroundColor={backgroundColor}>
           <div className="text-flex">
             <div className="width">
-              <p>index: {index}</p>
-              {/* <p>id: {cardId}a</p> */}
+              <p>{index > 0 ? index : ""}</p>
             </div>
             <div className="width">
-              <p>index: {index}</p>
-              {/* <p>id: {cardId}</p> */}
+              <p>{index > 0 ? index : ""}</p>
             </div>
           </div>
           <h1>{frontText}</h1>
-          <p>This is the front of the card. It contains important information. Please see overleaf for more details.</p>
+          <p></p>
         </Front>
         <Back>
           <p>{backText}</p>
