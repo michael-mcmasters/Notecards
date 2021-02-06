@@ -14,8 +14,8 @@ export default function Card(props) {
   const [backgroundColor, setBackgroundColor] = useState(props.backgroundColor);
   const [frontText, setFrontText] = useState(props.frontText);
   const [backText, setBackText] = useState(props.backText);
-  // const [display, setDisplay] = useState(() => (index > 0 && index < props.numOfCards) ? "" : "none");
-  const [display, setDisplay] = useState("");
+  const [display, setDisplay] = useState(() => (index > 0 && index < props.numOfCards) ? "" : "none");
+  // const [display, setDisplay] = useState("");
 
   useEffect(() => {
     window.addEventListener('keydown', handleKeyDown);
