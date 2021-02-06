@@ -5,7 +5,125 @@ import "../css/Cards.css";
 export default function App() {
   const [cardIndex, setCardIndex] = useState(1);
 
-  const cards = [
+  const cards = getCards();
+
+  // Returns an array of cards next to the card with the given index. Makes sure the indexed card is at the center of the page.
+  // If there are no cards beside the given card, it creates dummy cards as a placeholder.
+  // const getNoteCards = (index) => {
+  //   let cardsArr = [];
+
+  //   //console.log(index)
+  //   let direction = -150;
+  //   for (let ind = index; ind <= index + 7; ind++) {
+  //     let i = index;
+  //     if (i < 0 || i > cards.length - 1) {              // Use dummy card if index is out of range (meaning there are no cards beside this card).
+  //       i = 9;
+  //     }
+
+
+  //     cardsArr.push(<Card
+  //       key={i}
+  //       index={cards[i].id}                         // Flip animation needs index. Will not work if you use key as index.
+  //       direction={direction}
+  //       backgroundColor={cards[i].backgroundColor}
+  //       frontText={cards[i].frontText}
+  //       backText={cards[i].backText}
+  //     />);
+
+  //     direction += 50;
+  //   }
+  //   return cardsArr;
+  // }
+
+  // Tuple. First value is the new card.
+  // Second value returns true if the new card exists or false if it does not exist (meaning the index is out of range).
+  const getNewData = (index) => {
+    if (index > 0 && index < cards.length) {
+      return [cards[index], true];
+    }
+    return [cards[0], false];
+  }
+
+  // Longer way of doing it without a for-loop
+  const i = cardIndex;
+  return (
+    <div className="row">
+      <Card
+        key={0}
+        index={cards[0].id}   // Flip animation needs index. Will not work if you use key as index.
+        direction={-150}
+        jumpAmount={1}
+        backgroundColor={cards[0].backgroundColor}
+        frontText={cards[0].frontText}
+        backText={cards[0].backText}
+        getNewData={getNewData}
+      />
+      <Card
+        key={1}
+        index={cards[1].id}   // Flip animation needs index. Will not work if you use key as index.
+        direction={-100}
+        jumpAmount={2}
+        backgroundColor={cards[1].backgroundColor}
+        frontText={cards[1].frontText}
+        backText={cards[1].backText}
+        getNewData={getNewData}
+      />
+      <Card
+        key={2}
+        index={cards[2].id}   // Flip animation needs index. Will not work if you use key as index.
+        direction={-50}
+        jumpAmount={3}
+        backgroundColor={cards[2].backgroundColor}
+        frontText={cards[2].frontText}
+        backText={cards[2].backText}
+        getNewData={getNewData}
+      />
+      <Card
+        key={3}
+        index={cards[3].id}   // Flip animation needs index. Will not work if you use key as index.
+        direction={0}
+        jumpAmount={4}
+        backgroundColor={"blue"}
+        frontText={cards[3].frontText}
+        backText={cards[3].backText}
+        getNewData={getNewData}
+      />
+      <Card
+        key={4}
+        index={cards[4].id}   // Flip animation needs index. Will not work if you use key as index.
+        direction={50}
+        jumpAmount={5}
+        backgroundColor={cards[4].backgroundColor}
+        frontText={cards[4].frontText}
+        backText={cards[4].backText}
+        getNewData={getNewData}
+      />
+      <Card
+        key={5}
+        index={cards[5].id}   // Flip animation needs index. Will not work if you use key as index.
+        direction={100}
+        jumpAmount={6}
+        backgroundColor={cards[5].backgroundColor}
+        frontText={cards[5].frontText}
+        backText={cards[5].backText}
+        getNewData={getNewData}
+      />
+      <Card
+        key={6}
+        index={cards[6].id}   // Flip animation needs index. Will not work if you use key as index.
+        direction={150}
+        jumpAmount={7}
+        backgroundColor={cards[6].backgroundColor}
+        frontText={cards[6].frontText}
+        backText={cards[6].backText}
+        getNewData={getNewData}
+      />
+    </div>
+  )
+}
+
+function getCards() {
+  return [
     {
       id: 0,
       backgroundColor: "#31587A",
@@ -127,118 +245,4 @@ export default function App() {
       backText: "yaya ok"
     },
   ];
-
-  // Returns an array of cards next to the card with the given index. Makes sure the indexed card is at the center of the page.
-  // If there are no cards beside the given card, it creates dummy cards as a placeholder.
-  // const getNoteCards = (index) => {
-  //   let cardsArr = [];
-
-  //   //console.log(index)
-  //   let direction = -150;
-  //   for (let ind = index; ind <= index + 7; ind++) {
-  //     let i = index;
-  //     if (i < 0 || i > cards.length - 1) {              // Use dummy card if index is out of range (meaning there are no cards beside this card).
-  //       i = 9;
-  //     }
-
-
-  //     cardsArr.push(<Card
-  //       key={i}
-  //       index={cards[i].id}                         // Flip animation needs index. Will not work if you use key as index.
-  //       direction={direction}
-  //       backgroundColor={cards[i].backgroundColor}
-  //       frontText={cards[i].frontText}
-  //       backText={cards[i].backText}
-  //     />);
-
-  //     direction += 50;
-  //   }
-  //   return cardsArr;
-  // }
-
-  // Tuple. First value is the new card.
-  // Second value returns true if the new card exists or false if it does not exist (meaning the index is out of range).
-  const getNewData = (index) => {
-    if (index > 0 && index < cards.length) {
-      return [cards[index], true];
-    }
-    return [cards[0], false];
-  }
-
-  // Longer way of doing it without a for-loop
-  const i = cardIndex;
-  return (
-    <div className="row">
-      {/* <Card
-        key={-3}
-        index={cards[0].id}   // Flip animation needs index. Will not work if you use key as index.
-        direction={-150}
-        jumpAmount={1}
-        backgroundColor={cards[0].backgroundColor}
-        frontText={cards[0].frontText}
-        backText={cards[0].backText}
-        getNewData={getNewData}
-      />
-      <Card
-        key={-2}
-        index={cards[1].id}   // Flip animation needs index. Will not work if you use key as index.
-        direction={-100}
-        jumpAmount={2}
-        backgroundColor={cards[1].backgroundColor}
-        frontText={cards[1].frontText}
-        backText={cards[1].backText}
-        getNewData={getNewData}
-      />
-      <Card
-        key={-1}
-        index={cards[2].id}   // Flip animation needs index. Will not work if you use key as index.
-        direction={-50}
-        jumpAmount={3}
-        backgroundColor={cards[2].backgroundColor}
-        frontText={cards[2].frontText}
-        backText={cards[2].backText}
-        getNewData={getNewData}
-      /> */}
-      <Card
-        key={0}
-        index={cards[3].id}   // Flip animation needs index. Will not work if you use key as index.
-        direction={0}
-        jumpAmount={4}
-        backgroundColor={"blue"}
-        frontText={cards[3].frontText}
-        backText={cards[3].backText}
-        getNewData={getNewData}
-      />
-      <Card
-        key={1}
-        index={cards[4].id}   // Flip animation needs index. Will not work if you use key as index.
-        direction={50}
-        jumpAmount={5}
-        backgroundColor={cards[4].backgroundColor}
-        frontText={cards[4].frontText}
-        backText={cards[4].backText}
-        getNewData={getNewData}
-      />
-      <Card
-        key={2}
-        index={cards[5].id}   // Flip animation needs index. Will not work if you use key as index.
-        direction={100}
-        jumpAmount={6}
-        backgroundColor={cards[5].backgroundColor}
-        frontText={cards[5].frontText}
-        backText={cards[5].backText}
-        getNewData={getNewData}
-      />
-      {/* <Card
-        key={3}
-        index={cards[6].id}   // Flip animation needs index. Will not work if you use key as index.
-        direction={150}
-        jumpAmount={7}
-        backgroundColor={cards[6].backgroundColor}
-        frontText={cards[6].frontText}
-        backText={cards[6].backText}
-        getNewData={getNewData}
-      /> */}
-    </div>
-  )
 }

@@ -14,8 +14,6 @@ export default function Card(props) {
   const [frontText, setFrontText] = useState(props.frontText);
   const [backText, setBackText] = useState(props.backText);
 
-  // const [cardId, setCardId] = useState(props.index);
-
   useEffect(() => {
     window.addEventListener('keydown', handleKeyDown);
 
@@ -50,53 +48,55 @@ export default function Card(props) {
   // Object pooling: There are only 7 cards at a given time.
   // Arrow keys move the card. When the card is off screen, it repositions to the opposing side of the screen and receives its new props data to display its new card information.
   const handleMoveCard = (newDirection) => {
+    const cardsCount = 7;
+    const amountToMove = 50;
+    const leftMostPosition = -150;
+    const rightMostPosition = 150;
+
     if (newDirection === "left") {
-      if (direction <= 0) {
-        setDirection(100);
+      if (direction <= leftMostPosition) {
+        setDirection(rightMostPosition);
         setTransition("");                  // Move to opposing screen. Remove transition affect so user doesn't see it move.
 
-        const newIndex = index + 3;
+        const newIndex = index + cardsCount;
         const [newData, indexInRange] = props.getNewData(newIndex);
         if (indexInRange) {
-          setIndex(index + 3);
+          setIndex(index + cardsCount);
           setBackgroundColor(newData.backgroundColor);
           setFrontText(newData.frontText);
           setBackText(newData.backText);
-          // setCardId(newData.id);
         }
       } else {
-        setDirection(direction - 50);
+        setDirection(direction - amountToMove);
         setTransition("all 0.8s ease");     // Re-add transition affect.
       }
     }
     else if (newDirection === "right") {
-      if (direction >= 100) {
-        setDirection(0);
+      if (direction >= rightMostPosition) {
+        setDirection(leftMostPosition);
         setTransition("");
 
-        const newIndex = index - 3;
+        const newIndex = index - cardsCount;
         const [newData, indexInRange] = props.getNewData(newIndex);
         if (indexInRange) {
-          setIndex(index - 3);
+          setIndex(index - cardsCount);
           setBackgroundColor(newData.backgroundColor);
           setFrontText(newData.frontText);
           setBackText(newData.backText);
-          // setCardId(newData.id);
-
         }
 
       } else {
-        setDirection(direction + 50);
+        setDirection(direction + amountToMove);
         setTransition("all 0.8s ease");
       }
     }
   }
 
   return (
-    <FlipCardContainer direction={direction} transition={transition}>
+    <FlipCardContainer index={index} direction={direction} transition={transition}>
       <FlipCard flipped={flipped} onClick={() => setFlipped(!flipped)}>
         <Front backgroundColor={backgroundColor}>
-          <div className="flex">
+          <div className="text-flex">
             <div className="width">
               <p>index: {index}</p>
               {/* <p>id: {cardId}a</p> */}
@@ -144,6 +144,8 @@ const FlipCard = styled.div`
 `;
 
 const Front = styled.div`
+    font-size: 25px;
+
     width: 100%;
     height: 100%;
     border-radius: 10px;
