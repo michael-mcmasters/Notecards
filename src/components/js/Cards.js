@@ -59,7 +59,7 @@ export default function App() {
     if (index >= 0 && index < cards.length) {
       return [cards[index], true];
     }
-    return [cards[0], false];
+    return [cards[index], false];
   }
 
   // Longer way of doing it without a for-loop

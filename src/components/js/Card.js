@@ -31,6 +31,9 @@ export default function Card(props) {
     // if (allowCycling === false) return;
 
     switch (event.key) {
+      case " ":                   // space key
+        setFlipped(!flipped);
+        break;
       case "ArrowLeft":
         if (cycleIndex + 1 < 32) {
           setCycleIndex(prevState => prevState + 1);
@@ -86,9 +89,9 @@ export default function Card(props) {
         setTransition("");                  // Move to opposing screen. Remove transition affect so user doesn't see it move.
 
         const newIndex = index + cardsCount;
+        setIndex(newIndex);
         const [newData, indexInRange] = props.getNewData(newIndex);
         if (indexInRange) {
-          setIndex(index + cardsCount);
           setBackgroundColor(newData.backgroundColor);
           setFrontText(newData.frontText);
           setBackText(newData.backText);
@@ -104,9 +107,9 @@ export default function Card(props) {
         setTransition("");
 
         const newIndex = index - cardsCount;
+        setIndex(newIndex);
         const [newData, indexInRange] = props.getNewData(newIndex);
         if (indexInRange) {
-          setIndex(index - cardsCount);
           setBackgroundColor(newData.backgroundColor);
           setFrontText(newData.frontText);
           setBackText(newData.backText);
