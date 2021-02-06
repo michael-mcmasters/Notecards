@@ -83,27 +83,30 @@ export default function Card(props) {
   // Get new properties to display.
   const getNewCardProperties = (newIndex) => {
     const [newProperties, indexInRange] = props.getNewData(newIndex);
+    setBackgroundColor(newProperties.backgroundColor);
+    setFrontText(newProperties.frontText);
+    setBackText(newProperties.backText);
     if (indexInRange === false) {
       setDisplay("none");
     } else {
       setDisplay("");
     }
-    setBackgroundColor(newProperties.backgroundColor);
-    setFrontText(newProperties.frontText);
-    setBackText(newProperties.backText);
     // Set index even if it is out of range, so that when card moves to opposing side of screen, calculations work. Even for negative numbers.
     setIndex(newIndex);
   };
 
-  const getBackFontSize = (backText) => {
-    if (backText > 60) {
-      return "12px";
+  const getBackFontSize = (charCount) => {
+    if (charCount < 240) {
+      return "28px;"
+    } else if (charCount < 320) {
+      return "24px;"
+    } else if (charCount < 520) {
+      return "18px"
     } else {
-      return "19px";
+      console.log(`card ${index} has a character length of ${charCount}. Its text may not fit on the card.`);
+      return "10px";
     }
   }
-
-  console.log(backText.length);
 
   return (
     // <FlipCardContainer display={display} direction={direction} transition={transition}>
@@ -134,6 +137,8 @@ export default function Card(props) {
           <p></p>
         </Front>
         <Back fontSize={getBackFontSize(backText.length)}>
+          {/* temp for debugging */}
+          <p style={{ fontSize: "10px", margin: "0" }}>{backText.length}</p>
           <p>{backText}</p>
         </Back>
       </FlipCard>
@@ -145,7 +150,7 @@ export default function Card(props) {
 // transform -50% offsets half of card's width so it centers around its own axis.
 const FlipCardContainer = styled.div`
     display: ${props => props.display};
-    width: 250px;
+    width: 450px;
     height: 320px;
     background: none;
     margin: 0;

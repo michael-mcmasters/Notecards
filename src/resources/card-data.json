@@ -217,8 +217,8 @@
     },
     {
       "backgroundColor": "#31587A",
-      "frontText": "Why is java considered dynamic?",
-      "backText": "platform-independent file format that aggregates many files into one. Multiple applets written in the Java programming language, and their requisite components can be bundled in a JAR file and subsequently downloaded to a browser in a single HTTP transaction. "
+      "frontText": "Explain type erasure?",
+      "backText": "The deletion of peramatized types at runtime."
     },
     {
       "backgroundColor": "#31587A",
