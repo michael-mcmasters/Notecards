@@ -6,7 +6,7 @@ export default function Card(props) {
 
   //let { index, backgroundColor, frontText, backText, getNewData } = props;
 
-  const [cycleIndex, setCycleIndex] = useState(5);
+  const [cycleIndex, setCycleIndex] = useState(1);
   const [flipped, setFlipped] = useState(false);
   const [direction, setDirection] = useState(props.direction);
   const [transition, setTransition] = useState("");
@@ -14,7 +14,8 @@ export default function Card(props) {
   const [backgroundColor, setBackgroundColor] = useState(props.backgroundColor);
   const [frontText, setFrontText] = useState(props.frontText);
   const [backText, setBackText] = useState(props.backText);
-  const [display, setDisplay] = useState(() => (index > 0 && index < props.numOfCards) ? "" : "none");
+  // const [display, setDisplay] = useState(() => (index > 0 && index < props.numOfCards) ? "" : "none");
+  const [display, setDisplay] = useState("");
 
   useEffect(() => {
     window.addEventListener('keydown', handleKeyDown);

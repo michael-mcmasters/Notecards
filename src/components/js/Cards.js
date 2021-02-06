@@ -5,34 +5,6 @@ import "../css/Cards.css";
 export default function App() {
   const cards = getCards();
 
-  // Returns an array of cards next to the card with the given index. Makes sure the indexed card is at the center of the page.
-  // If there are no cards beside the given card, it creates dummy cards as a placeholder.
-  // const getNoteCards = (index) => {
-  //   let cardsArr = [];
-
-  //   //console.log(index)
-  //   let direction = -150;
-  //   for (let ind = index; ind <= index + 7; ind++) {
-  //     let i = index;
-  //     if (i < 0 || i > cards.length - 1) {              // Use dummy card if index is out of range (meaning there are no cards beside this card).
-  //       i = 9;
-  //     }
-
-
-  //     cardsArr.push(<Card
-  //       key={i}
-  //       index={cards[i].id}                         // Flip animation needs index. Will not work if you use key as index.
-  //       direction={direction}
-  //       backgroundColor={cards[i].backgroundColor}
-  //       frontText={cards[i].frontText}
-  //       backText={cards[i].backText}
-  //     />);
-
-  //     direction += 50;
-  //   }
-  //   return cardsArr;
-  // }
-
   // Tuple. First value is the new card.
   // Second value returns true if the new card exists or false if it does not exist (meaning the index is out of range).
   const getNewData = (index) => {
@@ -42,7 +14,50 @@ export default function App() {
     return [cards[0], false];
   }
 
-  // Longer way of doing it without a for-loop
+  const getCardsJSX = () => {
+    let cardsArr = [];
+    let direction = -150;
+    const start = -3;
+    const end = 3;
+    for (let i = start; i <= end; i++) {
+      let index = i;
+      if (index > 0 && index < cards.length) {
+        cardsArr.push(<Card
+          key={index}
+          index={cards[index].id}   // Flip animation needs index. Will not work if you use key as index.
+          direction={direction}
+          backgroundColor={cards[index].backgroundColor}
+          frontText={cards[index].frontText}
+          backText={cards[index].backText}
+          getNewData={getNewData}
+          numOfCards={cards.length}
+        />);
+      } else {
+        // Cards with index out of range will have blank data and their CSS display property set to "none".
+        cardsArr.push(<Card
+          key={i}
+          index={i}
+          direction={direction}
+          backgroundColor={""}
+          frontText={""}
+          backText={""}
+          getNewData={getNewData}
+          numOfCards={cards.length}
+        />);
+      }
+
+      direction += 50;
+    }
+    return cardsArr;
+  }
+
+  return (
+    <div>
+      {getCardsJSX()}
+    </div>
+  )
+
+  // Longer way of doing it without a for-loop. A bit more readable though.
   return (
     <div className="row">
       <Card
@@ -181,150 +196,149 @@ function getCards() {
       frontText: "last one!",
       backText: "Queues process elements in the order that they were entered rather than the most recent element. This means that they follow the first in first out principle. One end is always used to insert data and the other end is used to remove data. This means that it ensures that the oldest data is processed first. The advantages of this data structure is the dynamic size, that it orders data in the order it was received, and it has a low runtime. The disadvantage of the first out first in principle is that it can only retrieve the oldest element.",
     },
+    {
+      id: 10,
+      backgroundColor: "#31587A",
+      frontText: "f",
+      backText: "Queues process elements in the order that they were entered rather than the most recent element. This means that they follow the first in first out principle. One end is always used to insert data and the other end is used to remove data. This means that it ensures that the oldest data is processed first. The advantages of this data structure is the dynamic size, that it orders data in the order it was received, and it has a low runtime. The disadvantage of the first out first in principle is that it can only retrieve the oldest element.",
+    },
+    {
+      id: 11,
+      backgroundColor: "#31587A",
+      frontText: "g",
+      backText: "Queues process elements in the order that they were entered rather than the most recent element. This means that they follow the first in first out principle. One end is always used to insert data and the other end is used to remove data. This means that it ensures that the oldest data is processed first. The advantages of this data structure is the dynamic size, that it orders data in the order it was received, and it has a low runtime. The disadvantage of the first out first in principle is that it can only retrieve the oldest element.",
+    },
+    {
+      id: 12,
+      backgroundColor: "#31587A",
+      frontText: "h",
+      backText: "Queues process elements in the order that they were entered rather than the most recent element. This means that they follow the first in first out principle. One end is always used to insert data and the other end is used to remove data. This means that it ensures that the oldest data is processed first. The advantages of this data structure is the dynamic size, that it orders data in the order it was received, and it has a low runtime. The disadvantage of the first out first in principle is that it can only retrieve the oldest element.",
+    },
+    {
+      id: 13,
+      backgroundColor: "#31587A",
+      frontText: "i",
+      backText: "Queues process elements in the order that they were entered rather than the most recent element. This means that they follow the first in first out principle. One end is always used to insert data and the other end is used to remove data. This means that it ensures that the oldest data is processed first. The advantages of this data structure is the dynamic size, that it orders data in the order it was received, and it has a low runtime. The disadvantage of the first out first in principle is that it can only retrieve the oldest element.",
+    },
+    {
+      id: 14,
+      backgroundColor: "#31587A",
+      frontText: "Qujeue",
+      backText: "Queues process elements in the order that they were entered rather than the most recent element. This means that they follow the first in first out principle. One end is always used to insert data and the other end is used to remove data. This means that it ensures that the oldest data is processed first. The advantages of this data structure is the dynamic size, that it orders data in the order it was received, and it has a low runtime. The disadvantage of the first out first in principle is that it can only retrieve the oldest element.",
+    },
+    {
+      id: 15,
+      backgroundColor: "#31587A",
+      frontText: "k",
+      backText: "Queues process elements in the order that they were entered rather than the most recent element. This means that they follow the first in first out principle. One end is always used to insert data and the other end is used to remove data. This means that it ensures that the oldest data is processed first. The advantages of this data structure is the dynamic size, that it orders data in the order it was received, and it has a low runtime. The disadvantage of the first out first in principle is that it can only retrieve the oldest element.",
+    },
+    {
+      id: 16,
+      backgroundColor: "#31587A",
+      frontText: "l",
+      backText: "Queues process elements in the order that they were entered rather than the most recent element. This means that they follow the first in first out principle. One end is always used to insert data and the other end is used to remove data. This means that it ensures that the oldest data is processed first. The advantages of this data structure is the dynamic size, that it orders data in the order it was received, and it has a low runtime. The disadvantage of the first out first in principle is that it can only retrieve the oldest element.",
+    },
+    {
+      id: 17,
+      backgroundColor: "#31587A",
+      frontText: "m",
+      backText: "Queues process elements in the order that they were entered rather than the most recent element. This means that they follow the first in first out principle. One end is always used to insert data and the other end is used to remove data. This means that it ensures that the oldest data is processed first. The advantages of this data structure is the dynamic size, that it orders data in the order it was received, and it has a low runtime. The disadvantage of the first out first in principle is that it can only retrieve the oldest element.",
+    },
+    {
+      id: 18,
+      backgroundColor: "#31587A",
+      frontText: "n",
+      backText: "Queues process elements in the order that they were entered rather than the most recent element. This means that they follow the first in first out principle. One end is always used to insert data and the other end is used to remove data. This means that it ensures that the oldest data is processed first. The advantages of this data structure is the dynamic size, that it orders data in the order it was received, and it has a low runtime. The disadvantage of the first out first in principle is that it can only retrieve the oldest element.",
+    },
+    {
+      id: 19,
+      backgroundColor: "yellow",
+      frontText: "WHOA!",
+      backText: "yaya ok"
+    },
+    {
+      id: 20,
+      backgroundColor: "#31587A",
+      frontText: "n",
+      backText: "Queues process elements in the order that they were entered rather than the most recent element. This means that they follow the first in first out principle. One end is always used to insert data and the other end is used to remove data. This means that it ensures that the oldest data is processed first. The advantages of this data structure is the dynamic size, that it orders data in the order it was received, and it has a low runtime. The disadvantage of the first out first in principle is that it can only retrieve the oldest element.",
+    },
+    {
+      id: 21,
+      backgroundColor: "#31587A",
+      frontText: "n",
+      backText: "Queues process elements in the order that they were entered rather than the most recent element. This means that they follow the first in first out principle. One end is always used to insert data and the other end is used to remove data. This means that it ensures that the oldest data is processed first. The advantages of this data structure is the dynamic size, that it orders data in the order it was received, and it has a low runtime. The disadvantage of the first out first in principle is that it can only retrieve the oldest element.",
+    },
+    {
+      id: 22,
+      backgroundColor: "#31587A",
+      frontText: "n",
+      backText: "Queues process elements in the order that they were entered rather than the most recent element. This means that they follow the first in first out principle. One end is always used to insert data and the other end is used to remove data. This means that it ensures that the oldest data is processed first. The advantages of this data structure is the dynamic size, that it orders data in the order it was received, and it has a low runtime. The disadvantage of the first out first in principle is that it can only retrieve the oldest element.",
+    },
+    {
+      id: 23,
+      backgroundColor: "#31587A",
+      frontText: "n",
+      backText: "Queues process elements in the order that they were entered rather than the most recent element. This means that they follow the first in first out principle. One end is always used to insert data and the other end is used to remove data. This means that it ensures that the oldest data is processed first. The advantages of this data structure is the dynamic size, that it orders data in the order it was received, and it has a low runtime. The disadvantage of the first out first in principle is that it can only retrieve the oldest element.",
+    },
+    {
+      id: 24,
+      backgroundColor: "#31587A",
+      frontText: "n",
+      backText: "Queues process elements in the order that they were entered rather than the most recent element. This means that they follow the first in first out principle. One end is always used to insert data and the other end is used to remove data. This means that it ensures that the oldest data is processed first. The advantages of this data structure is the dynamic size, that it orders data in the order it was received, and it has a low runtime. The disadvantage of the first out first in principle is that it can only retrieve the oldest element.",
+    },
+    {
+      id: 25,
+      backgroundColor: "#31587A",
+      frontText: "n",
+      backText: "Queues process elements in the order that they were entered rather than the most recent element. This means that they follow the first in first out principle. One end is always used to insert data and the other end is used to remove data. This means that it ensures that the oldest data is processed first. The advantages of this data structure is the dynamic size, that it orders data in the order it was received, and it has a low runtime. The disadvantage of the first out first in principle is that it can only retrieve the oldest element.",
+    },
+    {
+      id: 26,
+      backgroundColor: "#31587A",
+      frontText: "n",
+      backText: "Queues process elements in the order that they were entered rather than the most recent element. This means that they follow the first in first out principle. One end is always used to insert data and the other end is used to remove data. This means that it ensures that the oldest data is processed first. The advantages of this data structure is the dynamic size, that it orders data in the order it was received, and it has a low runtime. The disadvantage of the first out first in principle is that it can only retrieve the oldest element.",
+    },
+    {
+      id: 27,
+      backgroundColor: "#31587A",
+      frontText: "n",
+      backText: "Queues process elements in the order that they were entered rather than the most recent element. This means that they follow the first in first out principle. One end is always used to insert data and the other end is used to remove data. This means that it ensures that the oldest data is processed first. The advantages of this data structure is the dynamic size, that it orders data in the order it was received, and it has a low runtime. The disadvantage of the first out first in principle is that it can only retrieve the oldest element.",
+    },
+    {
+      id: 28,
+      backgroundColor: "#31587A",
+      frontText: "n",
+      backText: "Queues process elements in the order that they were entered rather than the most recent element. This means that they follow the first in first out principle. One end is always used to insert data and the other end is used to remove data. This means that it ensures that the oldest data is processed first. The advantages of this data structure is the dynamic size, that it orders data in the order it was received, and it has a low runtime. The disadvantage of the first out first in principle is that it can only retrieve the oldest element.",
+    },
+    {
+      id: 29,
+      backgroundColor: "#31587A",
+      frontText: "n",
+      backText: "Queues process elements in the order that they were entered rather than the most recent element. This means that they follow the first in first out principle. One end is always used to insert data and the other end is used to remove data. This means that it ensures that the oldest data is processed first. The advantages of this data structure is the dynamic size, that it orders data in the order it was received, and it has a low runtime. The disadvantage of the first out first in principle is that it can only retrieve the oldest element.",
+    },
+    {
+      id: 30,
+      backgroundColor: "#31587A",
+      frontText: "n",
+      backText: "Queues process elements in the order that they were entered rather than the most recent element. This means that they follow the first in first out principle. One end is always used to insert data and the other end is used to remove data. This means that it ensures that the oldest data is processed first. The advantages of this data structure is the dynamic size, that it orders data in the order it was received, and it has a low runtime. The disadvantage of the first out first in principle is that it can only retrieve the oldest element.",
+    },
+    {
+      id: 31,
+      backgroundColor: "#31587A",
+      frontText: "n",
+      backText: "Queues process elements in the order that they were entered rather than the most recent element. This means that they follow the first in first out principle. One end is always used to insert data and the other end is used to remove data. This means that it ensures that the oldest data is processed first. The advantages of this data structure is the dynamic size, that it orders data in the order it was received, and it has a low runtime. The disadvantage of the first out first in principle is that it can only retrieve the oldest element.",
+    },
+    {
+      id: 32,
+      backgroundColor: "#31587A",
+      frontText: "n",
+      backText: "Queues process elements in the order that they were entered rather than the most recent element. This means that they follow the first in first out principle. One end is always used to insert data and the other end is used to remove data. This means that it ensures that the oldest data is processed first. The advantages of this data structure is the dynamic size, that it orders data in the order it was received, and it has a low runtime. The disadvantage of the first out first in principle is that it can only retrieve the oldest element.",
+    },
+    {
+      id: 33,
+      backgroundColor: "#31587A",
+      frontText: "n",
+      backText: "Queues process elements in the order that they were entered rather than the most recent element. This means that they follow the first in first out principle. One end is always used to insert data and the other end is used to remove data. This means that it ensures that the oldest data is processed first. The advantages of this data structure is the dynamic size, that it orders data in the order it was received, and it has a low runtime. The disadvantage of the first out first in principle is that it can only retrieve the oldest element.",
+    }
   ]
 }
-  // {
-  //   id: 10,
-  //   backgroundColor: "#31587A",
-  //   frontText: "f",
-  //   backText: "Queues process elements in the order that they were entered rather than the most recent element. This means that they follow the first in first out principle. One end is always used to insert data and the other end is used to remove data. This means that it ensures that the oldest data is processed first. The advantages of this data structure is the dynamic size, that it orders data in the order it was received, and it has a low runtime. The disadvantage of the first out first in principle is that it can only retrieve the oldest element.",
-  // },
-  // {
-  //   id: 11,
-  //   backgroundColor: "#31587A",
-  //   frontText: "g",
-  //   backText: "Queues process elements in the order that they were entered rather than the most recent element. This means that they follow the first in first out principle. One end is always used to insert data and the other end is used to remove data. This means that it ensures that the oldest data is processed first. The advantages of this data structure is the dynamic size, that it orders data in the order it was received, and it has a low runtime. The disadvantage of the first out first in principle is that it can only retrieve the oldest element.",
-  // },
-  // {
-  //   id: 12,
-  //   backgroundColor: "#31587A",
-  //   frontText: "h",
-  //   backText: "Queues process elements in the order that they were entered rather than the most recent element. This means that they follow the first in first out principle. One end is always used to insert data and the other end is used to remove data. This means that it ensures that the oldest data is processed first. The advantages of this data structure is the dynamic size, that it orders data in the order it was received, and it has a low runtime. The disadvantage of the first out first in principle is that it can only retrieve the oldest element.",
-  // },
-  // {
-  //   id: 13,
-  //   backgroundColor: "#31587A",
-  //   frontText: "i",
-  //   backText: "Queues process elements in the order that they were entered rather than the most recent element. This means that they follow the first in first out principle. One end is always used to insert data and the other end is used to remove data. This means that it ensures that the oldest data is processed first. The advantages of this data structure is the dynamic size, that it orders data in the order it was received, and it has a low runtime. The disadvantage of the first out first in principle is that it can only retrieve the oldest element.",
-  // },
-  // {
-  //   id: 14,
-  //   backgroundColor: "#31587A",
-  //   frontText: "Qujeue",
-  //   backText: "Queues process elements in the order that they were entered rather than the most recent element. This means that they follow the first in first out principle. One end is always used to insert data and the other end is used to remove data. This means that it ensures that the oldest data is processed first. The advantages of this data structure is the dynamic size, that it orders data in the order it was received, and it has a low runtime. The disadvantage of the first out first in principle is that it can only retrieve the oldest element.",
-  // },
-  // {
-  //   id: 15,
-  //   backgroundColor: "#31587A",
-  //   frontText: "k",
-  //   backText: "Queues process elements in the order that they were entered rather than the most recent element. This means that they follow the first in first out principle. One end is always used to insert data and the other end is used to remove data. This means that it ensures that the oldest data is processed first. The advantages of this data structure is the dynamic size, that it orders data in the order it was received, and it has a low runtime. The disadvantage of the first out first in principle is that it can only retrieve the oldest element.",
-  // },
-  // {
-  //   id: 16,
-  //   backgroundColor: "#31587A",
-  //   frontText: "l",
-  //   backText: "Queues process elements in the order that they were entered rather than the most recent element. This means that they follow the first in first out principle. One end is always used to insert data and the other end is used to remove data. This means that it ensures that the oldest data is processed first. The advantages of this data structure is the dynamic size, that it orders data in the order it was received, and it has a low runtime. The disadvantage of the first out first in principle is that it can only retrieve the oldest element.",
-  // },
-  // {
-  //   id: 17,
-  //   backgroundColor: "#31587A",
-  //   frontText: "m",
-  //   backText: "Queues process elements in the order that they were entered rather than the most recent element. This means that they follow the first in first out principle. One end is always used to insert data and the other end is used to remove data. This means that it ensures that the oldest data is processed first. The advantages of this data structure is the dynamic size, that it orders data in the order it was received, and it has a low runtime. The disadvantage of the first out first in principle is that it can only retrieve the oldest element.",
-  // },
-  // {
-  //   id: 18,
-  //   backgroundColor: "#31587A",
-  //   frontText: "n",
-  //   backText: "Queues process elements in the order that they were entered rather than the most recent element. This means that they follow the first in first out principle. One end is always used to insert data and the other end is used to remove data. This means that it ensures that the oldest data is processed first. The advantages of this data structure is the dynamic size, that it orders data in the order it was received, and it has a low runtime. The disadvantage of the first out first in principle is that it can only retrieve the oldest element.",
-  // },
-  // {
-  //   id: 19,
-  //   backgroundColor: "yellow",
-  //   frontText: "WHOA!",
-  //   backText: "yaya ok"
-  // },
-  // {
-  //   id: 20,
-  //   backgroundColor: "#31587A",
-  //   frontText: "n",
-  //   backText: "Queues process elements in the order that they were entered rather than the most recent element. This means that they follow the first in first out principle. One end is always used to insert data and the other end is used to remove data. This means that it ensures that the oldest data is processed first. The advantages of this data structure is the dynamic size, that it orders data in the order it was received, and it has a low runtime. The disadvantage of the first out first in principle is that it can only retrieve the oldest element.",
-  // },
-  // {
-  //   id: 21,
-  //   backgroundColor: "#31587A",
-  //   frontText: "n",
-  //   backText: "Queues process elements in the order that they were entered rather than the most recent element. This means that they follow the first in first out principle. One end is always used to insert data and the other end is used to remove data. This means that it ensures that the oldest data is processed first. The advantages of this data structure is the dynamic size, that it orders data in the order it was received, and it has a low runtime. The disadvantage of the first out first in principle is that it can only retrieve the oldest element.",
-  // },
-  // {
-  //   id: 22,
-  //   backgroundColor: "#31587A",
-  //   frontText: "n",
-  //   backText: "Queues process elements in the order that they were entered rather than the most recent element. This means that they follow the first in first out principle. One end is always used to insert data and the other end is used to remove data. This means that it ensures that the oldest data is processed first. The advantages of this data structure is the dynamic size, that it orders data in the order it was received, and it has a low runtime. The disadvantage of the first out first in principle is that it can only retrieve the oldest element.",
-  // },
-  // {
-  //   id: 23,
-  //   backgroundColor: "#31587A",
-  //   frontText: "n",
-  //   backText: "Queues process elements in the order that they were entered rather than the most recent element. This means that they follow the first in first out principle. One end is always used to insert data and the other end is used to remove data. This means that it ensures that the oldest data is processed first. The advantages of this data structure is the dynamic size, that it orders data in the order it was received, and it has a low runtime. The disadvantage of the first out first in principle is that it can only retrieve the oldest element.",
-  // },
-  // {
-  //   id: 24,
-  //   backgroundColor: "#31587A",
-  //   frontText: "n",
-  //   backText: "Queues process elements in the order that they were entered rather than the most recent element. This means that they follow the first in first out principle. One end is always used to insert data and the other end is used to remove data. This means that it ensures that the oldest data is processed first. The advantages of this data structure is the dynamic size, that it orders data in the order it was received, and it has a low runtime. The disadvantage of the first out first in principle is that it can only retrieve the oldest element.",
-  // },
-  // {
-  //   id: 25,
-  //   backgroundColor: "#31587A",
-  //   frontText: "n",
-  //   backText: "Queues process elements in the order that they were entered rather than the most recent element. This means that they follow the first in first out principle. One end is always used to insert data and the other end is used to remove data. This means that it ensures that the oldest data is processed first. The advantages of this data structure is the dynamic size, that it orders data in the order it was received, and it has a low runtime. The disadvantage of the first out first in principle is that it can only retrieve the oldest element.",
-  // },
-  // {
-  //   id: 26,
-  //   backgroundColor: "#31587A",
-  //   frontText: "n",
-  //   backText: "Queues process elements in the order that they were entered rather than the most recent element. This means that they follow the first in first out principle. One end is always used to insert data and the other end is used to remove data. This means that it ensures that the oldest data is processed first. The advantages of this data structure is the dynamic size, that it orders data in the order it was received, and it has a low runtime. The disadvantage of the first out first in principle is that it can only retrieve the oldest element.",
-  // },
-  // {
-  //   id: 27,
-  //   backgroundColor: "#31587A",
-  //   frontText: "n",
-  //   backText: "Queues process elements in the order that they were entered rather than the most recent element. This means that they follow the first in first out principle. One end is always used to insert data and the other end is used to remove data. This means that it ensures that the oldest data is processed first. The advantages of this data structure is the dynamic size, that it orders data in the order it was received, and it has a low runtime. The disadvantage of the first out first in principle is that it can only retrieve the oldest element.",
-  // },
-  // {
-  //   id: 28,
-  //   backgroundColor: "#31587A",
-  //   frontText: "n",
-  //   backText: "Queues process elements in the order that they were entered rather than the most recent element. This means that they follow the first in first out principle. One end is always used to insert data and the other end is used to remove data. This means that it ensures that the oldest data is processed first. The advantages of this data structure is the dynamic size, that it orders data in the order it was received, and it has a low runtime. The disadvantage of the first out first in principle is that it can only retrieve the oldest element.",
-  // },
-  // {
-  //   id: 29,
-  //   backgroundColor: "#31587A",
-  //   frontText: "n",
-  //   backText: "Queues process elements in the order that they were entered rather than the most recent element. This means that they follow the first in first out principle. One end is always used to insert data and the other end is used to remove data. This means that it ensures that the oldest data is processed first. The advantages of this data structure is the dynamic size, that it orders data in the order it was received, and it has a low runtime. The disadvantage of the first out first in principle is that it can only retrieve the oldest element.",
-  // },
-  // {
-  //   id: 30,
-  //   backgroundColor: "#31587A",
-  //   frontText: "n",
-  //   backText: "Queues process elements in the order that they were entered rather than the most recent element. This means that they follow the first in first out principle. One end is always used to insert data and the other end is used to remove data. This means that it ensures that the oldest data is processed first. The advantages of this data structure is the dynamic size, that it orders data in the order it was received, and it has a low runtime. The disadvantage of the first out first in principle is that it can only retrieve the oldest element.",
-  // },
-  // {
-  //   id: 31,
-  //   backgroundColor: "#31587A",
-  //   frontText: "n",
-  //   backText: "Queues process elements in the order that they were entered rather than the most recent element. This means that they follow the first in first out principle. One end is always used to insert data and the other end is used to remove data. This means that it ensures that the oldest data is processed first. The advantages of this data structure is the dynamic size, that it orders data in the order it was received, and it has a low runtime. The disadvantage of the first out first in principle is that it can only retrieve the oldest element.",
-  // },
-  // {
-  //   id: 32,
-  //   backgroundColor: "#31587A",
-  //   frontText: "n",
-  //   backText: "Queues process elements in the order that they were entered rather than the most recent element. This means that they follow the first in first out principle. One end is always used to insert data and the other end is used to remove data. This means that it ensures that the oldest data is processed first. The advantages of this data structure is the dynamic size, that it orders data in the order it was received, and it has a low runtime. The disadvantage of the first out first in principle is that it can only retrieve the oldest element.",
-  // },
-  // {
-  //   id: 33,
-  //   backgroundColor: "#31587A",
-  //   frontText: "n",
-  //   backText: "Queues process elements in the order that they were entered rather than the most recent element. This means that they follow the first in first out principle. One end is always used to insert data and the other end is used to remove data. This means that it ensures that the oldest data is processed first. The advantages of this data structure is the dynamic size, that it orders data in the order it was received, and it has a low runtime. The disadvantage of the first out first in principle is that it can only retrieve the oldest element.",
-  // }
-  //]
