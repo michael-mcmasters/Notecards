@@ -52,6 +52,10 @@ export default function Card(props) {
     const amountToMove = 50;
     const leftMostPosition = -150;
     const rightMostPosition = 150;
+    const transition = "0.39s ease";
+
+    const [newData, indexInRange] = props.getNewData(0);
+    if (indexInRange === false) return;
 
     if (newDirection === "left") {
       if (direction <= leftMostPosition) {
@@ -68,7 +72,7 @@ export default function Card(props) {
         }
       } else {
         setDirection(direction - amountToMove);
-        setTransition("all 0.8s ease");     // Re-add transition affect.
+        setTransition(transition);     // Re-add transition affect.
       }
     }
     else if (newDirection === "right") {
@@ -87,7 +91,7 @@ export default function Card(props) {
 
       } else {
         setDirection(direction + amountToMove);
-        setTransition("all 0.8s ease");
+        setTransition(transition);
       }
     }
   }

@@ -7,6 +7,28 @@ export default function App() {
 
   const cards = getCards();
 
+  const handleKeyDown = (event) => {
+    switch (event.key) {
+      case "ArrowLeft":
+        setCardIndex(prevState => prevState + 1);
+        break;
+      case "ArrowRight":
+        setCardIndex(prevState => prevState - 1);
+        break;
+    }
+    console.log("called")
+  }
+
+  useEffect(() => {
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    }
+  }, [cardIndex]);
+
+
+
   // Returns an array of cards next to the card with the given index. Makes sure the indexed card is at the center of the page.
   // If there are no cards beside the given card, it creates dummy cards as a placeholder.
   // const getNoteCards = (index) => {
@@ -38,7 +60,12 @@ export default function App() {
   // Tuple. First value is the new card.
   // Second value returns true if the new card exists or false if it does not exist (meaning the index is out of range).
   const getNewData = (index) => {
-    if (index > 0 && index < cards.length) {
+    console.log(cardIndex)
+    if (cardIndex < 0) {
+      return [cards[index], false];
+    }
+
+    if (index >= 0 && index < cards.length) {
       return [cards[index], true];
     }
     return [cards[0], false];
@@ -327,6 +354,6 @@ function getCards() {
       backgroundColor: "#31587A",
       frontText: "n",
       backText: "Queues process elements in the order that they were entered rather than the most recent element. This means that they follow the first in first out principle. One end is always used to insert data and the other end is used to remove data. This means that it ensures that the oldest data is processed first. The advantages of this data structure is the dynamic size, that it orders data in the order it was received, and it has a low runtime. The disadvantage of the first out first in principle is that it can only retrieve the oldest element.",
-    },
-  ];
+    }
+  ]
 }
