@@ -4,7 +4,7 @@ import Cards from "./components/js/Cards.js";
 function App() {
   return (
     <div className="App">
-      <h1 className="title App-logo">Data Structures</h1>
+      <h1 className="title App-logo">Java</h1>
       <Cards></Cards>
     </div>
   );

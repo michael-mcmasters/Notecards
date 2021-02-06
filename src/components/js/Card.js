@@ -95,6 +95,16 @@ export default function Card(props) {
     setIndex(newIndex);
   };
 
+  const getBackFontSize = (backText) => {
+    if (backText > 60) {
+      return "12px";
+    } else {
+      return "19px";
+    }
+  }
+
+  console.log(backText.length);
+
   return (
     // <FlipCardContainer display={display} direction={direction} transition={transition}>
     //   <FlipCard flipped={flipped} onClick={() => setFlipped(!flipped)}>
@@ -123,7 +133,7 @@ export default function Card(props) {
           <p>{frontText}</p>
           <p></p>
         </Front>
-        <Back>
+        <Back fontSize={getBackFontSize(backText.length)}>
           <p>{backText}</p>
         </Back>
       </FlipCard>
@@ -139,6 +149,7 @@ const FlipCardContainer = styled.div`
     height: 320px;
     background: none;
     margin: 0;
+    margin-top: 2rem;
     cursor: pointer;
     position: absolute;
     transition: ${props => props.transition};
@@ -171,7 +182,7 @@ const Front = styled.div`
 `;
 
 const Back = styled.div`
-  font-size: 28px;
+    font-size: ${props => props.fontSize};
     position: absolute;
     top: 0;
     left: 0;
