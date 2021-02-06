@@ -14,6 +14,7 @@ export default function Card(props) {
   const [backgroundColor, setBackgroundColor] = useState(props.backgroundColor);
   const [frontText, setFrontText] = useState(props.frontText);
   const [backText, setBackText] = useState(props.backText);
+  const [display, setDisplay] = useState("");
 
   useEffect(() => {
     // const [newData, indexInRange] = props.getNewData(index);
@@ -73,10 +74,15 @@ export default function Card(props) {
 
         const newIndex = index + cardsCount;
         setIndex(newIndex);
-        const [newData] = props.getNewData(newIndex);
+        const [newData, indexInRange] = props.getNewData(newIndex);
         setBackgroundColor(newData.backgroundColor);
         setFrontText(newData.frontText);
         setBackText(newData.backText);
+        if (indexInRange === false) {
+          setDisplay("none");
+        } else {
+          setDisplay("");
+        }
       } else {
         setDirection(direction - amountToMove);
         setTransition(transition);     // Re-add transition affect.
@@ -89,10 +95,15 @@ export default function Card(props) {
 
         const newIndex = index - cardsCount;
         setIndex(newIndex);
-        const [newData] = props.getNewData(newIndex);
+        const [newData, indexInRange] = props.getNewData(newIndex);
         setBackgroundColor(newData.backgroundColor);
         setFrontText(newData.frontText);
         setBackText(newData.backText);
+        if (indexInRange === false) {
+          setDisplay("none");
+        } else {
+          setDisplay("");
+        }
 
       } else {
         setDirection(direction + amountToMove);
@@ -102,7 +113,7 @@ export default function Card(props) {
   }
 
   return (
-    <FlipCardContainer index={index} direction={direction} transition={transition}>
+    <FlipCardContainer display={display} direction={direction} transition={transition}>
       <FlipCard flipped={flipped} onClick={() => setFlipped(!flipped)}>
         <Front backgroundColor={backgroundColor}>
           <div className="text-flex">
@@ -128,6 +139,8 @@ export default function Card(props) {
 // left moves card into position, pushing it away from the left side of the screen.
 // transform -50% offsets half of card's width so it centers around its own axis.
 const FlipCardContainer = styled.div`
+    display: ${props => props.display};
+
     width: 250px;
     height: 320px;
     background: none;
