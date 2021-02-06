@@ -4,19 +4,10 @@ import "../css/Cards.css";
 
 export default function App() {
   const [cardIndex, setCardIndex] = useState(4);
-  const [stopCycling, setStopCycling] = useState(false);
 
   const cards = getCards();
 
   const handleKeyDown = (event) => {
-    switch (event.key) {
-      case "ArrowLeft":
-        if (cardIndex + 1 < cards.length) setCardIndex(prevState => prevState + 1);
-        break;
-      case "ArrowRight":
-        if (cardIndex - 1 >= 1) setCardIndex(prevState => prevState - 1);
-        break;
-    }
   }
 
   useEffect(() => {
@@ -71,15 +62,6 @@ export default function App() {
     return [cards[0], false];
   }
 
-  let allowCycling = false;
-  if (cardIndex > 2 && cardIndex < cards.length) {
-    console.log("allow")
-    allowCycling = true;
-  } else {
-    console.log("don't allow cycling")
-    console.log("WHAT");
-  }
-
   // Longer way of doing it without a for-loop
   const i = cardIndex;
   return (
@@ -88,7 +70,6 @@ export default function App() {
         key={0}
         index={cards[0].id}   // Flip animation needs index. Will not work if you use key as index.
         direction={-150}
-        allowCycling={allowCycling}
         backgroundColor={cards[0].backgroundColor}
         frontText={cards[0].frontText}
         backText={cards[0].backText}
@@ -98,7 +79,6 @@ export default function App() {
         key={1}
         index={cards[1].id}   // Flip animation needs index. Will not work if you use key as index.
         direction={-100}
-        allowCycling={allowCycling}
         backgroundColor={cards[1].backgroundColor}
         frontText={cards[1].frontText}
         backText={cards[1].backText}
@@ -108,7 +88,6 @@ export default function App() {
         key={2}
         index={cards[2].id}   // Flip animation needs index. Will not work if you use key as index.
         direction={-50}
-        allowCycling={allowCycling}
         backgroundColor={cards[2].backgroundColor}
         frontText={cards[2].frontText}
         backText={cards[2].backText}
@@ -118,7 +97,6 @@ export default function App() {
         key={3}
         index={cards[3].id}   // Flip animation needs index. Will not work if you use key as index.
         direction={0}
-        allowCycling={allowCycling}
         backgroundColor={"blue"}
         frontText={cards[3].frontText}
         backText={cards[3].backText}
@@ -128,7 +106,6 @@ export default function App() {
         key={4}
         index={cards[4].id}   // Flip animation needs index. Will not work if you use key as index.
         direction={50}
-        allowCycling={allowCycling}
         backgroundColor={cards[4].backgroundColor}
         frontText={cards[4].frontText}
         backText={cards[4].backText}
@@ -138,7 +115,6 @@ export default function App() {
         key={5}
         index={cards[5].id}   // Flip animation needs index. Will not work if you use key as index.
         direction={100}
-        allowCycling={allowCycling}
         backgroundColor={cards[5].backgroundColor}
         frontText={cards[5].frontText}
         backText={cards[5].backText}
@@ -148,7 +124,6 @@ export default function App() {
         key={6}
         index={cards[6].id}   // Flip animation needs index. Will not work if you use key as index.
         direction={150}
-        allowCycling={allowCycling}
         backgroundColor={cards[6].backgroundColor}
         frontText={cards[6].frontText}
         backText={cards[6].backText}

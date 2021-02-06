@@ -6,6 +6,7 @@ export default function Card(props) {
 
   //let { index, backgroundColor, frontText, backText, getNewData } = props;
 
+  const [cycleIndex, setCycleIndex] = useState(4);
   const [flipped, setFlipped] = useState(false);
   const [direction, setDirection] = useState(props.direction);
   const [transition, setTransition] = useState("");
@@ -13,8 +14,6 @@ export default function Card(props) {
   const [backgroundColor, setBackgroundColor] = useState(props.backgroundColor);
   const [frontText, setFrontText] = useState(props.frontText);
   const [backText, setBackText] = useState(props.backText);
-  const [allowCycling, setAllowCycling] = useState(props.allowCycling);
-
 
   useEffect(() => {
     window.addEventListener('keydown', handleKeyDown);
@@ -22,25 +21,43 @@ export default function Card(props) {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [flipped, direction, index, allowCycling]);      // Re-renders component whenever flipped value changes.
+  }, [flipped, direction, index, cycleIndex]);      // Re-renders component whenever flipped value changes.
 
 
   // Left/right to move card. Space key to flip.
   const handleKeyDown = (event) => {
-    setAllowCycling(props.allowCycling);
-    if (props.allowCycling === false) return;
-    if (allowCycling === false) return;
+    // setAllowCycling(props.allowCycling);
+    // if (props.allowCycling === false) return;
+    // if (allowCycling === false) return;
+
     switch (event.key) {
-      case " ":                   // space key
-        setFlipped(!flipped);
-        break;
       case "ArrowLeft":
-        handleMoveCard("left");
+        if (cycleIndex + 1 < 32) {
+          setCycleIndex(prevState => prevState + 1);
+          handleMoveCard("left");
+        }
         break;
       case "ArrowRight":
-        handleMoveCard("right");
+        if (cycleIndex - 1 >= 1) {
+          setCycleIndex(prevState => prevState - 1);
+          handleMoveCard("right");
+        }
         break;
     }
+
+    // if (cycleIndex < 2) return;
+
+    // switch (event.key) {
+    //   case " ":                   // space key
+    //     setFlipped(!flipped);
+    //     break;
+    //   case "ArrowLeft":
+    //     handleMoveCard("left");
+    //     break;
+    //   case "ArrowRight":
+    //     handleMoveCard("right");
+    //     break;
+    // }
   };
   //  0  1  2  3  4  5  6
   // +7 +7 +7 +7 +7 +7 +7
@@ -60,8 +77,8 @@ export default function Card(props) {
     const rightMostPosition = 150;
     const transition = "0.39s ease";
 
-    const [newData, indexInRange] = props.getNewData(0);
-    if (indexInRange === false) return;
+    // const [newData, indexInRange] = props.getNewData(0);
+    // if (indexInRange === false) return;
 
     if (newDirection === "left") {
       if (direction <= leftMostPosition) {
