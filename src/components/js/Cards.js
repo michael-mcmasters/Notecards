@@ -14,6 +14,10 @@ export default function App() {
     return [cards[0], false];
   }
 
+  const changeText = (index, newText) => {
+    cards[index].frontText = newText;
+  }
+
   const getCardsJSX = () => {
     let cardsArr = [];
     let direction = -150;
@@ -28,6 +32,7 @@ export default function App() {
           frontText={cards[i].frontText}
           backText={cards[i].backText}
           getNewData={getNewData}
+          changeText={changeText}
           amountOfData={cards.length}
         />);
       } else {
@@ -40,6 +45,7 @@ export default function App() {
           frontText={``}
           backText={``}
           getNewData={getNewData}
+          changeText={changeText}
           amountOfData={cards.length}
         />);
       }

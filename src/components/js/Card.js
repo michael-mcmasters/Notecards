@@ -114,7 +114,6 @@ export default function Card(props) {
         <Front backgroundColor={backgroundColor}>
           <FontContainer>
             <p>{frontText}</p>
-            <p></p>
           </FontContainer>
         </Front>
         <Back fontSize={getBackFontSize(backText.length)}>
