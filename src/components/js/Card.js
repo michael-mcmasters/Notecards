@@ -29,7 +29,9 @@ export default function Card(props) {
   // Left/right to move card. Space key to flip.
   const handleKeyDown = (event) => {
     if (event.key === " ") {            // space key
-      setFlipped(!flipped);
+      if (direction === 50) {           // Only center card should flip. We know it is the center card if its position is at 50.
+        setFlipped(!flipped);
+      }
     }
     else if (event.key === "ArrowLeft") {
       if (cycleIndex <= props.numOfCards - 2) {
