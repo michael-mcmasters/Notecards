@@ -337,7 +337,7 @@
     },
     {
       "backgroundColor": "#31587A",
-      "frontText": "functional methods. Function, BiFunction, Consumer, BiConsumer, Runnable, Supplier, Predicate What is the difference between java7 and java8?",
+      "frontText": "What is the difference between java7 and java8?",
       "backText": "7 introduced diamond brackets. 8 introduced streams and lambdas"
     },
     {

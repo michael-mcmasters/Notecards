@@ -96,7 +96,7 @@ export default function Card(props) {
   };
 
   const getBackFontSize = (charCount) => {
-    if (charCount < 240) {
+    if (charCount < 22) {
       return "28px;"
     } else if (charCount < 320) {
       return "24px;"
@@ -109,37 +109,20 @@ export default function Card(props) {
   }
 
   return (
-    // <FlipCardContainer display={display} direction={direction} transition={transition}>
-    //   <FlipCard flipped={flipped} onClick={() => setFlipped(!flipped)}>
-    //     <Front backgroundColor={backgroundColor}>
-    //       <div className="text-flex">
-    //         <div className="width">
-    //           <p>{index}</p>
-    //         </div>
-    //         <div className="width">
-    //           <p>{index}</p>
-    //         </div>
-    //       </div>
-    //       <h1>{frontText}</h1>
-    //       <p></p>
-    //     </Front>
-    //     <Back>
-    //       <p>{backText}</p>
-    //       <button>Submit</button>
-    //     </Back>
-    //   </FlipCard>
-    // </FlipCardContainer>
-
     <FlipCardContainer display={display} direction={direction} transition={transition}>
       <FlipCard flipped={flipped} onClick={() => setFlipped(!flipped)}>
         <Front backgroundColor={backgroundColor}>
-          <p>{frontText}</p>
-          <p></p>
+          <FontContainer>
+            <p>{frontText}</p>
+            <p></p>
+          </FontContainer>
         </Front>
         <Back fontSize={getBackFontSize(backText.length)}>
-          {/* temp for debugging */}
-          <p style={{ fontSize: "10px", margin: "0" }}>{backText.length}</p>
-          <p>{backText}</p>
+          <FontContainer>
+            {/* Temp for debugging */}
+            {/* <p style={{ fontSize: "10px", margin: "0" }}>{backText.length}</p> */}
+            <p>{backText}</p>
+          </FontContainer>
         </Back>
       </FlipCard>
     </FlipCardContainer>
@@ -200,4 +183,8 @@ const Back = styled.div`
     color: #333;
     text-align: center;
     transform: rotateY(180deg);
+`;
+
+const FontContainer = styled.div`
+  padding: 1rem;
 `;
