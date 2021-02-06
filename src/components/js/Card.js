@@ -13,6 +13,8 @@ export default function Card(props) {
   const [backgroundColor, setBackgroundColor] = useState(props.backgroundColor);
   const [frontText, setFrontText] = useState(props.frontText);
   const [backText, setBackText] = useState(props.backText);
+  const [allowCycling, setAllowCycling] = useState(props.allowCycling);
+
 
   useEffect(() => {
     window.addEventListener('keydown', handleKeyDown);
@@ -20,10 +22,14 @@ export default function Card(props) {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [flipped, direction, index]);      // Re-renders component whenever flipped value changes.
+  }, [flipped, direction, index, allowCycling]);      // Re-renders component whenever flipped value changes.
+
 
   // Left/right to move card. Space key to flip.
   const handleKeyDown = (event) => {
+    setAllowCycling(props.allowCycling);
+    if (props.allowCycling === false) return;
+    if (allowCycling === false) return;
     switch (event.key) {
       case " ":                   // space key
         setFlipped(!flipped);
