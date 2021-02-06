@@ -1,12 +1,11 @@
-import { useState, useEffect } from "react";
 import Card from "./Card.js";
 import "../css/Cards.css";
 
 export default function App() {
   const cards = getCards();
 
-  // Tuple. First value is the new card.
-  // Second value returns true if the new card exists or false if it does not exist (meaning the index is out of range).
+  // Returns data at the given index and returns true if the index is in range.
+  // If index is out of range, returns index 0 which has empty properties, and returns false.
   const getNewData = (index) => {
     if (index > 0 && index < cards.length) {
       return [cards[index], true];
@@ -17,23 +16,22 @@ export default function App() {
   const getCardsJSX = () => {
     let cardsArr = [];
     let direction = -150;
-    const start = -3;
-    const end = 3;
+    const start = -3, end = 3;
     for (let i = start; i <= end; i++) {
       let index = i;
       if (index > 0 && index < cards.length) {
         cardsArr.push(<Card
           key={index}
-          index={cards[index].id}   // Flip animation needs index. Will not work if you use key as index.
+          index={cards[index].id}   // Index will change when card moves to opposing side of screen. A negative index means it hides its display. It is important to have negative indexes for calculations to work to get new card properties.
           direction={direction}
           backgroundColor={cards[index].backgroundColor}
           frontText={cards[index].frontText}
           backText={cards[index].backText}
           getNewData={getNewData}
-          numOfCards={cards.length}
+          amountOfData={cards.length}
         />);
       } else {
-        // Cards with index out of range will have blank data and their CSS display property set to "none".
+        // Cards with index out of range will have blank data and will be invisible. (display: none).
         cardsArr.push(<Card
           key={i}
           index={i}
@@ -42,7 +40,7 @@ export default function App() {
           frontText={""}
           backText={""}
           getNewData={getNewData}
-          numOfCards={cards.length}
+          amountOfData={cards.length}
         />);
       }
 

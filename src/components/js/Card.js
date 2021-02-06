@@ -4,8 +4,6 @@ import "../css/Card.css";
 
 export default function Card(props) {
 
-  //let { index, backgroundColor, frontText, backText, getNewData } = props;
-
   const [cycleIndex, setCycleIndex] = useState(1);
   const [flipped, setFlipped] = useState(false);
   const [direction, setDirection] = useState(props.direction);
@@ -14,8 +12,7 @@ export default function Card(props) {
   const [backgroundColor, setBackgroundColor] = useState(props.backgroundColor);
   const [frontText, setFrontText] = useState(props.frontText);
   const [backText, setBackText] = useState(props.backText);
-  const [display, setDisplay] = useState(() => (index > 0 && index < props.numOfCards) ? "" : "none");
-  // const [display, setDisplay] = useState("");
+  const [display, setDisplay] = useState(() => (index > 0 && index < props.amountOfData) ? "" : "none");
 
   useEffect(() => {
     window.addEventListener('keydown', handleKeyDown);
@@ -23,7 +20,7 @@ export default function Card(props) {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [flipped, direction, index, cycleIndex]);      // Re-renders component whenever flipped value changes.
+  }, [flipped, direction, index, cycleIndex]);
 
 
   // Left/right to move card. Space key to flip.
@@ -34,7 +31,7 @@ export default function Card(props) {
       }
     }
     else if (event.key === "ArrowLeft") {
-      if (cycleIndex <= props.numOfCards - 2) {
+      if (cycleIndex <= props.amountOfData - 2) {
         setCycleIndex(prevCycleIndex => prevCycleIndex + 1);
         handleMoveCard("left");
       }
@@ -46,17 +43,9 @@ export default function Card(props) {
       }
     };
   }
-  //  0  1  2  3  4  5  6
-  // +7 +7 +7 +7 +7 +7 +7
-  //  7  8  9 10 11 12 13
-
-  // 0 1 2 3 4 5 6
-  // 1 2 3 4 5 6 7
-  // 2 3 4 5 6 7 8    // move right
-  // 1 2 3 4 5 6 7
 
   // Object pooling: There are only 7 cards at a given time.
-  // Arrow keys move the card. When the card is off screen, it repositions to the opposing side of the screen and receives its new props data to display its new card information.
+  // Arrow keys move the card. When the card is off screen, it repositions to the opposing side of the screen and receives new properties to display its new card information.
   const handleMoveCard = (newDirection) => {
     const cardsCount = 7;
     const amountToMove = 50;
@@ -64,50 +53,47 @@ export default function Card(props) {
     const rightMostPosition = 150;
     const transition = "0.39s ease";
 
+    console.log("got it")
+
     if (newDirection === "left") {
+      // If card is at edge of window, quickly moves it to opposite side. Updates with new card properties.
       if (direction <= leftMostPosition) {
         setDirection(rightMostPosition);
-        setTransition("");                  // Move to opposing screen. Remove transition affect so user doesn't see it move.
-
-        const newIndex = index + cardsCount;
-        setIndex(newIndex);
-        const [newData, indexInRange] = props.getNewData(newIndex);
-        setBackgroundColor(newData.backgroundColor);
-        setFrontText(newData.frontText);
-        setBackText(newData.backText);
-        if (indexInRange === false) {
-          setDisplay("none");
-        } else {
-          setDisplay("");
-        }
+        setTransition("");
+        getNewCardProperties(index + cardsCount);
+        // If card is  not at edge of window, move it. Make sure it has a smooth transition property.
       } else {
         setDirection(direction - amountToMove);
-        setTransition(transition);     // Re-add transition affect.
+        setTransition(transition);
       }
     }
+    // Same as above but in the opposite direction.
     else if (newDirection === "right") {
       if (direction >= rightMostPosition) {
         setDirection(leftMostPosition);
         setTransition("");
-
-        const newIndex = index - cardsCount;
-        setIndex(newIndex);
-        const [newData, indexInRange] = props.getNewData(newIndex);
-        setBackgroundColor(newData.backgroundColor);
-        setFrontText(newData.frontText);
-        setBackText(newData.backText);
-        if (indexInRange === false) {
-          setDisplay("none");
-        } else {
-          setDisplay("");
-        }
-
+        getNewCardProperties(index - cardsCount);
       } else {
         setDirection(direction + amountToMove);
         setTransition(transition);
       }
     }
   }
+
+  // Get new properties to display.
+  const getNewCardProperties = (newIndex) => {
+    const [newProperties, indexInRange] = props.getNewData(newIndex);
+    if (indexInRange === false) {
+      setDisplay("none");
+    } else {
+      setDisplay("");
+    }
+    setBackgroundColor(newProperties.backgroundColor);
+    setFrontText(newProperties.frontText);
+    setBackText(newProperties.backText);
+    // Set index even if it is out of range, so that when card moves to opposing side of screen, calculations work. Even for negative numbers.
+    setIndex(newIndex);
+  };
 
   return (
     <FlipCardContainer display={display} direction={direction} transition={transition}>
@@ -137,7 +123,6 @@ export default function Card(props) {
 // transform -50% offsets half of card's width so it centers around its own axis.
 const FlipCardContainer = styled.div`
     display: ${props => props.display};
-
     width: 250px;
     height: 320px;
     background: none;
