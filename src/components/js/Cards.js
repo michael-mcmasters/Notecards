@@ -46,19 +46,9 @@ export default function App() {
   return (
     <div className="row">
       <Card
-        key={0}
-        index={cards[0].id}   // Flip animation needs index. Will not work if you use key as index.
-        direction={-150}
-        backgroundColor={cards[0].backgroundColor}
-        frontText={cards[0].frontText}
-        backText={cards[0].backText}
-        getNewData={getNewData}
-        numOfCards={cards.length}
-      />
-      <Card
         key={1}
         index={cards[1].id}   // Flip animation needs index. Will not work if you use key as index.
-        direction={-100}
+        direction={-150}
         backgroundColor={cards[1].backgroundColor}
         frontText={cards[1].frontText}
         backText={cards[1].backText}
@@ -68,7 +58,7 @@ export default function App() {
       <Card
         key={2}
         index={cards[2].id}   // Flip animation needs index. Will not work if you use key as index.
-        direction={-50}
+        direction={-100}
         backgroundColor={cards[2].backgroundColor}
         frontText={cards[2].frontText}
         backText={cards[2].backText}
@@ -78,8 +68,8 @@ export default function App() {
       <Card
         key={3}
         index={cards[3].id}   // Flip animation needs index. Will not work if you use key as index.
-        direction={0}
-        backgroundColor={"blue"}
+        direction={-50}
+        backgroundColor={cards[3].backgroundColor}
         frontText={cards[3].frontText}
         backText={cards[3].backText}
         getNewData={getNewData}
@@ -88,8 +78,8 @@ export default function App() {
       <Card
         key={4}
         index={cards[4].id}   // Flip animation needs index. Will not work if you use key as index.
-        direction={50}
-        backgroundColor={cards[4].backgroundColor}
+        direction={0}
+        backgroundColor={"blue"}
         frontText={cards[4].frontText}
         backText={cards[4].backText}
         getNewData={getNewData}
@@ -98,7 +88,7 @@ export default function App() {
       <Card
         key={5}
         index={cards[5].id}   // Flip animation needs index. Will not work if you use key as index.
-        direction={100}
+        direction={50}
         backgroundColor={cards[5].backgroundColor}
         frontText={cards[5].frontText}
         backText={cards[5].backText}
@@ -108,10 +98,20 @@ export default function App() {
       <Card
         key={6}
         index={cards[6].id}   // Flip animation needs index. Will not work if you use key as index.
-        direction={150}
+        direction={100}
         backgroundColor={cards[6].backgroundColor}
         frontText={cards[6].frontText}
         backText={cards[6].backText}
+        getNewData={getNewData}
+        numOfCards={cards.length}
+      />
+      <Card
+        key={7}
+        index={cards[7].id}   // Flip animation needs index. Will not work if you use key as index.
+        direction={150}
+        backgroundColor={cards[7].backgroundColor}
+        frontText={cards[7].frontText}
+        backText={cards[7].backText}
         getNewData={getNewData}
         numOfCards={cards.length}
       />
