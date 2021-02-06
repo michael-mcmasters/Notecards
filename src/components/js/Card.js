@@ -118,10 +118,10 @@ export default function Card(props) {
         <Front backgroundColor={backgroundColor}>
           <div className="text-flex">
             <div className="width">
-              <p>{index > 0 ? index : ""}</p>
+              <p>{index}</p>
             </div>
             <div className="width">
-              <p>{index > 0 ? index : ""}</p>
+              <p>{index}</p>
             </div>
           </div>
           <h1>{frontText}</h1>

@@ -3,22 +3,7 @@ import Card from "./Card.js";
 import "../css/Cards.css";
 
 export default function App() {
-  const [cardIndex, setCardIndex] = useState(4);
-
   const cards = getCards();
-
-  const handleKeyDown = (event) => {
-  }
-
-  useEffect(() => {
-    window.addEventListener('keydown', handleKeyDown);
-
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-    }
-  }, [cardIndex]);
-
-  console.log(cardIndex)
 
   // Returns an array of cards next to the card with the given index. Makes sure the indexed card is at the center of the page.
   // If there are no cards beside the given card, it creates dummy cards as a placeholder.
@@ -51,22 +36,13 @@ export default function App() {
   // Tuple. First value is the new card.
   // Second value returns true if the new card exists or false if it does not exist (meaning the index is out of range).
   const getNewData = (index) => {
-    // console.log("cardIndex is " + cardIndex)
-    // if (cardIndex === 2) {
-    //   return [cards[index], false];
-    // }
-
-    if (index >= 0 && index < cards.length) {
+    if (index > 0 && index < cards.length) {
       return [cards[index], true];
     }
-    console.log("uh oh")
     return [cards[0], false];
-
-    // return [cards[0], true];
   }
 
   // Longer way of doing it without a for-loop
-  const i = cardIndex;
   return (
     <div className="row">
       <Card
