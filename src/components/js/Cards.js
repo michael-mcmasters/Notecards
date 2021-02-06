@@ -150,10 +150,7 @@ Dependency Inversion`
     {
       backgroundColor: `#31587A`,
       frontText: `Explain "Interface Segregation Principle"`,
-      backText: `"many client-specific interfaces are better than one general-purpose interface."
-in other words, when you implement an interface, do you want your class flooded
-with empty methods you'll never use, or just the few that offer the functionality you
-are looking for?`
+      backText: `"many client-specific interfaces are better than one general-purpose interface." in other words, when you implement an interface, do you want your class flooded with empty methods you'll never use, or just the few that offer the functionality you are looking for?`
     },
     {
       backgroundColor: `#31587A`,
@@ -265,6 +262,212 @@ are looking for?`
       backgroundColor: `#31587A`,
       frontText: `What is an API?`,
       backText: `Application Programming Interface. The specification of how a programmer writing an application accesses the behavior and state of classes and objects.`
-    }
+    },
+    {
+      backgroundColor: `#31587A`,
+      frontText: `What is autoboxing?`,
+      backText: `Automatic conversion between reference (Wrapper classes) and primitive types. DONE BY COMPILER`,
+    },
+    {
+      backgroundColor: `#31587A`,
+      frontText: `what is a class variable?`,
+      backText: `A data item associated with a particular class as a whole--not with particular instances of the class. Class variables are defined in class definitions. Also called a static field`,
+    },
+    {
+      backgroundColor: `#31587A`,
+      frontText: `What is a class path?`,
+      backText: `An environmental variable which tells the Java virtual machine and Java technologybased applications where to find the class libraries, including user-defined class libraries.`,
+    },
+    {
+      backgroundColor: `#31587A`,
+      frontText: `What does DOM stand for?`,
+      backText: `Document object model.`,
+    },
+    {
+      backgroundColor: `#31587A`,
+      frontText: `What is an enumerated type?`,
+      backText: `A type whose legal values consist of a fixed set of constants. An example of this would be an enum.`,
+    },
+    {
+      backgroundColor: `#31587A`,
+      frontText: `Explaine garbage collection`,
+      backText: `The automatic detection and freeing of memory that is no longer in reference. The Java runtime system performs garbage collection so that programmers never explicitly free objects.`,
+    },
+    {
+      backgroundColor: `#31587A`,
+      frontText: `Explaine what a generic is`,
+      backText: `A class, interface, or method that declares one or more type variables. These type variables are known as type parameters. A generic declaration defines a set of parameterized types, one for each possible invocation of the type parameter section. At runtime, all of these parameterized types share the same class, interface, or method.`,
+    },
+    {
+      backgroundColor: `#31587A`,
+      frontText: `Explain type erasure`,
+      backText: `The deletion of peramatized types at runtime.`,
+    },
+    {
+      backgroundColor: `#31587A`,
+      frontText: `Why use generics?`,
+      backText: `(This answer is blank on the excel sheet.)`,
+    },
+    {
+      backgroundColor: `#31587A`,
+      frontText: `Why is java considered dynamic?`,
+      backText: `platform-independent file format that aggregates many files into one. Multiple applets written in the Java programming language, and their requisite components can be bundled in a JAR file and subsequently downloaded to a browser in a single HTTP transaction. `,
+    },
+    {
+      backgroundColor: `#31587A`,
+      frontText: `Explain JAR (Java Archive)`,
+      backText: `(This answer is blank on the excel sheet.)`,
+    },
+    {
+      backgroundColor: `#31587A`,
+      frontText: `Why is java considered dynamic?`,
+      backText: `platform-independent file format that aggregates many files into one. Multiple applets written in the Java programming language, and their requisite components can be bundled in a JAR file and subsequently downloaded to a browser in a single HTTP transaction.`,
+    },
+    {
+      backgroundColor: `#31587A`,
+      frontText: `What does it mean to be multithreaded?`,
+      backText: `designed to have parts of its code execute concurrently`,
+    },
+    {
+      backgroundColor: `#31587A`,
+      frontText: `What does it mean to be protected?`,
+      backText: `signifies that the method or variable can only be accessed by elements residing in its class, subclasses, or classes in the same package.`,
+    },
+    {
+      backgroundColor: `#31587A`,
+      frontText: `What is serialization? `,
+      backText: `Object created from incoming data (JSON, XML, CSV, whatevs)`,
+    },
+    {
+      backgroundColor: `#31587A`,
+      frontText: `What is the difference between a queue and a deque?`,
+      backText: `A queue is FIFO (first-in-first-out), a deque has options for FIFO or LIFO (last in first out); it's a queue and a stack in one!`,
+    },
+    {
+      backgroundColor: `#31587A`,
+      frontText: `What are design patterns?`,
+      backText: `Design patterns are solutions to general problems that software developers faced during software development.`,
+    },
+    {
+      backgroundColor: `#31587A`,
+      frontText: `What are the three basic groups of design patterns?`,
+      backText: `Creational, Structural, Behavior`,
+    },
+    {
+      backgroundColor: `#31587A`,
+      frontText: `What is a singleton?`,
+      backText: `It's a design pattern, that ensures a class has only one instance, and provides a global point of access to it. It uses a private constructor to limit object`,
+    },
+    {
+      backgroundColor: `#31587A`,
+      frontText: `What is a decorator pattern?`,
+      backText: `Decorator pattern allows a user to add new functionality to an existing object without altering its structure.`,
+    },
+    {
+      backgroundColor: `#31587A`,
+      frontText: `What is an Observer pattern?`,
+      backText: `Defines a one-to-many dependency between objects so that when one object changes state, all of its dependents are notified and updated automatically.`,
+    },
+    {
+      backgroundColor: `#31587A`,
+      frontText: `What is a Factory pattern?`,
+      backText: `Defines an interface for creating an object, but lets subclasses decide which class to instantiate. Factory Method lets a class defer instantiation to subclasses.`,
+    },
+    {
+      backgroundColor: `#31587A`,
+      frontText: `What is a Command pattern?`,
+      backText: `The Command Pattern encapsulates a request as an object, thereby letting you parameterize other objects with different requests, queue or log requests, and support undoable operations.`,
+    },
+    {
+      backgroundColor: `#31587A`,
+      frontText: `What is an Adapter pattern?`,
+      backText: `Converts the interface of a class into another interface the clients expect. Adapter lets classes work together that couldn’t otherwise because of incompatible interfaces.`,
+    },
+    {
+      backgroundColor: `#31587A`,
+      frontText: `What is a Facade pattern?`,
+      backText: `provides a unified interface to a set of interfaces in a subsystem. Facade defines a higher- level interface that makes the subsystem easier to use.`,
+    },
+    {
+      backgroundColor: `#31587A`,
+      frontText: `What is the difference between Adapter and Facade?`,
+      backText: `Adapter links two incompatible interfaces and facade is used when you want an easier or simpler interface to work with.`,
+    },
+    {
+      backgroundColor: `#31587A`,
+      frontText: `What is template Method pattern?`,
+      backText: `Defines the skeleton of an algorithm in a method, deferring some steps to subclasses. Template Method lets subclasses redefine certain steps of an algorithm without changing the algorithm’s structure.`,
+    },
+    {
+      backgroundColor: `#31587A`,
+      frontText: `What is an anonymous inner class?`,
+      backText: `It is an inner class without a name and for which only a single object is created. An anonymous inner class can be useful when making an instance of an object with certain “extras” such as overloading methods of a class or interface, without having to actually subclass a class.`,
+    },
+    {
+      backgroundColor: `#31587A`,
+      frontText: `What is a lambda expression?`,
+      backText: `A function that can be created without belonging to any class.`,
+    },
+    {
+      backgroundColor: `#31587A`,
+      frontText: `What is a method reference? `,
+      backText: `How java handles passing methods as arguments`,
+    },
+    {
+      backgroundColor: `#31587A`,
+      frontText: `Explain streams`,
+      backText: `Streams process information in parallel - that is, if a stream is parsing a collection, it will do "work" to the elements the collection at the same time, unlike a loop which works on one element at a time before working on the next one`,
+    },
+    {
+      backgroundColor: `#31587A`,
+      frontText: `What is a functional interface?`,
+      backText: `Intefaces that contain only one function that is generally a lambda expression`,
+    },
+    {
+      backgroundColor: `#31587A`,
+      frontText: `List the functional interfaces and their functional methods. `,
+      backText: `Function, BiFunction, Consumer, BiConsumer, Runnable, Supplier, Predicate`,
+    },
+    {
+      backgroundColor: `#31587A`,
+      frontText: `functional methods. Function, BiFunction, Consumer, BiConsumer, Runnable, Supplier, Predicate What is the difference between java7 and java8?`,
+      backText: `7 introduced diamond brackets. 8 introduced streams and lambdas
+`,
+    },
+    {
+      backgroundColor: `#31587A`,
+      frontText: `What is functional programming `,
+      backText: `Programming that avoids changing state`,
+    },
+    {
+      backgroundColor: `#31587A`,
+      frontText: `What are the FIRST principles of TDD?`,
+      backText: `Tests should be:
+Fast - The code seems to be fast because there is nothing complex about its tests.
+Independent - The test doesn't depend on other tests.
+Repeatable - The test will get the same result every time.
+Self-validating - The test can automatically detect if it's passed.
+Timely - Both the code and the test code are presented here at the same time.`,
+    },
+    {
+      backgroundColor: `#31587A`,
+      frontText: `What is the difference between composition and inheritance?`,
+      backText: `Composition is instantiating a class as a field ("has a" relationship). Inheritance is inheriting all fields and methods from parent class ("is a" relationship)`,
+    },
+    {
+      backgroundColor: `#31587A`,
+      frontText: `What is a thread?`,
+      backText: `The path followed when executing a program; all programs have at least 1 thread (known as the main thread)`,
+    },
+    {
+      backgroundColor: `#31587A`,
+      frontText: `What is an advantage of Java (with its JVM) over other languages that work from the hardware?`,
+      backText: `The JVM can be run on any platform, making it dynamic. C++, for instance, runs on the hardware, so it is not dynamic.`,
+    },
+    {
+      backgroundColor: `#31587A`,
+      frontText: `What does the word static mean?`,
+      backText: `In Java, a static member is a member of a class that isn’t associated with an instance of a class. Instead, the member belongs to the class itself. As a result, you can access the static member without first creating a class instance.`,
+    },
   ]
 }
