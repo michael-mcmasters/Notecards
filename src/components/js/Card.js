@@ -53,7 +53,7 @@ export default function Card(props) {
     const rightMostPosition = 150;
     const transition = "0.39s ease";
 
-    console.log("got it")
+    setFlipped(false);
 
     if (newDirection === "left") {
       // If card is at edge of window, quickly moves it to opposite side. Updates with new card properties.
