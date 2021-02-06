@@ -96,23 +96,35 @@ export default function Card(props) {
   };
 
   return (
+    // <FlipCardContainer display={display} direction={direction} transition={transition}>
+    //   <FlipCard flipped={flipped} onClick={() => setFlipped(!flipped)}>
+    //     <Front backgroundColor={backgroundColor}>
+    //       <div className="text-flex">
+    //         <div className="width">
+    //           <p>{index}</p>
+    //         </div>
+    //         <div className="width">
+    //           <p>{index}</p>
+    //         </div>
+    //       </div>
+    //       <h1>{frontText}</h1>
+    //       <p></p>
+    //     </Front>
+    //     <Back>
+    //       <p>{backText}</p>
+    //       <button>Submit</button>
+    //     </Back>
+    //   </FlipCard>
+    // </FlipCardContainer>
+
     <FlipCardContainer display={display} direction={direction} transition={transition}>
       <FlipCard flipped={flipped} onClick={() => setFlipped(!flipped)}>
         <Front backgroundColor={backgroundColor}>
-          <div className="text-flex">
-            <div className="width">
-              <p>{index}</p>
-            </div>
-            <div className="width">
-              <p>{index}</p>
-            </div>
-          </div>
-          <h1>{frontText}</h1>
+          <p>{frontText}</p>
           <p></p>
         </Front>
         <Back>
           <p>{backText}</p>
-          <button>Submit</button>
         </Back>
       </FlipCard>
     </FlipCardContainer>
@@ -146,7 +158,7 @@ const FlipCard = styled.div`
 `;
 
 const Front = styled.div`
-    font-size: 25px;
+    font-size: 28px;
 
     width: 100%;
     height: 100%;
@@ -159,6 +171,7 @@ const Front = styled.div`
 `;
 
 const Back = styled.div`
+  font-size: 28px;
     position: absolute;
     top: 0;
     left: 0;
