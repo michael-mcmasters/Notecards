@@ -16,6 +16,12 @@ export default function Card(props) {
   const [backText, setBackText] = useState(props.backText);
 
   useEffect(() => {
+    // const [newData, indexInRange] = props.getNewData(index);
+    // if (indexInRange) {
+    //   setBackgroundColor(newData.backgroundColor);
+    //   setFrontText(newData.frontText);
+    //   setBackText(newData.backText);
+    // }
     window.addEventListener('keydown', handleKeyDown);
 
     return () => {
@@ -26,42 +32,22 @@ export default function Card(props) {
 
   // Left/right to move card. Space key to flip.
   const handleKeyDown = (event) => {
-    // setAllowCycling(props.allowCycling);
-    // if (props.allowCycling === false) return;
-    // if (allowCycling === false) return;
-
-    switch (event.key) {
-      case " ":                   // space key
-        setFlipped(!flipped);
-        break;
-      case "ArrowLeft":
-        if (cycleIndex + 1 < 32) {
-          setCycleIndex(prevState => prevState + 1);
-          handleMoveCard("left");
-        }
-        break;
-      case "ArrowRight":
-        if (cycleIndex - 1 >= 1) {
-          setCycleIndex(prevState => prevState - 1);
-          handleMoveCard("right");
-        }
-        break;
+    if (event.key === " ") {            // space key
+      setFlipped(!flipped);
     }
-
-    // if (cycleIndex < 2) return;
-
-    // switch (event.key) {
-    //   case " ":                   // space key
-    //     setFlipped(!flipped);
-    //     break;
-    //   case "ArrowLeft":
-    //     handleMoveCard("left");
-    //     break;
-    //   case "ArrowRight":
-    //     handleMoveCard("right");
-    //     break;
-    // }
-  };
+    else if (event.key === "ArrowLeft") {
+      if (cycleIndex <= props.numOfCards - 2) {
+        setCycleIndex(prevCycleIndex => prevCycleIndex + 1);
+        handleMoveCard("left");
+      }
+    }
+    else if (event.key === "ArrowRight") {
+      if (cycleIndex - 1 >= 1) {
+        setCycleIndex(prevCycleIndex => prevCycleIndex - 1);
+        handleMoveCard("right");
+      }
+    };
+  }
   //  0  1  2  3  4  5  6
   // +7 +7 +7 +7 +7 +7 +7
   //  7  8  9 10 11 12 13
@@ -80,9 +66,6 @@ export default function Card(props) {
     const rightMostPosition = 150;
     const transition = "0.39s ease";
 
-    // const [newData, indexInRange] = props.getNewData(0);
-    // if (indexInRange === false) return;
-
     if (newDirection === "left") {
       if (direction <= leftMostPosition) {
         setDirection(rightMostPosition);
@@ -90,12 +73,10 @@ export default function Card(props) {
 
         const newIndex = index + cardsCount;
         setIndex(newIndex);
-        const [newData, indexInRange] = props.getNewData(newIndex);
-        if (indexInRange) {
-          setBackgroundColor(newData.backgroundColor);
-          setFrontText(newData.frontText);
-          setBackText(newData.backText);
-        }
+        const [newData] = props.getNewData(newIndex);
+        setBackgroundColor(newData.backgroundColor);
+        setFrontText(newData.frontText);
+        setBackText(newData.backText);
       } else {
         setDirection(direction - amountToMove);
         setTransition(transition);     // Re-add transition affect.
@@ -108,12 +89,10 @@ export default function Card(props) {
 
         const newIndex = index - cardsCount;
         setIndex(newIndex);
-        const [newData, indexInRange] = props.getNewData(newIndex);
-        if (indexInRange) {
-          setBackgroundColor(newData.backgroundColor);
-          setFrontText(newData.frontText);
-          setBackText(newData.backText);
-        }
+        const [newData] = props.getNewData(newIndex);
+        setBackgroundColor(newData.backgroundColor);
+        setFrontText(newData.frontText);
+        setBackText(newData.backText);
 
       } else {
         setDirection(direction + amountToMove);
