@@ -43,6 +43,7 @@ export default function Cards() {
           backgroundColor={cards[i].backgroundColor}
           frontText={cards[i].frontText}
           backText={cards[i].backText}
+          timesAccepted={cards[i].timesAccepted}
           getNewData={getNewData}
           changeText={changeText}
           setAllowHotkeys={handleAllowHotKey}
@@ -57,6 +58,7 @@ export default function Cards() {
           backgroundColor={``}
           frontText={``}
           backText={``}
+          timesAccepted={0}
           getNewData={getNewData}
           changeText={changeText}
           setAllowHotkeys={handleAllowHotKey}

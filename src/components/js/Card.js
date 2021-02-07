@@ -19,7 +19,7 @@ export default function Card(props) {
   const [savePressed, setSavePressed] = useState(false);
   const [cancelPressed, setCancelPressed] = useState(false);
   const [backTextBeforeEdit, setBackTextBeforeEdit] = useState(backText);
-  const [cardAcceped, setCardAccepted] = useState(false);
+  const [timesAccepted, setTimesAccepted] = useState(0);
 
   useEffect(() => {
     window.addEventListener('keydown', handleKeyDown);
@@ -27,7 +27,7 @@ export default function Card(props) {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [flipped, direction, index, cycleIndex, allowHotKeys, savePressed, cancelPressed, backTextBeforeEdit, cardAcceped]);
+  }, [flipped, direction, index, cycleIndex, allowHotKeys, savePressed, cancelPressed, backTextBeforeEdit, timesAccepted]);
 
 
   // Left/right to move card. Space key to flip.
@@ -101,6 +101,7 @@ export default function Card(props) {
     setBackgroundColor(newProperties.backgroundColor);
     setFrontText(newProperties.frontText);
     setBackText(newProperties.backText);
+    setTimesAccepted(newProperties.timesAccepted);
     setBackTextBeforeEdit(newProperties.backText);
     if (indexInRange === false) {
       setDisplay("none");
@@ -126,7 +127,7 @@ export default function Card(props) {
 
   const handleCardCorrect = () => {
     console.log("Correct!")
-    setCardAccepted(true);
+    setTimesAccepted(prevTimesAccepted => prevTimesAccepted + 1);
   }
 
   const handleInputFocus = () => {
@@ -150,7 +151,7 @@ export default function Card(props) {
   }
 
   return (
-    <FlipCardContainer display={display} direction={direction} cardAcceped={cardAcceped} transition={transition}>
+    <FlipCardContainer display={display} direction={direction} cardAcceped={timesAccepted > props.timesAccepted} transition={transition}>
       <FlipCard flipped={flipped}>
         <Front backgroundColor={backgroundColor}>
           <FontContainer>
