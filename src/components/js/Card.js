@@ -111,7 +111,8 @@ export default function Card(props) {
     }
   }
 
-  function handleChange(event) {
+  // User can edit the text. Press enter to save it.
+  function handleTypingNewText(event) {
     setBackText(event.target.value);
   }
 
@@ -127,7 +128,8 @@ export default function Card(props) {
           <FontContainer>
             {/* Temp for debugging */}
             {/* <p style={{ fontSize: "10px", margin: "0" }}>{backText.length}</p> */}
-            <Input value={backText} onChange={handleChange} onFocus={() => setAllowHotKeys(false)} onBlur={() => setAllowHotKeys(true)} />
+            <Input value={backText} onChange={handleTypingNewText} onFocus={() => setAllowHotKeys(false)} onBlur={() => setAllowHotKeys(true)} />
+            {allowHotKeys === false ? <Button>Save Changes</Button> : ""}
           </FontContainer>
         </Back>
       </FlipCard>
@@ -197,9 +199,13 @@ const FontContainer = styled.div`
 
 // Have to set height manually because textarea's don't have an auto height property, and they don't fill parent div's height.
 const Input = styled.textarea`
-  height: 280px;
+  height: 240px;
   width: 100%;
   background-color: transparent;
   border: none;
   resize: none;
+`;
+
+const Button = styled.button`
+  transition: 1s;
 `;
