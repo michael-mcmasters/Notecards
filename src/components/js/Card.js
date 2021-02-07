@@ -7,18 +7,23 @@ export default function Card(props) {
 
   const allowHotKeys = useContext(AllowHotkeyContext);
 
+  // Card movement
   const [cycleIndex, setCycleIndex] = useState(1);
-  const [flipped, setFlipped] = useState(false);
+  const [index, setIndex] = useState(props.index);
   const [xPosition, setXPosition] = useState(props.xPosition);
   const [transition, setTransition] = useState("");
-  const [index, setIndex] = useState(props.index);
-  const [backgroundColor, setBackgroundColor] = useState(props.backgroundColor);
+
+  // Card display
   const [frontText, setFrontText] = useState(props.frontText);
   const [backText, setBackText] = useState(props.backText);
-  const [display, setDisplay] = useState(() => (index > 0 && index < props.amountOfData) ? "" : "none");
+  const [backgroundColor, setBackgroundColor] = useState(props.backgroundColor);
+  const [flipped, setFlipped] = useState(false);
+  const [display, setDisplay] = useState(() => (index > 0 && index < props.amountOfData) ? "" : "none");    // display: none if card has an index that is out of bounds. (Card must keep index for calculations to work.)
+
+  // Editing
   const [savePressed, setSavePressed] = useState(false);
   const [cancelPressed, setCancelPressed] = useState(false);
-  const [backTextBeforeEdit, setBackTextBeforeEdit] = useState(backText);
+  const [backTextBeforeEdit, setBackTextBeforeEdit] = useState(backText);         // If user cancels editing text, this preserves what it looked like before editing.
   const [timesAccepted, setTimesAccepted] = useState(0);
 
   useEffect(() => {
