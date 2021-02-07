@@ -13,6 +13,7 @@ export default function Card(props) {
   const [frontText, setFrontText] = useState(props.frontText);
   const [backText, setBackText] = useState(props.backText);
   const [display, setDisplay] = useState(() => (index > 0 && index < props.amountOfData) ? "" : "none");
+  const [allowHotKeys, setAllowHotKeys] = useState(true);
 
   useEffect(() => {
     window.addEventListener('keydown', handleKeyDown);
@@ -20,11 +21,13 @@ export default function Card(props) {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [flipped, direction, index, cycleIndex]);
+  }, [flipped, direction, index, cycleIndex, allowHotKeys]);
 
 
   // Left/right to move card. Space key to flip.
   const handleKeyDown = (event) => {
+    if (allowHotKeys === false) return;
+
     if (event.key === " ") {            // space key
       if (direction === 50) {           // Only center card should flip. We know it is the center card if its position is at 50.
         setFlipped(!flipped);
@@ -114,7 +117,6 @@ export default function Card(props) {
 
   return (
     <FlipCardContainer display={display} direction={direction} transition={transition}>
-      {/* <FlipCard flipped={flipped} onClick={() => setFlipped(!flipped)}> */}
       <FlipCard flipped={flipped}>
         <Front backgroundColor={backgroundColor}>
           <FontContainer>
@@ -125,7 +127,7 @@ export default function Card(props) {
           <FontContainer>
             {/* Temp for debugging */}
             {/* <p style={{ fontSize: "10px", margin: "0" }}>{backText.length}</p> */}
-            <Input value={backText} onChange={handleChange} />
+            <Input value={backText} onChange={handleChange} onFocus={() => setAllowHotKeys(false)} onBlur={() => setAllowHotKeys(true)} />
           </FontContainer>
         </Back>
       </FlipCard>
