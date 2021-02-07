@@ -165,13 +165,13 @@ export default function Card(props) {
               onBlur={() => props.setAllowHotkeys(true)}
             />
             <div class="flex justify-end">
-              <CancelButton typing={allowHotKeys}
+              <CancelButton userEditingText={allowHotKeys}
                 pressed={cancelPressed}
                 onClick={() => handleCancelButton()}
                 onBlur={() => setCancelPressed(false)}>
                 Cancel
               </CancelButton>
-              <SaveButton typing={allowHotKeys}
+              <SaveButton userEditingText={allowHotKeys}
                 pressed={savePressed}
                 onClick={() => handleSaveButton(true)}
                 onBlur={() => setSavePressed(false)}>
@@ -273,9 +273,9 @@ const CancelButton = styled.button`
   border-radius: 100px;
   background-color: ${props => props.pressed ? "green" : "red"};
   
-  bottom: ${props => props.typing ? "-5em" : "1em"};
+  bottom: ${props => props.userEditingText ? "-5em" : "1em"};
   transition: bottom 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  transition-delay: ${props => props.typing ? "0.2s" : "0"};
+  transition-delay: ${props => props.userEditingText ? "0.2s" : "0"};
   cursor: pointer;
   
   &:focus {
@@ -292,9 +292,9 @@ const SaveButton = styled.button`
   border-radius: 100px;
   background-color: ${props => props.pressed ? "green" : "red"};
   
-  bottom: ${props => props.typing ? "-5em" : "1em"};
+  bottom: ${props => props.userEditingText ? "-5em" : "1em"};
   transition: bottom 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  transition-delay: ${props => props.typing ? "0.5s" : "0"};
+  transition-delay: ${props => props.userEditingText ? "0.5s" : "0"};
   cursor: pointer;
   
   &:focus {
