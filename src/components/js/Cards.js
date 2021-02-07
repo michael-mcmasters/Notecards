@@ -32,14 +32,14 @@ export default function Cards() {
 
   const getCardsJSX = () => {
     let cardsArr = [];
-    let direction = -150;
+    let xPosition = -150;
     const start = -3, end = 3;
     for (let i = start; i <= end; i++) {
       if (i > 0 && i < cards.length) {
         cardsArr.push(<Card
           key={i}
           index={i}   // Index will change when card moves to opposing side of screen. A negative index means it hides its display. It is important to have negative indexes for calculations to work to get new card properties.
-          direction={direction}
+          xPosition={xPosition}
           backgroundColor={cards[i].backgroundColor}
           frontText={cards[i].frontText}
           backText={cards[i].backText}
@@ -54,7 +54,7 @@ export default function Cards() {
         cardsArr.push(<Card
           key={i}
           index={i}
-          direction={direction}
+          xPosition={xPosition}
           backgroundColor={``}
           frontText={``}
           backText={``}
@@ -66,7 +66,7 @@ export default function Cards() {
         />);
       }
 
-      direction += 50;
+      xPosition += 50;
     }
     return cardsArr;
   }

@@ -9,7 +9,7 @@ export default function Card(props) {
 
   const [cycleIndex, setCycleIndex] = useState(1);
   const [flipped, setFlipped] = useState(false);
-  const [direction, setDirection] = useState(props.direction);
+  const [xPosition, setXPosition] = useState(props.xPosition);
   const [transition, setTransition] = useState("");
   const [index, setIndex] = useState(props.index);
   const [backgroundColor, setBackgroundColor] = useState(props.backgroundColor);
@@ -27,7 +27,7 @@ export default function Card(props) {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [flipped, direction, index, cycleIndex, allowHotKeys, savePressed, cancelPressed, backTextBeforeEdit, timesAccepted]);
+  }, [flipped, xPosition, index, cycleIndex, allowHotKeys, savePressed, cancelPressed, backTextBeforeEdit, timesAccepted]);
 
 
   // Left/right to move card. Space key to flip.
@@ -36,7 +36,7 @@ export default function Card(props) {
     if (allowHotKeys === false) return;
 
     if (event.key === " ") {            // space key
-      if (direction === 50) {           // Only center card should flip. We know it is the center card if its position is at 50.
+      if (xPosition === 50) {           // Only center card should flip. We know it is the center card if its position is at 50.
         setFlipped(!flipped);
       }
     }
@@ -53,7 +53,7 @@ export default function Card(props) {
       }
     }
     else if (event.key === "ArrowUp") {
-      if (direction === 50) {
+      if (xPosition === 50) {
         handleCardCorrect();
       }
     }
@@ -72,24 +72,24 @@ export default function Card(props) {
 
     if (newDirection === "left") {
       // If card is at edge of window, quickly moves it to opposite side. Updates with new card properties.
-      if (direction <= leftMostPosition) {
-        setDirection(rightMostPosition);
+      if (xPosition <= leftMostPosition) {
+        setXPosition(rightMostPosition);
         setTransition("");
         getNewCardProperties(index + cardsCount);
         // If card is  not at edge of window, move it. Make sure it has a smooth transition property.
       } else {
-        setDirection(direction - amountToMove);
+        setXPosition(xPosition - amountToMove);
         setTransition(transition);
       }
     }
     // Same as above but in the opposite direction.
     else if (newDirection === "right") {
-      if (direction >= rightMostPosition) {
-        setDirection(leftMostPosition);
+      if (xPosition >= rightMostPosition) {
+        setXPosition(leftMostPosition);
         setTransition("");
         getNewCardProperties(index - cardsCount);
       } else {
-        setDirection(direction + amountToMove);
+        setXPosition(xPosition + amountToMove);
         setTransition(transition);
       }
     }
@@ -151,7 +151,7 @@ export default function Card(props) {
   }
 
   return (
-    <FlipCardContainer display={display} direction={direction} cardAcceped={timesAccepted > props.timesAccepted} transition={transition}>
+    <FlipCardContainer display={display} xPosition={xPosition} cardAcceped={timesAccepted > props.timesAccepted} transition={transition}>
       <FlipCard flipped={flipped}>
         <Front backgroundColor={backgroundColor}>
           <FontContainer>
@@ -202,7 +202,7 @@ const FlipCardContainer = styled.div`
     position: absolute;
     transition: ${props => props.transition};
 
-    left: ${props => props.direction}%;
+    left: ${props => props.xPosition}%;
     transform: translateX(-50%);
     -webkit-transform:translateX(-50%);
     
