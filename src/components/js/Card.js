@@ -206,10 +206,8 @@ const FlipCardContainer = styled.div`
     transform: translateX(-50%);
     -webkit-transform:translateX(-50%);
     
-    /* animation-name: ${cardBumpUpAnimation}; */
     animation-name: ${props => props.cardAcceped ? cardBumpUpAnimation : ""};
     animation-duration: 0.4s;
-    /* animation-iteration-count: infinite; */
 `;
 
 const FlipCard = styled.div`
