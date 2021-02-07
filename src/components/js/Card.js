@@ -108,9 +108,14 @@ export default function Card(props) {
     }
   }
 
+  function handleChange(event) {
+    setBackText(event.target.value);
+  }
+
   return (
     <FlipCardContainer display={display} direction={direction} transition={transition}>
-      <FlipCard flipped={flipped} onClick={() => setFlipped(!flipped)}>
+      {/* <FlipCard flipped={flipped} onClick={() => setFlipped(!flipped)}> */}
+      <FlipCard flipped={flipped}>
         <Front backgroundColor={backgroundColor}>
           <FontContainer>
             <p>{frontText}</p>
@@ -120,11 +125,11 @@ export default function Card(props) {
           <FontContainer>
             {/* Temp for debugging */}
             {/* <p style={{ fontSize: "10px", margin: "0" }}>{backText.length}</p> */}
-            <p>{backText}</p>
+            <Input value={backText} onChange={handleChange} />
           </FontContainer>
         </Back>
       </FlipCard>
-    </FlipCardContainer>
+    </FlipCardContainer >
   );
 };
 
@@ -140,7 +145,7 @@ const FlipCardContainer = styled.div`
     cursor: pointer;
     position: absolute;
     transition: ${props => props.transition};
-    
+
     left: ${props => props.direction}%;
     transform: translateX(-50%);
     -webkit-transform:translateX(-50%);
@@ -164,7 +169,7 @@ const Front = styled.div`
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
     overflow: hidden;
-    
+
     background-color: ${props => props.backgroundColor};
 `;
 
@@ -186,4 +191,13 @@ const Back = styled.div`
 
 const FontContainer = styled.div`
   padding: 1rem;
+`;
+
+// Have to set height manually because textarea's don't have an auto height property, and they don't fill parent div's height.
+const Input = styled.textarea`
+  height: 280px;
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  resize: none;
 `;
