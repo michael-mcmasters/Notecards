@@ -18,6 +18,7 @@ export default function Card(props) {
   const [display, setDisplay] = useState(() => (index > 0 && index < props.amountOfData) ? "" : "none");
   const [savePressed, setSavePressed] = useState(false);
   const [cancelPressed, setCancelPressed] = useState(false);
+  const [backTextBeforeEdit, setBackTextBeforeEdit] = useState(backText);
 
   useEffect(() => {
     window.addEventListener('keydown', handleKeyDown);
@@ -25,7 +26,7 @@ export default function Card(props) {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [flipped, direction, index, cycleIndex, allowHotKeys, savePressed, cancelPressed]);
+  }, [flipped, direction, index, cycleIndex, allowHotKeys, savePressed, cancelPressed, backTextBeforeEdit]);
 
 
   // Left/right to move card. Space key to flip.
@@ -116,17 +117,24 @@ export default function Card(props) {
     }
   }
 
+  const handleInputFocus = () => {
+    props.setAllowHotkeys(false)
+    setBackTextBeforeEdit(backText);
+  }
+
   // User can edit the text. Press enter to save it.
   const handleTypingNewText = (event) => {
     setBackText(event.target.value);
   }
 
   const handleCancelButton = () => {
-    setCancelPressed(true)
+    setBackText(backTextBeforeEdit);
+    setCancelPressed(true);
   }
 
   const handleSaveButton = () => {
-    setSavePressed(true)
+    setSavePressed(true);
+    setBackTextBeforeEdit(backText);
   }
 
   return (
@@ -140,7 +148,7 @@ export default function Card(props) {
         <Back fontSize={getBackFontSize(backText.length)}>
           <FontContainer>
             <Input value={backText} onChange={handleTypingNewText}
-              onFocus={() => { props.setAllowHotkeys(false) }}
+              onFocus={() => { handleInputFocus() }}
               onBlur={() => props.setAllowHotkeys(true)}
             />
             <div class="flex justify-end">
