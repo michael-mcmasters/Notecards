@@ -224,6 +224,10 @@ const Button = styled.button`
   
   bottom: ${props => props.typing ? "-5em" : "1em"};
   transition: bottom 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  transition-delay: 0.4s;
+  transition-delay: ${props => props.typing ? "0.4s" : "0"};
   cursor: pointer;
+  
+  &:focus {
+    outline: none;
+  }
 `;
