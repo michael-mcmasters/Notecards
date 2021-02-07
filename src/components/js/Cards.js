@@ -1,9 +1,17 @@
+import React, { useState, useEffect } from "react";
 import Card from "./Card.js";
 import cardsJSON from "../../resources/card-data.json";
 import "../css/Cards.css";
 
-export default function App() {
+export const AllowHotkeyContext = React.createContext();
+
+export default function Cards() {
+  const [allowHotKey, setAllowHotKey] = useState(true);
+
   const cards = cardsJSON.cards;
+
+  useEffect(() => {
+  }, [allowHotKey]);
 
   // Returns data at the given index and returns true if the index is in range.
   // If index is out of range, returns index 0 which has empty properties, and returns false.
@@ -16,6 +24,10 @@ export default function App() {
 
   const changeText = (index, newText) => {
     cards[index].frontText = newText;
+  }
+
+  const handleAllowHotKey = () => {
+    setAllowHotKey(prevValue => !prevValue);
   }
 
   const getCardsJSX = () => {
@@ -33,6 +45,7 @@ export default function App() {
           backText={cards[i].backText}
           getNewData={getNewData}
           changeText={changeText}
+          setAllowHotkeys={handleAllowHotKey}
           amountOfData={cards.length}
         />);
       } else {
@@ -46,6 +59,7 @@ export default function App() {
           backText={``}
           getNewData={getNewData}
           changeText={changeText}
+          setAllowHotkeys={handleAllowHotKey}
           amountOfData={cards.length}
         />);
       }
@@ -57,7 +71,9 @@ export default function App() {
 
   return (
     <div>
-      {getCardsJSX()}
+      <AllowHotkeyContext.Provider value={allowHotKey}>
+        {getCardsJSX()}
+      </AllowHotkeyContext.Provider>
     </div>
   )
 }

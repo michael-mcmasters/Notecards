@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import styled, { css } from "styled-components";
+import { AllowHotkeyContext } from "./Cards";
 import "../css/Card.css";
 
 export default function Card(props) {
+
+  const allowHotKeys = useContext(AllowHotkeyContext);
 
   const [cycleIndex, setCycleIndex] = useState(1);
   const [flipped, setFlipped] = useState(false);
@@ -13,7 +16,7 @@ export default function Card(props) {
   const [frontText, setFrontText] = useState(props.frontText);
   const [backText, setBackText] = useState(props.backText);
   const [display, setDisplay] = useState(() => (index > 0 && index < props.amountOfData) ? "" : "none");
-  const [allowHotKeys, setAllowHotKeys] = useState(true);
+  //const [allowHotKeys, setAllowHotKeys] = useState(true);
 
   useEffect(() => {
     window.addEventListener('keydown', handleKeyDown);
@@ -26,6 +29,7 @@ export default function Card(props) {
 
   // Left/right to move card. Space key to flip.
   const handleKeyDown = (event) => {
+    console.log(allowHotKeys);
     if (allowHotKeys === false) return;
 
     if (event.key === " ") {            // space key
@@ -128,7 +132,7 @@ export default function Card(props) {
           <FontContainer>
             {/* Temp for debugging */}
             {/* <p style={{ fontSize: "10px", margin: "0" }}>{backText.length}</p> */}
-            <Input value={backText} onChange={handleTypingNewText} onFocus={() => setAllowHotKeys(false)} onBlur={() => setAllowHotKeys(true)} />
+            <Input value={backText} onChange={handleTypingNewText} onFocus={() => props.setAllowHotkeys(false)} onBlur={() => props.setAllowHotkeys(true)} />
             {allowHotKeys === false ? <Button>Save Changes</Button> : ""}
           </FontContainer>
         </Back>
