@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { AllowHotkeyContext } from "./Cards";
 import "../css/Card.css";
 
@@ -19,6 +19,7 @@ export default function Card(props) {
   const [savePressed, setSavePressed] = useState(false);
   const [cancelPressed, setCancelPressed] = useState(false);
   const [backTextBeforeEdit, setBackTextBeforeEdit] = useState(backText);
+  const [cardAcceped, setCardAccepted] = useState(false);
 
   useEffect(() => {
     window.addEventListener('keydown', handleKeyDown);
@@ -26,7 +27,7 @@ export default function Card(props) {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [flipped, direction, index, cycleIndex, allowHotKeys, savePressed, cancelPressed, backTextBeforeEdit]);
+  }, [flipped, direction, index, cycleIndex, allowHotKeys, savePressed, cancelPressed, backTextBeforeEdit, cardAcceped]);
 
 
   // Left/right to move card. Space key to flip.
@@ -50,7 +51,12 @@ export default function Card(props) {
         setCycleIndex(prevCycleIndex => prevCycleIndex - 1);
         handleMoveCard("right");
       }
-    };
+    }
+    else if (event.key === "ArrowUp") {
+      if (direction === 50) {
+        handleCardCorrect();
+      }
+    }
   }
 
   // Object pooling: There are only 7 cards at a given time.
@@ -117,6 +123,11 @@ export default function Card(props) {
     }
   }
 
+  const handleCardCorrect = () => {
+    console.log("Correct!")
+    setCardAccepted(true);
+  }
+
   const handleInputFocus = () => {
     props.setAllowHotkeys(false)
     setBackTextBeforeEdit(backText);
@@ -138,7 +149,7 @@ export default function Card(props) {
   }
 
   return (
-    <FlipCardContainer display={display} direction={direction} transition={transition}>
+    <FlipCardContainer display={display} direction={direction} cardAcceped={cardAcceped} transition={transition}>
       <FlipCard flipped={flipped}>
         <Front backgroundColor={backgroundColor}>
           <FontContainer>
@@ -172,6 +183,13 @@ export default function Card(props) {
   );
 };
 
+const cardBumpUpAnimation = keyframes`
+   0% { height: 100px; width: 100px; }
+  30% { height: 400px; width: 400px; opacity: 1 }
+  40% { height: 405px; width: 405px; opacity: 0.3; }
+  100% { height: 100px; width: 100px; opacity: 0.6; }
+`;
+
 // left moves card into position, pushing it away from the left side of the screen.
 // transform -50% offsets half of card's width so it centers around its own axis.
 const FlipCardContainer = styled.div`
@@ -188,6 +206,11 @@ const FlipCardContainer = styled.div`
     left: ${props => props.direction}%;
     transform: translateX(-50%);
     -webkit-transform:translateX(-50%);
+    
+    /* animation-name: ${cardBumpUpAnimation}; */
+    animation-name: ${props => props.cardAcceped ? cardBumpUpAnimation : ""};
+    animation-duration: 8s;
+    /* animation-iteration-count: infinite; */
 `;
 
 const FlipCard = styled.div`
