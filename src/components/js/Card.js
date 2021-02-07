@@ -16,6 +16,7 @@ export default function Card(props) {
   const [frontText, setFrontText] = useState(props.frontText);
   const [backText, setBackText] = useState(props.backText);
   const [display, setDisplay] = useState(() => (index > 0 && index < props.amountOfData) ? "" : "none");
+  const [pressed, setPressed] = useState(false);
 
   useEffect(() => {
     window.addEventListener('keydown', handleKeyDown);
@@ -23,7 +24,7 @@ export default function Card(props) {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [flipped, direction, index, cycleIndex, allowHotKeys]);
+  }, [flipped, direction, index, cycleIndex, allowHotKeys, pressed]);
 
 
   // Left/right to move card. Space key to flip.
@@ -131,10 +132,10 @@ export default function Card(props) {
           <FontContainer>
             {/* Temp for debugging */}
             {/* <p style={{ fontSize: "10px", margin: "0" }}>{backText.length}</p> */}
-            <Input value={backText} onChange={handleTypingNewText} onFocus={() => props.setAllowHotkeys(false)} onBlur={() => props.setAllowHotkeys(true)} />
+            <Input value={backText} onChange={handleTypingNewText} onFocus={() => { props.setAllowHotkeys(false) }} onBlur={() => props.setAllowHotkeys(true)} />
             {/* {allowHotKeys === false ? <Button>Save Changes</Button> : ""} */}
             <div class="flex justify-end">
-              <Button typing={allowHotKeys}>Save</Button>
+              <Button typing={allowHotKeys} pressed={pressed} onClick={() => setPressed(true)} onBlur={() => setPressed(false)}>Save</Button>
             </div>
           </FontContainer>
         </Back>
@@ -214,20 +215,15 @@ const Input = styled.textarea`
 
 const Button = styled.button`
   position: relative;
-  bottom: 0.8em;
-  /* transition: all 0.8s cubic-bezier(1, 1, 1, 0.00); */
-  /* transition: 0.8s ease-in; */
-  /* transition: cubic-bezier(0.001, 0.002, 0.005, 1); */
-  /* transition: cubic-bezier(1, 0.003, 0.002, 0.001); */
-  background-color: red;
-  margin-left: auto;
   border: none;
   width: 4em;
   height: 4em;
   margin-bottom: 3em;
   border-radius: 100px;
-  /* display: ${props => props.typing ? "none" : ""}; */
-  left: ${props => props.typing ? "10em" : 0};
-  /* visibility: ${props => props.typing ? "visible" : "visible"}; */
+  background-color: ${props => props.pressed ? "green" : "red"};
+  
+  bottom: ${props => props.typing ? "-5em" : "1em"};
+  transition: bottom 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition-delay: 0.4s;
   cursor: pointer;
 `;
