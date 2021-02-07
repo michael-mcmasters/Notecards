@@ -16,7 +16,8 @@ export default function Card(props) {
   const [frontText, setFrontText] = useState(props.frontText);
   const [backText, setBackText] = useState(props.backText);
   const [display, setDisplay] = useState(() => (index > 0 && index < props.amountOfData) ? "" : "none");
-  const [pressed, setPressed] = useState(false);
+  const [savePressed, setSavePressed] = useState(false);
+  const [cancelPressed, setCancelPressed] = useState(false);
 
   useEffect(() => {
     window.addEventListener('keydown', handleKeyDown);
@@ -24,7 +25,7 @@ export default function Card(props) {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [flipped, direction, index, cycleIndex, allowHotKeys, pressed]);
+  }, [flipped, direction, index, cycleIndex, allowHotKeys, savePressed, cancelPressed]);
 
 
   // Left/right to move card. Space key to flip.
@@ -135,7 +136,8 @@ export default function Card(props) {
             <Input value={backText} onChange={handleTypingNewText} onFocus={() => { props.setAllowHotkeys(false) }} onBlur={() => props.setAllowHotkeys(true)} />
             {/* {allowHotKeys === false ? <Button>Save Changes</Button> : ""} */}
             <div class="flex justify-end">
-              <Button typing={allowHotKeys} pressed={pressed} onClick={() => setPressed(true)} onBlur={() => setPressed(false)}>Save</Button>
+              <CancelButton typing={allowHotKeys} pressed={cancelPressed} onClick={() => setCancelPressed(true)} onBlur={() => setCancelPressed(false)}>Cancel</CancelButton>
+              <SaveButton typing={allowHotKeys} pressed={savePressed} onClick={() => setSavePressed(true)} onBlur={() => setSavePressed(false)}>Save</SaveButton>
             </div>
           </FontContainer>
         </Back>
@@ -213,7 +215,7 @@ const Input = styled.textarea`
   resize: none;
 `;
 
-const Button = styled.button`
+const SaveButton = styled.button`
   position: relative;
   border: none;
   width: 4em;
@@ -224,7 +226,26 @@ const Button = styled.button`
   
   bottom: ${props => props.typing ? "-5em" : "1em"};
   transition: bottom 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  transition-delay: ${props => props.typing ? "0.4s" : "0"};
+  transition-delay: ${props => props.typing ? "0.5s" : "0"};
+  cursor: pointer;
+  
+  &:focus {
+    outline: none;
+  }
+`;
+
+const CancelButton = styled.button`
+  position: relative;
+  border: none;
+  width: 4em;
+  height: 4em;
+  margin-bottom: 3em;
+  border-radius: 100px;
+  background-color: ${props => props.pressed ? "green" : "red"};
+  
+  bottom: ${props => props.typing ? "-5em" : "1em"};
+  transition: bottom 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition-delay: ${props => props.typing ? "0.2s" : "0"};
   cursor: pointer;
   
   &:focus {
