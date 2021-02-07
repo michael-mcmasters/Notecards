@@ -117,8 +117,16 @@ export default function Card(props) {
   }
 
   // User can edit the text. Press enter to save it.
-  function handleTypingNewText(event) {
+  const handleTypingNewText = (event) => {
     setBackText(event.target.value);
+  }
+
+  const handleCancelButton = () => {
+    setCancelPressed(true)
+  }
+
+  const handleSaveButton = () => {
+    setSavePressed(true)
   }
 
   return (
@@ -131,13 +139,23 @@ export default function Card(props) {
         </Front>
         <Back fontSize={getBackFontSize(backText.length)}>
           <FontContainer>
-            {/* Temp for debugging */}
-            {/* <p style={{ fontSize: "10px", margin: "0" }}>{backText.length}</p> */}
-            <Input value={backText} onChange={handleTypingNewText} onFocus={() => { props.setAllowHotkeys(false) }} onBlur={() => props.setAllowHotkeys(true)} />
-            {/* {allowHotKeys === false ? <Button>Save Changes</Button> : ""} */}
+            <Input value={backText} onChange={handleTypingNewText}
+              onFocus={() => { props.setAllowHotkeys(false) }}
+              onBlur={() => props.setAllowHotkeys(true)}
+            />
             <div class="flex justify-end">
-              <CancelButton typing={allowHotKeys} pressed={cancelPressed} onClick={() => setCancelPressed(true)} onBlur={() => setCancelPressed(false)}>Cancel</CancelButton>
-              <SaveButton typing={allowHotKeys} pressed={savePressed} onClick={() => setSavePressed(true)} onBlur={() => setSavePressed(false)}>Save</SaveButton>
+              <CancelButton typing={allowHotKeys}
+                pressed={cancelPressed}
+                onClick={() => handleCancelButton()}
+                onBlur={() => setCancelPressed(false)}>
+                Cancel
+              </CancelButton>
+              <SaveButton typing={allowHotKeys}
+                pressed={savePressed}
+                onClick={() => handleSaveButton(true)}
+                onBlur={() => setSavePressed(false)}>
+                Save
+                </SaveButton>
             </div>
           </FontContainer>
         </Back>
