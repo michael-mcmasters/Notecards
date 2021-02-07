@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { AllowHotkeyContext } from "./Cards";
 import "../css/Card.css";
 
@@ -16,7 +16,6 @@ export default function Card(props) {
   const [frontText, setFrontText] = useState(props.frontText);
   const [backText, setBackText] = useState(props.backText);
   const [display, setDisplay] = useState(() => (index > 0 && index < props.amountOfData) ? "" : "none");
-  //const [allowHotKeys, setAllowHotKeys] = useState(true);
 
   useEffect(() => {
     window.addEventListener('keydown', handleKeyDown);
@@ -29,7 +28,7 @@ export default function Card(props) {
 
   // Left/right to move card. Space key to flip.
   const handleKeyDown = (event) => {
-    console.log(allowHotKeys);
+    // Don't allow hotkeys when typing into a card.
     if (allowHotKeys === false) return;
 
     if (event.key === " ") {            // space key
@@ -133,7 +132,10 @@ export default function Card(props) {
             {/* Temp for debugging */}
             {/* <p style={{ fontSize: "10px", margin: "0" }}>{backText.length}</p> */}
             <Input value={backText} onChange={handleTypingNewText} onFocus={() => props.setAllowHotkeys(false)} onBlur={() => props.setAllowHotkeys(true)} />
-            {allowHotKeys === false ? <Button>Save Changes</Button> : ""}
+            {/* {allowHotKeys === false ? <Button>Save Changes</Button> : ""} */}
+            <div class="flex justify-end">
+              <Button typing={allowHotKeys}>Save</Button>
+            </div>
           </FontContainer>
         </Back>
       </FlipCard>
@@ -211,5 +213,21 @@ const Input = styled.textarea`
 `;
 
 const Button = styled.button`
-  transition: 1s;
+  position: relative;
+  bottom: 0.8em;
+  /* transition: all 0.8s cubic-bezier(1, 1, 1, 0.00); */
+  /* transition: 0.8s ease-in; */
+  /* transition: cubic-bezier(0.001, 0.002, 0.005, 1); */
+  /* transition: cubic-bezier(1, 0.003, 0.002, 0.001); */
+  background-color: red;
+  margin-left: auto;
+  border: none;
+  width: 4em;
+  height: 4em;
+  margin-bottom: 3em;
+  border-radius: 100px;
+  /* display: ${props => props.typing ? "none" : ""}; */
+  left: ${props => props.typing ? "10em" : 0};
+  /* visibility: ${props => props.typing ? "visible" : "visible"}; */
+  cursor: pointer;
 `;
