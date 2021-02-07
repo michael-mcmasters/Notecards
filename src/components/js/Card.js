@@ -241,6 +241,26 @@ const Input = styled.textarea`
   resize: none;
 `;
 
+const CancelButton = styled.button`
+  position: relative;
+  border: none;
+  width: 4em;
+  height: 4em;
+  margin-bottom: 3em;
+  margin-right: 1em;
+  border-radius: 100px;
+  background-color: ${props => props.pressed ? "green" : "red"};
+  
+  bottom: ${props => props.typing ? "-5em" : "1em"};
+  transition: bottom 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition-delay: ${props => props.typing ? "0.2s" : "0"};
+  cursor: pointer;
+  
+  &:focus {
+    outline: none;
+  }
+`;
+
 const SaveButton = styled.button`
   position: relative;
   border: none;
@@ -253,25 +273,6 @@ const SaveButton = styled.button`
   bottom: ${props => props.typing ? "-5em" : "1em"};
   transition: bottom 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   transition-delay: ${props => props.typing ? "0.5s" : "0"};
-  cursor: pointer;
-  
-  &:focus {
-    outline: none;
-  }
-`;
-
-const CancelButton = styled.button`
-  position: relative;
-  border: none;
-  width: 4em;
-  height: 4em;
-  margin-bottom: 3em;
-  border-radius: 100px;
-  background-color: ${props => props.pressed ? "green" : "red"};
-  
-  bottom: ${props => props.typing ? "-5em" : "1em"};
-  transition: bottom 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  transition-delay: ${props => props.typing ? "0.2s" : "0"};
   cursor: pointer;
   
   &:focus {
