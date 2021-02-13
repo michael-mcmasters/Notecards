@@ -2,7 +2,7 @@ import React from 'react';
 
 const CardReducer = ({ card, cardIndex, xPosition, flipped }) => {
   return (
-    <div>
+    <div style={{ width: "300px", border: "1px solid gray" }}>
       <p>{card.backText}</p>
     </div>
   );
