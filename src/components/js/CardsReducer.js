@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import CardReducer from "./CardReducer";
 import cardsJSON from "../../resources/card-data.json";
 
@@ -24,10 +24,25 @@ function reducer(state, action) {
   }
 }
 
+// Left/right to move card. Space key to flip.
+const handleKeyDown = (event) => {
+  switch (event.key) {
+    case "ArrowLeft": console.log("left"); break;
+    case "ArrowRight": console.log("right"); break;
+    case " ": console.log("space"); break;
+  }
+}
+
 const CardsReducer = () => {
   const cards = cardsJSON.cards;
-  console.log(cards)
-  console.log(cards[0])
+
+  useEffect(() => {
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
 
   let [cardContainers, dispatch] = useReducer(reducer, [
     {
