@@ -77,16 +77,18 @@ const CardsReducer = () => {
 
   return (
     <>
-      {cardContainers.map(c => {
-        let index = c.cardIndex;
-        if (c.cardIndex < 0 || c.cardIndex >= cards.length) index = 0;
-        return <CardReducer
-          card={cards[1]}
-          cardIndex={1}
-          xPosition={c.xPosition}
-          flipped={c.flipped}
-        />
-      })}
+      <div className="flex">
+        {cardContainers.map(c => {
+          let index = c.cardIndex;
+          if (c.cardIndex < 0 || c.cardIndex >= cards.length) index = 0;
+          return <CardReducer
+            card={cards[1]}
+            cardIndex={1}
+            xPosition={c.xPosition}
+            flipped={c.flipped}
+          />
+        })}
+      </div>
 
       <button style={{ padding: "4em" }} onClick={handleClick}></button>
     </>
