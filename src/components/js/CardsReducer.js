@@ -13,50 +13,59 @@ import cardsJSON from "../../resources/card-data.json";
 //   }
 // }
 
+const getObject = (state, increment) => {
+  let incrementAmount = 1;
+  if (increment === false) incrementAmount = -1;
+
+  return [
+    {
+      cardIndex: state[0].cardIndex + incrementAmount,
+      xPosition: "-150",
+      flipped: false,
+    },
+    {
+      cardIndex: state[1].cardIndex + incrementAmount,
+      xPosition: "-100",
+      flipped: false,
+    },
+    {
+      cardIndex: state[2].cardIndex + incrementAmount,
+      xPosition: "-50",
+      flipped: false,
+    },
+    {
+      cardIndex: state[3].cardIndex + incrementAmount,
+      xPosition: "0",
+      flipped: false,
+    },
+    {
+      cardIndex: state[4].cardIndex + incrementAmount,
+      xPosition: "50",
+      flipped: false,
+    },
+    {
+      cardIndex: state[5].cardIndex + incrementAmount,
+      xPosition: "100",
+      flipped: false,
+    },
+    {
+      cardIndex: state[6].cardIndex + incrementAmount,
+      xPosition: "150",
+      flipped: false,
+    },
+  ]
+}
+
 function reducer(state, action) {
   console.log(typeof state[4].cardIndex);
   switch (action.type) {
     case "cycle-left":
-      return { cards: state.cards, numOfCards: state.numOfCards }
+      console.log("got it")
+      //return { cards: state.cards, numOfCards: state.numOfCards }
+      return getObject(state, true);
     case "cycle-right":
       // return { cards: state.cards, numOfCards: state.numOfCards + 1 }
-      return [
-        {
-          cardIndex: state[0].cardIndex + 1,
-          xPosition: "-150",
-          flipped: false,
-        },
-        {
-          cardIndex: state[1].cardIndex + 1,
-          xPosition: "-100",
-          flipped: false,
-        },
-        {
-          cardIndex: state[2].cardIndex + 1,
-          xPosition: "-50",
-          flipped: false,
-        },
-        {
-          cardIndex: state[3].cardIndex + 1,
-          xPosition: "0",
-          flipped: false,
-        },
-        {
-          cardIndex: state[4].cardIndex + 1,
-          xPosition: "50",
-          flipped: false,
-        },
-        {
-          cardIndex: state[5].cardIndex + 1,
-          xPosition: "100",
-          flipped: false,
-        },
-        {
-          cardIndex: state[6].cardIndex + 1,
-          xPosition: "150",
-          flipped: false,
-        },
-      ]
+      return getObject(state, true);
     default:
       return state;
   }
@@ -106,7 +115,7 @@ const CardsReducer = () => {
   // Left/right to move card. Space key to flip.
   const handleKeyDown = (event) => {
     switch (event.key) {
-      case "ArrowLeft": console.log("left"); break;
+      case "ArrowLeft": dispatch({ type: "cycle-left" }); break;
       case "ArrowRight": dispatch({ type: "cycle-right" }); break;
       case " ": console.log("space"); break;
     }
