@@ -26,6 +26,8 @@ function reducer(state, action) {
 
 const CardsReducer = () => {
   const cards = cardsJSON.cards;
+  console.log(cards)
+  console.log(cards[0])
 
   let [cardContainers, dispatch] = useReducer(reducer, [
     {
@@ -69,14 +71,18 @@ const CardsReducer = () => {
     // dispatch({ type: "cycle-left" })
   }
 
+  // const getCardProperties = (index) => {
+  //   return cards[index];
+  // }
 
   return (
     <>
       {cardContainers.map(c => {
-        if (c.cardIndex < 0 || c.cardIndex >= cards.length) c.cardIndex = 0;
+        let index = c.cardIndex;
+        if (c.cardIndex < 0 || c.cardIndex >= cards.length) index = 0;
         return <CardReducer
-          card={c.card}
-          cardIndex={c.index}
+          card={cards[1]}
+          cardIndex={1}
           xPosition={c.xPosition}
           flipped={c.flipped}
         />

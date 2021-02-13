@@ -1,10 +1,9 @@
 import React from 'react';
 
-const CardReducer = () => {
+const CardReducer = ({ card, cardIndex, xPosition, flipped }) => {
   return (
     <div>
-      <p>Hello</p>
-      <p>{console.log("hello")}</p>
+      <p>{card.backText}</p>
     </div>
   );
 };
