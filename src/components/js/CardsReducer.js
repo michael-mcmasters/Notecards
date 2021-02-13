@@ -2,70 +2,27 @@ import React, { useEffect, useReducer } from 'react';
 import CardReducer from "./CardReducer";
 import cardsJSON from "../../resources/card-data.json";
 
-// function reducer(state, action) {
-//   switch (action.type) {
-//     case "get-next-index":
-//       return { cards: state.cards, numOfCards: state.numOfCards }
-//     case "increment-num-of-cards":
-//       return { cards: state.cards, numOfCards: state.numOfCards + 1 }
-//     default:
-//       return state;
-//   }
-// }
-
-const getObject = (state, increment) => {
-  let incrementAmount = 1;
-  if (increment === false) incrementAmount = -1;
-
-  return [
-    {
-      cardIndex: state[0].cardIndex + incrementAmount,
-      xPosition: "-150",
+// Returns an array of objects that will hold the card properties.
+const getContainerObjects = (state, incrementAmount) => {
+  let cardContainers = [];
+  let xPosition = -150;
+  for (let i = 0; i < 7; i++) {
+    cardContainers.push({
+      cardIndex: state[i].cardIndex + incrementAmount,    // The card properties this container will show.
+      xPosition: xPosition,                               // Each card is this many units away from the previous card.
       flipped: false,
-    },
-    {
-      cardIndex: state[1].cardIndex + incrementAmount,
-      xPosition: "-100",
-      flipped: false,
-    },
-    {
-      cardIndex: state[2].cardIndex + incrementAmount,
-      xPosition: "-50",
-      flipped: false,
-    },
-    {
-      cardIndex: state[3].cardIndex + incrementAmount,
-      xPosition: "0",
-      flipped: false,
-    },
-    {
-      cardIndex: state[4].cardIndex + incrementAmount,
-      xPosition: "50",
-      flipped: false,
-    },
-    {
-      cardIndex: state[5].cardIndex + incrementAmount,
-      xPosition: "100",
-      flipped: false,
-    },
-    {
-      cardIndex: state[6].cardIndex + incrementAmount,
-      xPosition: "150",
-      flipped: false,
-    },
-  ]
+    });
+    xPosition += 50;
+  }
+  return cardContainers;
 }
 
 function reducer(state, action) {
-  console.log(typeof state[4].cardIndex);
   switch (action.type) {
     case "cycle-left":
-      console.log("got it")
-      //return { cards: state.cards, numOfCards: state.numOfCards }
-      return getObject(state, true);
+      return getContainerObjects(state, 1);
     case "cycle-right":
-      // return { cards: state.cards, numOfCards: state.numOfCards + 1 }
-      return getObject(state, true);
+      return getContainerObjects(state, -1);
     default:
       return state;
   }
@@ -77,37 +34,37 @@ const CardsReducer = () => {
   let [cardContainers, dispatch] = useReducer(reducer, [
     {
       cardIndex: -3,
-      xPosition: "-150",
+      xPosition: 150,
       flipped: false,
     },
     {
       cardIndex: -2,
-      xPosition: "-100",
+      xPosition: 100,
       flipped: false,
     },
     {
       cardIndex: -1,
-      xPosition: "-50",
+      xPosition: 50,
       flipped: false,
     },
     {
       cardIndex: 0,
-      xPosition: "0",
+      xPosition: 0,
       flipped: false,
     },
     {
       cardIndex: 1,
-      xPosition: "50",
+      xPosition: 50,
       flipped: false,
     },
     {
       cardIndex: 2,
-      xPosition: "100",
+      xPosition: 100,
       flipped: false,
     },
     {
       cardIndex: 3,
-      xPosition: "150",
+      xPosition: 150,
       flipped: false,
     },
   ]);
@@ -129,10 +86,6 @@ const CardsReducer = () => {
     };
   }, []);
 
-  function handleClick() {
-    // dispatch({ type: "cycle-left" })
-  }
-
   // If cardIndex is out of bounds, default it to index 0 which will hide the card from appearing on the page.
   const getCard = (cardIndex) => {
     if (cardIndex > 0 && cardIndex < cards.length)
@@ -152,8 +105,6 @@ const CardsReducer = () => {
           />
         })}
       </div>
-
-      <button style={{ padding: "4em" }} onClick={handleClick}></button>
     </>
   );
 };
