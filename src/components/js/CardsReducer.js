@@ -14,35 +14,56 @@ import cardsJSON from "../../resources/card-data.json";
 // }
 
 function reducer(state, action) {
+  console.log(typeof state[4].cardIndex);
   switch (action.type) {
     case "cycle-left":
       return { cards: state.cards, numOfCards: state.numOfCards }
     case "cycle-right":
-      return { cards: state.cards, numOfCards: state.numOfCards + 1 }
+      // return { cards: state.cards, numOfCards: state.numOfCards + 1 }
+      return [
+        {
+          cardIndex: state[0].cardIndex + 1,
+          xPosition: "-150",
+          flipped: false,
+        },
+        {
+          cardIndex: state[1].cardIndex + 1,
+          xPosition: "-100",
+          flipped: false,
+        },
+        {
+          cardIndex: state[2].cardIndex + 1,
+          xPosition: "-50",
+          flipped: false,
+        },
+        {
+          cardIndex: state[3].cardIndex + 1,
+          xPosition: "0",
+          flipped: false,
+        },
+        {
+          cardIndex: state[4].cardIndex + 1,
+          xPosition: "50",
+          flipped: false,
+        },
+        {
+          cardIndex: state[5].cardIndex + 1,
+          xPosition: "100",
+          flipped: false,
+        },
+        {
+          cardIndex: state[6].cardIndex + 1,
+          xPosition: "150",
+          flipped: false,
+        },
+      ]
     default:
       return state;
   }
 }
 
-// Left/right to move card. Space key to flip.
-const handleKeyDown = (event) => {
-  switch (event.key) {
-    case "ArrowLeft": console.log("left"); break;
-    case "ArrowRight": console.log("right"); break;
-    case " ": console.log("space"); break;
-  }
-}
-
 const CardsReducer = () => {
   const cards = cardsJSON.cards;
-
-  useEffect(() => {
-    window.addEventListener('keydown', handleKeyDown);
-
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-    };
-  }, []);
 
   let [cardContainers, dispatch] = useReducer(reducer, [
     {
@@ -81,6 +102,23 @@ const CardsReducer = () => {
       flipped: false,
     },
   ]);
+
+  // Left/right to move card. Space key to flip.
+  const handleKeyDown = (event) => {
+    switch (event.key) {
+      case "ArrowLeft": console.log("left"); break;
+      case "ArrowRight": dispatch({ type: "cycle-right" }); break;
+      case " ": console.log("space"); break;
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
 
   function handleClick() {
     // dispatch({ type: "cycle-left" })
