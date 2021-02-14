@@ -4,15 +4,19 @@ import cardsJSON from "../../resources/card-data.json";
 
 // Returns an array of objects that will hold the card properties.
 const getContainerObjects = (state, incrementAmount) => {
+  let newXPosition = 0;
+  if (incrementAmount < 0) {
+    newXPosition = 50;
+  } else {
+    newXPosition = -50;
+  }
   let cardContainers = [];
-  let xPosition = -150;
   for (let i = 0; i < 7; i++) {
     cardContainers.push({
       cardIndex: state[i].cardIndex + incrementAmount,    // The card properties this container will show.
-      xPosition: xPosition,                               // Each card is this many units away from the previous card.
+      xPosition: state[i].xPosition + newXPosition,
       flipped: false,
     });
-    xPosition += 50;
   }
   return cardContainers;
 }
