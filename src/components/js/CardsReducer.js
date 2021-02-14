@@ -2,15 +2,15 @@ import React, { useEffect, useReducer } from 'react';
 import CardReducer from "./CardReducer";
 import cardsJSON from "../../resources/card-data.json";
 
-// Returns an array of objects that will hold the card properties.
-const getContainerObjects = (state, direction) => {
-  const numOfContainers = 7;
+// Returns an array of containers with updated values. The containers each display the properties of a card.
+const updateContainers = (containers, direction) => {
+  const numOfContainers = containers.length;
   const xPositionIncrementAmnt = (direction === "left") ? -50 : 50;
 
-  let cardContainers = [];
+  let updatedContainers = [];
   for (let i = 0; i < numOfContainers; i++) {
-    let newCardIndex = state[i].cardIndex;
-    let newXPosition = state[i].xPosition + xPositionIncrementAmnt;
+    let newCardIndex = containers[i].cardIndex;
+    let newXPosition = containers[i].xPosition + xPositionIncrementAmnt;
     let transition = "0.39s ease";
     if (newXPosition < -150) {
       newCardIndex += numOfContainers;
@@ -22,31 +22,31 @@ const getContainerObjects = (state, direction) => {
       transition = "";
     }
 
-    cardContainers.push({
-      cardIndex: newCardIndex,       // The card properties this container will show.
+    updatedContainers.push({
+      cardIndex: newCardIndex,       // The card properties this container will show. If out of bounds of cards array, container will have display: none.
       xPosition: newXPosition,       // The value of the CSS property, left. Which works with position absolute.
       transition: transition,
       flipped: false,
     });
   }
-  return cardContainers;
+  return updatedContainers;
 }
 
 function reducer(state, action) {
   switch (action.type) {
     case "cycle-left":
-      return getContainerObjects(state, "left");
+      return updateContainers(state, "left");
     case "cycle-right":
-      return getContainerObjects(state, "right");
+      return updateContainers(state, "right");
     default:
       return state;
   }
 }
 
 const CardsReducer = () => {
-  const cards = cardsJSON.cards;
+  const cardsArr = cardsJSON.cards;
 
-  let [cardContainers, dispatch] = useReducer(reducer, [
+  let [containers, dispatch] = useReducer(reducer, [
     {
       cardIndex: -3,
       xPosition: -150,
@@ -102,18 +102,18 @@ const CardsReducer = () => {
   }, []);
 
   // If cardIndex is out of bounds, default it to index 0 which will hide the card from appearing on the page.
-  const getCard = (cardIndex) => {
-    if (cardIndex > 0 && cardIndex < cards.length)
-      return cards[cardIndex];
-    return cards[0];
+  const getCardAtIndex = (index) => {
+    if (index > 0 && index < cardsArr.length)
+      return cardsArr[index];
+    return cardsArr[0];
   }
 
   return (
     <>
       <div className="flex">
-        {cardContainers.map(c => {
+        {containers.map(c => {
           return <CardReducer
-            card={getCard(c.cardIndex)}
+            card={getCardAtIndex(c.cardIndex)}
             cardIndex={c.cardIndex}
             xPosition={c.xPosition}
             transition={c.transition}
