@@ -3,18 +3,15 @@ import CardReducer from "./CardReducer";
 import cardsJSON from "../../resources/card-data.json";
 
 // Returns an array of objects that will hold the card properties.
-const getContainerObjects = (state, incrementAmount) => {
-  let newXPosition = 0;
-  if (incrementAmount < 0) {
-    newXPosition = 50;
-  } else {
-    newXPosition = -50;
-  }
+const getContainerObjects = (state, direction) => {
+  const incrementAmount = (direction === "left") ? -1 : 1;
+  const newXPosition = (direction === "left") ? -50 : 50
+
   let cardContainers = [];
   for (let i = 0; i < 7; i++) {
     cardContainers.push({
       cardIndex: state[i].cardIndex + incrementAmount,    // The card properties this container will show.
-      xPosition: state[i].xPosition + newXPosition,
+      xPosition: state[i].xPosition + newXPosition,       // The value of the CSS property, left. Which works with position absolute.
       flipped: false,
     });
   }
@@ -24,9 +21,9 @@ const getContainerObjects = (state, incrementAmount) => {
 function reducer(state, action) {
   switch (action.type) {
     case "cycle-left":
-      return getContainerObjects(state, 1);
+      return getContainerObjects(state, "left");
     case "cycle-right":
-      return getContainerObjects(state, -1);
+      return getContainerObjects(state, "right");
     default:
       return state;
   }
