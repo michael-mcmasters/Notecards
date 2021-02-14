@@ -4,17 +4,26 @@ import cardsJSON from "../../resources/card-data.json";
 
 // Returns an array of objects that will hold the card properties.
 const getContainerObjects = (state, direction) => {
-  const incrementAmount = (direction === "left") ? -1 : 1;
-  const newXPosition = (direction === "left") ? -50 : 50
+  const indexIncrement = (direction === "left") ? 1 : -1;
+  const xPositionIncrement = (direction === "left") ? -50 : 50;
 
   let cardContainers = [];
   for (let i = 0; i < 7; i++) {
+    let newXPosition = state[i].xPosition + xPositionIncrement;
+    if (newXPosition < -150) {
+      newXPosition = 150;
+    } else if (newXPosition > 150) {
+      newXPosition = -150;
+    } else {
+      console.log(state[i].xPosition + " + " + xPositionIncrement + " is " + newXPosition)
+    }
     cardContainers.push({
-      cardIndex: state[i].cardIndex + incrementAmount,    // The card properties this container will show.
-      xPosition: state[i].xPosition + newXPosition,       // The value of the CSS property, left. Which works with position absolute.
+      cardIndex: state[i].cardIndex + indexIncrement,    // The card properties this container will show.
+      xPosition: newXPosition,       // The value of the CSS property, left. Which works with position absolute.
       flipped: false,
     });
   }
+  console.log(" ");
   return cardContainers;
 }
 
@@ -35,17 +44,17 @@ const CardsReducer = () => {
   let [cardContainers, dispatch] = useReducer(reducer, [
     {
       cardIndex: -3,
-      xPosition: 150,
+      xPosition: -150,
       flipped: false,
     },
     {
       cardIndex: -2,
-      xPosition: 100,
+      xPosition: -100,
       flipped: false,
     },
     {
       cardIndex: -1,
-      xPosition: 50,
+      xPosition: -50,
       flipped: false,
     },
     {
