@@ -11,17 +11,21 @@ const getContainerObjects = (state, direction) => {
   for (let i = 0; i < numOfContainers; i++) {
     let newCardIndex = state[i].cardIndex;
     let newXPosition = state[i].xPosition + xPositionIncrementAmnt;
+    let transition = "0.39s ease";
     if (newXPosition < -150) {
       newCardIndex += numOfContainers;
       newXPosition = 150;
+      transition = "";
     } else if (newXPosition > 150) {
       newCardIndex -= numOfContainers;
       newXPosition = -150;
+      transition = "";
     }
 
     cardContainers.push({
       cardIndex: newCardIndex,       // The card properties this container will show.
       xPosition: newXPosition,       // The value of the CSS property, left. Which works with position absolute.
+      transition: transition,
       flipped: false,
     });
   }
@@ -112,6 +116,7 @@ const CardsReducer = () => {
             card={getCard(c.cardIndex)}
             cardIndex={c.cardIndex}
             xPosition={c.xPosition}
+            transition={c.transition}
             flipped={c.flipped}
           />
         })}
