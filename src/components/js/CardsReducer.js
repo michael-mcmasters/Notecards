@@ -3,7 +3,7 @@ import CardReducer from "./CardReducer";
 import cardsJSON from "../../resources/card-data.json";
 
 // Returns an array of containers with updated values. The containers each display the properties of a card.
-const updateContainers = (containers, direction) => {
+const moveContainers = (containers, direction) => {
   const numOfContainers = containers.length;
   const xPositionIncrementAmnt = (direction === "left") ? -50 : 50;
 
@@ -26,18 +26,29 @@ const updateContainers = (containers, direction) => {
       cardIndex: newCardIndex,       // The card properties this container will show. If out of bounds of cards array, container will have display: none.
       xPosition: newXPosition,       // The value of the CSS property, left. Which works with position absolute.
       transition: transition,
-      flipped: false,
+      flipped: false,                // Makes sure cards are unflipped when moving.
     });
   }
+  return updatedContainers;
+}
+
+const flipContainer = (containers) => {
+  let updatedContainers = [...containers];
+  let centerConIndex = updatedContainers.findIndex(x => x.xPosition === 50);
+  if (centerConIndex === -1) throw "Unable to find index of the center container/card";
+
+  updatedContainers[centerConIndex].flipped = !updatedContainers[centerConIndex].flipped;
   return updatedContainers;
 }
 
 function reducer(state, action) {
   switch (action.type) {
     case "cycle-left":
-      return updateContainers(state, "left");
+      return moveContainers(state, "left");
     case "cycle-right":
-      return updateContainers(state, "right");
+      return moveContainers(state, "right");
+    case "flip":
+      return flipContainer(state);
     default:
       return state;
   }
@@ -89,7 +100,7 @@ const CardsReducer = () => {
     switch (event.key) {
       case "ArrowLeft": dispatch({ type: "cycle-left" }); break;
       case "ArrowRight": dispatch({ type: "cycle-right" }); break;
-      case " ": console.log("space"); break;
+      case " ": dispatch({ type: "flip" }); break;
     }
   }
 

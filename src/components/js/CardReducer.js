@@ -4,7 +4,7 @@ import styled, { keyframes } from "styled-components";
 const CardReducer = ({ card, cardIndex, xPosition, transition, flipped }) => {
   return (
     <Cardy xPosition={xPosition} transition={transition}>
-      <p>{xPosition}</p>
+      <p>{flipped.toString()}</p>
       <p>{cardIndex}</p>
       <p>{card.backText}</p>
     </Cardy>
