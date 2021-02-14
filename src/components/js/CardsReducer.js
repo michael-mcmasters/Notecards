@@ -4,26 +4,27 @@ import cardsJSON from "../../resources/card-data.json";
 
 // Returns an array of objects that will hold the card properties.
 const getContainerObjects = (state, direction) => {
-  const indexIncrement = (direction === "left") ? 1 : -1;
-  const xPositionIncrement = (direction === "left") ? -50 : 50;
+  const numOfContainers = 7;
+  const xPositionIncrementAmnt = (direction === "left") ? -50 : 50;
 
   let cardContainers = [];
-  for (let i = 0; i < 7; i++) {
-    let newXPosition = state[i].xPosition + xPositionIncrement;
+  for (let i = 0; i < numOfContainers; i++) {
+    let newCardIndex = state[i].cardIndex;
+    let newXPosition = state[i].xPosition + xPositionIncrementAmnt;
     if (newXPosition < -150) {
+      newCardIndex += numOfContainers;
       newXPosition = 150;
     } else if (newXPosition > 150) {
+      newCardIndex -= numOfContainers;
       newXPosition = -150;
-    } else {
-      console.log(state[i].xPosition + " + " + xPositionIncrement + " is " + newXPosition)
     }
+
     cardContainers.push({
-      cardIndex: state[i].cardIndex + indexIncrement,    // The card properties this container will show.
+      cardIndex: newCardIndex,       // The card properties this container will show.
       xPosition: newXPosition,       // The value of the CSS property, left. Which works with position absolute.
       flipped: false,
     });
   }
-  console.log(" ");
   return cardContainers;
 }
 
