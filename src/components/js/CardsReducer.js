@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer } from 'react';
+import React, { useEffect, useReducer, useState } from 'react';
 import CardReducer from "./CardReducer";
 import cardsJSON from "../../resources/card-data.json";
 
@@ -55,8 +55,20 @@ function reducer(state, action) {
 }
 
 const CardsReducer = () => {
-  const cardsArr = cardsJSON.cards;
-
+  //const cardsArr = cardsJSON.cards;
+  const [cardsArr, setCardsArr] = useState(cardsJSON.cards);
+  
+  // fetch("http://localhost:8080/")
+  //   .then(response => response.json())
+  //   .then((r) => setCardsArr(r))
+  
+  // client({ method: 'GET', path: '/' }).done(response => {
+  //   this.setState({ employees: response.entity._embedded.employees });
+  // });
+  
+  
+  
+  
   let [containers, dispatch] = useReducer(reducer, [
     {
       cardIndex: -3,
@@ -111,6 +123,23 @@ const CardsReducer = () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, []);
+  
+  useEffect(async () => {
+    //const response = await fetch("https://jsonplaceholder.typicode.com/posts");
+    const response = await fetch("http://localhost:8080/");
+    const data = await response.json();
+    console.log(data);
+    console.log(data[0].backText)
+    
+    const newCardsArr = [];
+    newCardsArr.push({ backgroundColor: "#", frontText: " ", backText: "", timesAccepted: 0 });   // make sure first card is empty.
+    for (let d of data) {
+      console.log("loop");
+      newCardsArr.push(d);
+    }
+    
+    setCardsArr(newCardsArr);
+  }, [])
 
   // If cardIndex is out of bounds, default it to index 0 which will hide the card from appearing on the page.
   const getCardAtIndex = (index) => {
