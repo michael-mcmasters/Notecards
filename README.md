@@ -8,7 +8,7 @@ Created with a modern design and smooth transitions, my inspiration for making t
 [View the live site here](https://master.d2u3nakn42rssp.amplifyapp.com/). It's deployed using AWS.
 
 ## To Run
-
+Using Node
 ```
 git clone https://github.com/michael-mcmasters/Notecards.git
 cd Notecards
