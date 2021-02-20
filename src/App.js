@@ -12,7 +12,7 @@ function App() {
         <p>Use the arrow keys to cycle</p>
         <p>Space bar to flip</p>
         <p>Up key if you knew the answer</p>
-        <p>And click a card to edit</p>
+        <p>And click the back of a card to edit its content</p>
       </div>
     </div>
   );
