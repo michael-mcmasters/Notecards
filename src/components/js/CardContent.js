@@ -1,37 +1,33 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styled from "styled-components";
 
 const CardContent = ({ cardText, dispatch }) => {
-  const [text, setText] = useState(cardText);
-  const [textBeforeEditing, setTextBeforeEditing] = useState("");
-
-  // useState only sets text to the very first props value ever given.
-  // This makes sure text is updated when a new props value is given.
-  useEffect(() => {
-    setText(cardText);
-  }, [cardText])
-
-  const handleChange = (event) => {
-    setText(event.target.value);
-  }
+  const [userTyping, setUserTyping] = useState(false);
+  const [editedText, setEditedText] = useState("");
 
   const handleInputFocus = () => {
     dispatch({ type: "enable-hot-keys", payload: false });
-    setTextBeforeEditing(text);
+    setUserTyping(true);
+    setEditedText(cardText);
   }
 
   const handleInputUnfocus = () => {
     dispatch({ type: "enable-hot-keys", payload: true });
-    setText(textBeforeEditing);
+    setUserTyping(false);
+    setEditedText(cardText);
+  }
+
+  const handleUserTyping = (event) => {
+    setEditedText(event.target.value);
   }
 
   return (
     <Container>
       <Input
-        value={text}
+        value={userTyping ? editedText : cardText}
         onFocus={handleInputFocus}
         onBlur={handleInputUnfocus}
-        onChange={handleChange}
+        onChange={handleUserTyping}
       />
     </Container>
   );
@@ -91,3 +87,8 @@ const SaveButton = styled.button`
 `;
 
 export default CardContent;
+
+
+
+
+
