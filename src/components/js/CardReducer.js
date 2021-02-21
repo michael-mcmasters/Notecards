@@ -1,19 +1,16 @@
 import React from 'react';
 import styled, { keyframes } from "styled-components";
+import CardContent from "./CardContent";
 
 const CardReducer = ({ card, cardIndex, xPosition, transition, flipped }) => {
   return (
     <FlipCardContainer xPosition={xPosition} transition={transition}>
       <FlipCard flipped={flipped}>
         <Front backgroundColor={card.backgroundColor}>
-          <TextContainer>
-            {card.frontText}
-          </TextContainer>
+          <CardContent text={card.frontText} />
         </Front>
         <Back>
-          <TextContainer>
-            {card.backText}
-          </TextContainer>
+          <CardContent text={card.backText} />
         </Back>
       </FlipCard>
     </FlipCardContainer>
@@ -85,6 +82,7 @@ const Back = styled.div`
 
 const TextContainer = styled.div`
   padding: 1rem;
+  font-size: 20px;
 `;
 
 // Have to set height manually because textarea's don't have an auto height property, and they don't fill parent div's height.
