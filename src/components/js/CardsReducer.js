@@ -57,6 +57,8 @@ const CardsReducer = () => {
         return moveContainers(state, "left");
       case "cycle-right":
         return moveContainers(state, "right");
+      case "update-text":
+        return state;
       default:
         return state;
     }

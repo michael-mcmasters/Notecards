@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
 import styled from "styled-components";
 
-const CardContent = ({ cardText, dispatch }) => {
-  const [userTyping, setUserTyping] = useState(false);
+const CardContent = ({ cardText, side, dispatch }) => {
+  const [userEditingText, setUserEditingText] = useState(false);
   const [editedText, setEditedText] = useState("");
 
   const handleInputFocus = () => {
     dispatch({ type: "enable-hot-keys", payload: false });
-    setUserTyping(true);
+    setUserEditingText(true);
     setEditedText(cardText);
   }
 
   const handleInputUnfocus = () => {
     dispatch({ type: "enable-hot-keys", payload: true });
-    setUserTyping(false);
+    setUserEditingText(false);
     setEditedText(cardText);
   }
 
@@ -21,14 +21,39 @@ const CardContent = ({ cardText, dispatch }) => {
     setEditedText(event.target.value);
   }
 
+  const handleCancelButton = () => {
+    setUserEditingText(false);
+  }
+
+  const handleSaveButton = () => {
+    dispatch({ type: "update-text", payload: side });
+    setUserEditingText(false);
+  }
+
   return (
     <Container>
       <Input
-        value={userTyping ? editedText : cardText}
+        value={userEditingText ? editedText : cardText}
         onFocus={handleInputFocus}
         onBlur={handleInputUnfocus}
         onChange={handleUserTyping}
       />
+      <div class="flex justify-end">
+        <CancelButton userEditingText={userEditingText}
+          // pressed={cancelPressed}
+          onClick={() => handleCancelButton()}
+        // onBlur={() => setCancelPressed(false)}
+        >
+          Cancel
+        </CancelButton>
+        {/* <SaveButton userEditingText={userTyping}
+          // pressed={savePressed}
+          onClick={() => handleSaveButton(true)}
+        // onBlur={() => setSavePressed(false)}
+        >
+          Save
+                </SaveButton> */}
+      </div>
     </Container>
   );
 };
@@ -57,7 +82,7 @@ const CancelButton = styled.button`
   border-radius: 100px;
   background-color: ${props => props.pressed ? "green" : "red"};
   
-  bottom: ${props => props.userEditingText ? "-5em" : "1em"};
+  bottom: ${props => props.userEditingText ? "1em" : "-5em"};
   transition: bottom 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   transition-delay: ${props => props.userEditingText ? "0.2s" : "0"};
   cursor: pointer;
