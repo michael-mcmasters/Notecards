@@ -1,13 +1,15 @@
 import React from 'react';
 import styled from "styled-components";
 
-const CardContent = ({ text }) => {
+const CardContent = ({ text, dispatch }) => {
+
   return (
     <Container>
       <Input
         value={text}
+        onFocus={() => dispatch({ type: "toggle-hot-keys", args: false })}
+        onBlur={() => dispatch({ type: "toggle-hot-keys", args: true })}
         onChange={() => { }}
-        onFocus={() => { }}
       />
     </Container>
   );

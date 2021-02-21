@@ -5,7 +5,7 @@ import cardsJSON from "../../resources/card-data.json";
 const CardsReducer = () => {
   // let cardsArr = cardsJSON.cards;
   const [cardsArr, setCardsArr] = useState(cardsJSON.cards);
-  const [allowHotKeys, setAllowHotKeys] = useState(false);
+  const [allowHotKeys, setAllowHotKeys] = useState(true);
 
   // Returns an array of containers with updated values. The containers each display the properties of a card.
   const moveContainers = (containers, direction) => {
@@ -49,13 +49,14 @@ const CardsReducer = () => {
   const reducer = (state, action) => {
     switch (action.type) {
       case "toggle-hot-keys":
-        return setAllowHotKeys(false);
+        setAllowHotKeys(action.args);
+        return state;
+      case "flip":
+        return flipContainer(state);
       case "cycle-left":
         return moveContainers(state, "left");
       case "cycle-right":
         return moveContainers(state, "right");
-      case "flip":
-        return flipContainer(state);
       default:
         return state;
     }
@@ -101,6 +102,8 @@ const CardsReducer = () => {
 
   // Left/right to move card. Space key to flip.
   const handleKeyDown = (event) => {
+    if (!allowHotKeys) return;
+
     switch (event.key) {
       case "ArrowLeft": dispatch({ type: "cycle-left" }); break;
       case "ArrowRight": dispatch({ type: "cycle-right" }); break;
@@ -114,7 +117,7 @@ const CardsReducer = () => {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, []);
+  }, [allowHotKeys]);
 
   useEffect(async () => {
     //const response = await fetch("https://jsonplaceholder.typicode.com/posts");
@@ -151,6 +154,7 @@ const CardsReducer = () => {
             xPosition={c.xPosition}
             transition={c.transition}
             flipped={c.flipped}
+            dispatch={dispatch}
           />
         })}
       </div>

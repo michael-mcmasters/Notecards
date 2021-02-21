@@ -2,15 +2,15 @@ import React from 'react';
 import styled, { keyframes } from "styled-components";
 import CardContent from "./CardContent";
 
-const CardReducer = ({ card, cardIndex, xPosition, transition, flipped }) => {
+const CardReducer = ({ card, cardIndex, xPosition, transition, flipped, dispatch }) => {
   return (
     <FlipCardContainer xPosition={xPosition} transition={transition}>
       <FlipCard flipped={flipped}>
         <Front backgroundColor={card.backgroundColor}>
-          <CardContent text={card.frontText} />
+          <CardContent text={card.frontText} dispatch={dispatch} />
         </Front>
         <Back>
-          <CardContent text={card.backText} />
+          <CardContent text={card.backText} dispatch={dispatch} />
         </Back>
       </FlipCard>
     </FlipCardContainer>
