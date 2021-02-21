@@ -1,15 +1,37 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from "styled-components";
 
-const CardContent = ({ text, dispatch }) => {
+const CardContent = ({ cardText, dispatch }) => {
+  const [text, setText] = useState(cardText);
+  const [textBeforeEditing, setTextBeforeEditing] = useState("");
+
+  // useState only sets text to the very first props value ever given.
+  // This makes sure text is updated when a new props value is given.
+  useEffect(() => {
+    setText(cardText);
+  }, [cardText])
+
+  const handleChange = (event) => {
+    setText(event.target.value);
+  }
+
+  const handleInputFocus = () => {
+    dispatch({ type: "enable-hot-keys", payload: false });
+    setTextBeforeEditing(text);
+  }
+
+  const handleInputUnfocus = () => {
+    dispatch({ type: "enable-hot-keys", payload: true });
+    setText(textBeforeEditing);
+  }
 
   return (
     <Container>
       <Input
         value={text}
-        onFocus={() => dispatch({ type: "enable-hot-keys", payload: false })}
-        onBlur={() => dispatch({ type: "enable-hot-keys", payload: true })}
-        onChange={() => { }}
+        onFocus={handleInputFocus}
+        onBlur={handleInputUnfocus}
+        onChange={handleChange}
       />
     </Container>
   );
