@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import styled from "styled-components";
 
-const Button = ({ buttonText, userEditingCardText, onClick }) => {
+const Button = ({ buttonText, transitionDelay, onClick, userEditingCardText }) => {
   const [clicked, setClicked] = useState(false);
 
   useEffect(() => {
-    setClicked(false);
-  }, [userEditingCardText])
+    if (userEditingCardText) {
+      setClicked(false);
+    }
+  }, [clicked, userEditingCardText])
 
   const handleOnClick = () => {
     setClicked(true);
@@ -19,6 +21,7 @@ const Button = ({ buttonText, userEditingCardText, onClick }) => {
         onClick={handleOnClick}
         clicked={clicked}
         userEditingText={userEditingCardText}
+        transitionDelay={transitionDelay}
       >
         {buttonText}
       </StyledButton>
@@ -38,13 +41,12 @@ const StyledButton = styled.button`
   
   bottom: ${props => props.userEditingText ? "1em" : "-5em"};
   transition: bottom 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  transition-delay: ${props => props.clicked ? "0" : "0.2s"};
+  transition-delay: ${props => props.transitionDelay};
   cursor: pointer;
   
   &:focus {
     outline: none;
   }
 `;
-// /* transition-delay: ${props => props.userEditingText ? "0.2s" : "0"}; */
 
 export default Button;
