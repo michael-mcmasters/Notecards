@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from "styled-components";
+import Button from "./Button";
 
 const CardContent = ({ cardText, side, dispatch }) => {
   const [userEditingText, setUserEditingText] = useState(false);
@@ -22,10 +23,12 @@ const CardContent = ({ cardText, side, dispatch }) => {
   }
 
   const handleCancelButton = () => {
+    console.log("cancel button");
     setUserEditingText(false);
   }
 
   const handleSaveButton = () => {
+    console.log("save button");
     dispatch({ type: "update-text", payload: side });
     setUserEditingText(false);
   }
@@ -39,20 +42,23 @@ const CardContent = ({ cardText, side, dispatch }) => {
         onChange={handleUserTyping}
       />
       <div class="flex justify-end">
-        <CancelButton userEditingText={userEditingText}
+        <Button
+          buttonText={"Cancel"}
+          userEditingCardText={userEditingText}
+          onClick={handleCancelButton}
+        />
+        <Button
+          buttonText={"Save"}
+          userEditingCardText={userEditingText}
+          onClick={handleSaveButton}
+        />
+        {/* <CancelButton userEditingText={userEditingText}
           // pressed={cancelPressed}
           onClick={() => handleCancelButton()}
         // onBlur={() => setCancelPressed(false)}
         >
           Cancel
-        </CancelButton>
-        {/* <SaveButton userEditingText={userTyping}
-          // pressed={savePressed}
-          onClick={() => handleSaveButton(true)}
-        // onBlur={() => setSavePressed(false)}
-        >
-          Save
-                </SaveButton> */}
+        </CancelButton> */}
       </div>
     </Container>
   );
