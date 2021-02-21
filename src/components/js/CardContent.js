@@ -5,9 +5,7 @@ const CardContent = ({ text }) => {
   return (
     <div>
       <Container>
-        <Input>
-          {text}
-        </Input>
+        <Input value={text} />
       </Container>
     </div>
   );

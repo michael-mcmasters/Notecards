@@ -55,7 +55,9 @@ function reducer(state, action) {
 }
 
 const CardsReducer = () => {
-  const [cardsArr, setCardsArr] = useState(cardsJSON.cards);
+  const [allowHotKeys, setAllowHotKeys] = useState(false);
+  // const [cardsArr, setCardsArr] = useState(cardsJSON.cards);
+  let cardsArr = cardsJSON.cards;
 
   let [containers, dispatch] = useReducer(reducer, [
     {
@@ -114,19 +116,19 @@ const CardsReducer = () => {
 
   useEffect(async () => {
     //const response = await fetch("https://jsonplaceholder.typicode.com/posts");
-    const response = await fetch("http://localhost:8080/");
-    const data = await response.json();
-    console.log(data);
-    console.log(data[0].backText)
+    // const response = await fetch("http://localhost:8080/");
+    // const data = await response.json();
+    // console.log(data);
+    // console.log(data[0].backText)
 
-    const newCardsArr = [];
-    newCardsArr.push({ backgroundColor: "#", frontText: " ", backText: "", timesAccepted: 0 });   // make sure first card is empty.
-    for (let d of data) {
-      console.log("loop");
-      newCardsArr.push(d);
-    }
+    // const newCardsArr = [];
+    // newCardsArr.push({ backgroundColor: "#", frontText: " ", backText: "", timesAccepted: 0 });   // make sure first card is empty.
+    // for (let d of data) {
+    //   console.log("loop");
+    //   newCardsArr.push(d);
+    // }
 
-    setCardsArr(newCardsArr);
+    // setCardsArr(newCardsArr);
   }, [])
 
   // If cardIndex is out of bounds, default it to index 0 which will hide the card from appearing on the page.
