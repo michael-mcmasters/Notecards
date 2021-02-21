@@ -3,11 +3,13 @@ import styled from "styled-components";
 
 const CardContent = ({ text }) => {
   return (
-    <div>
-      <Container>
-        <Input value={text} />
-      </Container>
-    </div>
+    <Container>
+      <Input
+        value={text}
+        onChange={() => { }}
+        onFocus={() => { }}
+      />
+    </Container>
   );
 };
 
@@ -17,7 +19,7 @@ const Container = styled.div`
 
 // Have to set height manually because textarea's don't have an auto height property, and they don't fill parent div's height.
 const Input = styled.textarea`
-font-size: 30px;
+  font-size: 30px;
   height: 240px;
   width: 100%;
   background-color: transparent;
