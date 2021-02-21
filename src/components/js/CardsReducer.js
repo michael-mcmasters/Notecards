@@ -48,8 +48,8 @@ const CardsReducer = () => {
 
   const reducer = (state, action) => {
     switch (action.type) {
-      case "toggle-hot-keys":
-        setAllowHotKeys(action.args);
+      case "enable-hot-keys":
+        setAllowHotKeys(action.payload);
         return state;
       case "flip":
         return flipContainer(state);

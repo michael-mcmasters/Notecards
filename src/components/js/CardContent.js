@@ -7,8 +7,8 @@ const CardContent = ({ text, dispatch }) => {
     <Container>
       <Input
         value={text}
-        onFocus={() => dispatch({ type: "toggle-hot-keys", args: false })}
-        onBlur={() => dispatch({ type: "toggle-hot-keys", args: true })}
+        onFocus={() => dispatch({ type: "enable-hot-keys", payload: false })}
+        onBlur={() => dispatch({ type: "enable-hot-keys", payload: true })}
         onChange={() => { }}
       />
     </Container>
