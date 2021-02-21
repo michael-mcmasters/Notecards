@@ -2,62 +2,64 @@ import React, { useEffect, useReducer, useState } from 'react';
 import CardReducer from "./CardReducer";
 import cardsJSON from "../../resources/card-data.json";
 
-// Returns an array of containers with updated values. The containers each display the properties of a card.
-const moveContainers = (containers, direction) => {
-  const numOfContainers = containers.length;
-  const xPositionIncrementAmnt = (direction === "left") ? -50 : 50;
-
-  let updatedContainers = [];
-  for (let i = 0; i < numOfContainers; i++) {
-    let newCardIndex = containers[i].cardIndex;
-    let newXPosition = containers[i].xPosition + xPositionIncrementAmnt;
-    let transition = "0.39s ease";
-    if (newXPosition < -150) {
-      newCardIndex += numOfContainers;
-      newXPosition = 150;
-      transition = "";
-    } else if (newXPosition > 150) {
-      newCardIndex -= numOfContainers;
-      newXPosition = -150;
-      transition = "";
-    }
-
-    updatedContainers.push({
-      cardIndex: newCardIndex,       // The card properties this container will show. If out of bounds of cards array, container will have display: none.
-      xPosition: newXPosition,       // The value of the CSS property, left. Which works with position absolute.
-      transition: transition,
-      flipped: false,                // Makes sure cards are unflipped when moving.
-    });
-  }
-  return updatedContainers;
-}
-
-const flipContainer = (containers) => {
-  let updatedContainers = [...containers];
-  let centerConIndex = updatedContainers.findIndex(x => x.xPosition === 50);
-  if (centerConIndex === -1) throw "Unable to find index of the center container/card";
-
-  updatedContainers[centerConIndex].flipped = !updatedContainers[centerConIndex].flipped;
-  return updatedContainers;
-}
-
-function reducer(state, action) {
-  switch (action.type) {
-    case "cycle-left":
-      return moveContainers(state, "left");
-    case "cycle-right":
-      return moveContainers(state, "right");
-    case "flip":
-      return flipContainer(state);
-    default:
-      return state;
-  }
-}
-
 const CardsReducer = () => {
+  // let cardsArr = cardsJSON.cards;
+  const [cardsArr, setCardsArr] = useState(cardsJSON.cards);
   const [allowHotKeys, setAllowHotKeys] = useState(false);
-  // const [cardsArr, setCardsArr] = useState(cardsJSON.cards);
-  let cardsArr = cardsJSON.cards;
+
+  // Returns an array of containers with updated values. The containers each display the properties of a card.
+  const moveContainers = (containers, direction) => {
+    const numOfContainers = containers.length;
+    const xPositionIncrementAmnt = (direction === "left") ? -50 : 50;
+
+    let updatedContainers = [];
+    for (let i = 0; i < numOfContainers; i++) {
+      let newCardIndex = containers[i].cardIndex;
+      let newXPosition = containers[i].xPosition + xPositionIncrementAmnt;
+      let transition = "0.39s ease";
+      if (newXPosition < -150) {
+        newCardIndex += numOfContainers;
+        newXPosition = 150;
+        transition = "";
+      } else if (newXPosition > 150) {
+        newCardIndex -= numOfContainers;
+        newXPosition = -150;
+        transition = "";
+      }
+
+      updatedContainers.push({
+        cardIndex: newCardIndex,       // The card properties this container will show. If out of bounds of cards array, container will have display: none.
+        xPosition: newXPosition,       // The value of the CSS property, left. Which works with position absolute.
+        transition: transition,
+        flipped: false,                // Makes sure cards are unflipped when moving.
+      });
+    }
+    return updatedContainers;
+  }
+
+  const flipContainer = (containers) => {
+    let updatedContainers = [...containers];
+    let centerConIndex = updatedContainers.findIndex(x => x.xPosition === 50);
+    if (centerConIndex === -1) throw "Unable to find index of the center container/card";
+
+    updatedContainers[centerConIndex].flipped = !updatedContainers[centerConIndex].flipped;
+    return updatedContainers;
+  }
+
+  const reducer = (state, action) => {
+    switch (action.type) {
+      case "toggle-hot-keys":
+        return setAllowHotKeys(false);
+      case "cycle-left":
+        return moveContainers(state, "left");
+      case "cycle-right":
+        return moveContainers(state, "right");
+      case "flip":
+        return flipContainer(state);
+      default:
+        return state;
+    }
+  }
 
   let [containers, dispatch] = useReducer(reducer, [
     {
@@ -141,8 +143,9 @@ const CardsReducer = () => {
   return (
     <>
       <div className="flex">
-        {containers.map(c => {
+        {containers.map((c, keyInd) => {
           return <CardReducer
+            key={keyInd}
             card={getCardAtIndex(c.cardIndex)}
             cardIndex={c.cardIndex}
             xPosition={c.xPosition}
