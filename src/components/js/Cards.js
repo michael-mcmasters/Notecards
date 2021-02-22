@@ -10,7 +10,16 @@ export default function Cards() {
 
   const cards = cardsJSON.cards;
 
+  const preventSpaceBarScroll = (event) => {
+    if (event.key == " " && event.target == document.body) {
+      event.preventDefault();
+    }
+  }
+  
   useEffect(() => {
+    window.addEventListener('keydown', preventSpaceBarScroll);
+
+    return () => window.removeEventListener('keydown', preventSpaceBarScroll);
   }, [allowHotKey]);
 
   // Returns data at the given index and returns true if the index is in range.

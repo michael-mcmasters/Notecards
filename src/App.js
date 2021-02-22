@@ -1,8 +1,10 @@
+import { useEffect } from 'react';
 import './App.css';
 import Cards from "./components/js/Cards.js";
 import CardsReducer from "./components/js/CardsReducer.js"
 
 function App() {
+
   return (
     <div className="App">
       <h1 className="title App-logo">Java</h1>
