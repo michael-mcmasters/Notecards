@@ -22,7 +22,7 @@ const CardsReducer = () => {
 
   // Returns true is another card exists in the cycle direction.
   // For example, if user wants to cycle right, this returns true if there exists another card to the right of the current center card. And false if not.
-  const cardExistsInDirection = (containers, direction) => {
+  const cardExistsInDirection = (containers, cardsArr, direction) => {
     const cardIndex = getCenterContainer(containers).cardIndex;
     const nextCardIndex = (direction === "left") ? cardIndex + 1 : cardIndex - 1;
     if (nextCardIndex <= 0 || nextCardIndex > cardsArr.length - 1)    // Pretend index 0 is out of range because it is reserved for cards showing display: none.
