@@ -59,7 +59,7 @@ const CardContent = ({ text, cardIndex, side, dispatch }) => {
 };
 
 const Container = styled.div`
-  padding: 1rem;
+  padding: 2rem;
 `;
 
 // Have to set height manually because textarea's don't have an auto height property, and they don't fill parent div's height.
@@ -70,7 +70,8 @@ const Input = styled.textarea`
   background-color: transparent;
   border: none;
   resize: none;
-  font-family: roboto;
+  text-align: center;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
 `;
 
 export default CardContent;

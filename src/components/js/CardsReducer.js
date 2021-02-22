@@ -3,7 +3,6 @@ import CardReducer from "./CardReducer";
 import cardsJSON from "../../resources/card-data.json";
 
 const CardsReducer = () => {
-  // let cardsArr = cardsJSON.cards;
   const [cardsArr, setCardsArr] = useState(cardsJSON.cards);
   const [allowHotKeys, setAllowHotKeys] = useState(true);
 
@@ -79,7 +78,8 @@ const CardsReducer = () => {
 
   const updateText = ([cardIndex, side, editedText], cardsArr) => {
     const cardsArrCopy = [...cardsArr];
-    cardsArrCopy[cardIndex].frontText = editedText;
+    const sideOfCardText = (side === "front") ? "frontText" : "backText";
+    cardsArrCopy[cardIndex][sideOfCardText] = editedText;
     setCardsArr(cardsArrCopy);
   }
 
