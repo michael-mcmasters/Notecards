@@ -2,12 +2,14 @@ import React from 'react';
 import styled, { keyframes } from "styled-components";
 import CardContent from "./CardContent";
 
-const CardReducer = ({ card, cardIndex, xPosition, transition, flipped, dispatch }) => {
+const CardReducer = ({ card, cardIndex, xPosition, transition, flipped, animation, dispatch }) => {
+
+  console.log(animation.toString().length);
+
   return (
-    <FlipCardContainer xPosition={xPosition} transition={transition}>
+    <FlipCardContainer xPosition={xPosition} transition={transition} animation={animation}>
       <FlipCard flipped={flipped}>
         <Front backgroundColor={card.backgroundColor}>
-          {cardIndex}
           <CardContent cardText={card.frontText} side={"front"} dispatch={dispatch} />
         </Front>
         <Back>
@@ -37,11 +39,9 @@ const FlipCardContainer = styled.div`
   transform: translateX(-50%);
   -webkit-transform:translateX(-50%);
   
-  animation-name: ${props => props.cardAcceped ? cardBumpUpAnimation : ""};
+  animation-name: ${props => props.animation ? cardBumpUpAnimation : ""};
   animation-duration: 0.4s;
 `;
-
-
 
 const FlipCard = styled.div`
   width: 100%;

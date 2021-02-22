@@ -44,14 +44,14 @@ const CardContent = ({ cardText, side, dispatch }) => {
       <div class="flex justify-end">
         <Button
           buttonText={"Cancel"}
-          transitionDelay={"0.2s"}
           onClick={handleCancelButton}
+          transitionDelay={"0.2s"}
           userEditingCardText={userEditingText}
         />
         <Button
           buttonText={"Save"}
-          transitionDelay={"0.4s"}
           onClick={handleSaveButton}
+          transitionDelay={"0.4s"}
           userEditingCardText={userEditingText}
         />
       </div>

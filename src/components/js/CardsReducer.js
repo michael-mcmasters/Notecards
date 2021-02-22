@@ -56,6 +56,7 @@ const CardsReducer = () => {
         cardIndex: newCardIndex,       // The card properties this container will show. If out of bounds of cards array, container will have display: none.
         xPosition: newXPosition,       // The value of the CSS property, left. Which works with position absolute.
         transition: transition,
+        animation: "",                 // Stops animation when moving.
         flipped: false,                // Makes sure cards are unflipped when moving.
       });
     }
@@ -69,6 +70,14 @@ const CardsReducer = () => {
     return updatedContainers;
   }
 
+  const getCardCorrect = (containers) => {
+    console.log("up arrow")
+    const updatedContainers = [...containers];
+    const index = getCenterContainerIndex(updatedContainers);
+    updatedContainers[index].animation = "cardBumpUpAnimation";
+    return updatedContainers;
+  }
+
   const reducer = (state, action) => {
     switch (action.type) {
       case "enable-hot-keys":
@@ -76,6 +85,10 @@ const CardsReducer = () => {
         return state;
       case "flip":
         return flipContainer(state);
+      case "got-card-correct":
+        return getCardCorrect(state);
+      case "got-card-wrong":
+        return state;
       case "cycle-left":
         return moveContainers(state, cardsArr, "left");
       case "cycle-right":
@@ -91,36 +104,43 @@ const CardsReducer = () => {
     {
       cardIndex: -3,
       xPosition: -150,
+      animation: "",
       flipped: false,
     },
     {
       cardIndex: -2,
       xPosition: -100,
+      animation: "",
       flipped: false,
     },
     {
       cardIndex: -1,
       xPosition: -50,
+      animation: "",
       flipped: false,
     },
     {
       cardIndex: 0,
       xPosition: 0,
+      animation: "",
       flipped: false,
     },
     {
       cardIndex: 1,
       xPosition: 50,
+      animation: "",
       flipped: false,
     },
     {
       cardIndex: 2,
       xPosition: 100,
+      animation: "",
       flipped: false,
     },
     {
       cardIndex: 3,
       xPosition: 150,
+      animation: "",
       flipped: false,
     },
   ]);
@@ -132,6 +152,7 @@ const CardsReducer = () => {
     switch (event.key) {
       case "ArrowLeft": dispatch({ type: "cycle-left" }); break;
       case "ArrowRight": dispatch({ type: "cycle-right" }); break;
+      case "ArrowUp": dispatch({ type: "got-card-correct" }); break;
       case " ": dispatch({ type: "flip" }); break;
     }
   }
@@ -179,6 +200,7 @@ const CardsReducer = () => {
             xPosition={c.xPosition}
             transition={c.transition}
             flipped={c.flipped}
+            animation={c.animation}
             dispatch={dispatch}
           />
         })}
