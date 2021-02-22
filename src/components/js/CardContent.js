@@ -71,6 +71,7 @@ const Input = styled.textarea`
   background-color: transparent;
   border: none;
   resize: none;
+  font-family: roboto;
 `;
 
 export default CardContent;
