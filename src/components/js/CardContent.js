@@ -59,7 +59,7 @@ const CardContent = ({ text, cardIndex, side, dispatch }) => {
 };
 
 const Container = styled.div`
-  padding: 2rem;
+  padding: 1.5rem;
 `;
 
 // Have to set height manually because textarea's don't have an auto height property, and they don't fill parent div's height.
