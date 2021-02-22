@@ -20,8 +20,12 @@ const CardReducer = ({ card, cardIndex, xPosition, transition, flipped, animatio
   );
 };
 
-const cardBumpUpAnimation = keyframes`
+const CardBumpUpAnimation = keyframes`
   50% { margin-top: 1rem; }
+`;
+
+const CardBumpDownAnimation = keyframes`
+  50% { margin-top: 3rem; }
 `;
 
 const FlipCardContainer = styled.div`
@@ -39,7 +43,10 @@ const FlipCardContainer = styled.div`
   transform: translateX(-50%);
   -webkit-transform:translateX(-50%);
   
-  animation-name: ${props => props.animation ? cardBumpUpAnimation : ""};
+  animation-name: ${props => props.animation === "CardBumpUpAnimation"  // prettier extension messing up formatting
+    ? CardBumpUpAnimation
+    : props.animation === "CardBumpDownAnimation" ? CardBumpDownAnimation
+      : ""};
   animation-duration: 0.4s;
 `;
 

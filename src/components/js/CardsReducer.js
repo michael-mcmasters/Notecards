@@ -70,11 +70,11 @@ const CardsReducer = () => {
     return updatedContainers;
   }
 
-  const getCardCorrect = (containers) => {
-    console.log("up arrow")
+  const addAnimation = (containers, cardCorrect) => {
+    console.log("wrong")
     const updatedContainers = [...containers];
     const index = getCenterContainerIndex(updatedContainers);
-    updatedContainers[index].animation = "cardBumpUpAnimation";
+    updatedContainers[index].animation = cardCorrect ? "CardBumpUpAnimation" : "CardBumpDownAnimation";
     return updatedContainers;
   }
 
@@ -86,9 +86,9 @@ const CardsReducer = () => {
       case "flip":
         return flipContainer(state);
       case "got-card-correct":
-        return getCardCorrect(state);
+        return addAnimation(state, true);
       case "got-card-wrong":
-        return state;
+        return addAnimation(state, false);
       case "cycle-left":
         return moveContainers(state, cardsArr, "left");
       case "cycle-right":
@@ -153,6 +153,7 @@ const CardsReducer = () => {
       case "ArrowLeft": dispatch({ type: "cycle-left" }); break;
       case "ArrowRight": dispatch({ type: "cycle-right" }); break;
       case "ArrowUp": dispatch({ type: "got-card-correct" }); break;
+      case "ArrowDown": dispatch({ type: "got-card-wrong" }); break;
       case " ": dispatch({ type: "flip" }); break;
     }
   }
