@@ -2,20 +2,22 @@ import React, { useState } from 'react';
 import styled from "styled-components";
 import Button from "./Button";
 
-const CardContent = ({ cardText, side, dispatch }) => {
+const CardContent = ({ text, cardIndex, side, dispatch }) => {
   const [userEditingText, setUserEditingText] = useState(false);
-  const [editedText, setEditedText] = useState("");
+  const [editedText, setEditedText] = useState("");   // The new text the user types into the card. text will be set to the edtedText when user clicks the save button.
 
   const handleInputFocus = () => {
     dispatch({ type: "enable-hot-keys", payload: false });
     setUserEditingText(true);
-    setEditedText(cardText);
+    setEditedText(text);
   }
 
   const handleInputUnfocus = () => {
     dispatch({ type: "enable-hot-keys", payload: true });
-    setUserEditingText(false);
-    setEditedText(cardText);
+    setTimeout(() => {  // Use timeout because otherwise, when hitting the save button, card will temporarily show the old text while updating.
+      setUserEditingText(false);
+      console.log("set to false");
+    }, 100);
   }
 
   const handleUserTyping = (event) => {
@@ -23,20 +25,17 @@ const CardContent = ({ cardText, side, dispatch }) => {
   }
 
   const handleCancelButton = () => {
-    console.log("cancel button");
     setUserEditingText(false);
   }
 
   const handleSaveButton = () => {
-    console.log("save button");
-    dispatch({ type: "update-text", payload: side });
-    setUserEditingText(false);
+    dispatch({ type: "update-text", payload: [cardIndex, side, editedText] });
   }
 
   return (
     <Container>
       <Input
-        value={userEditingText ? editedText : cardText}
+        value={userEditingText ? editedText : text}
         onFocus={handleInputFocus}
         onBlur={handleInputUnfocus}
         onChange={handleUserTyping}

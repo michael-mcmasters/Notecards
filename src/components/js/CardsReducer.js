@@ -71,11 +71,16 @@ const CardsReducer = () => {
   }
 
   const addAnimation = (containers, cardCorrect) => {
-    console.log("wrong")
     const updatedContainers = [...containers];
     const index = getCenterContainerIndex(updatedContainers);
     updatedContainers[index].animation = cardCorrect ? "CardBumpUpAnimation" : "CardBumpDownAnimation";
     return updatedContainers;
+  }
+
+  const updateText = ([cardIndex, side, editedText], cardsArr) => {
+    const cardsArrCopy = [...cardsArr];
+    cardsArrCopy[cardIndex].frontText = editedText;
+    setCardsArr(cardsArrCopy);
   }
 
   const reducer = (state, action) => {
@@ -94,6 +99,7 @@ const CardsReducer = () => {
       case "cycle-right":
         return moveContainers(state, cardsArr, "right");
       case "update-text":
+        updateText(action.payload, cardsArr)
         return state;
       default:
         return state;
