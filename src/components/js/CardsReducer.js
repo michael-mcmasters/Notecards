@@ -7,8 +7,33 @@ const CardsReducer = () => {
   const [cardsArr, setCardsArr] = useState(cardsJSON.cards);
   const [allowHotKeys, setAllowHotKeys] = useState(true);
 
-  // Returns an array of containers with updated values. The containers each display the properties of a card.
-  const moveContainers = (containers, direction) => {
+  // The index of the container directly at the center of the screen
+  const getCenterContainerIndex = (containers) => {
+    const index = containers.findIndex(c => c.xPosition === 50);
+    if (index === -1) throw "Unable to find index of the center card container";
+    return index;
+  }
+
+  // The container directly at the center of the screen
+  const getCenterContainer = (containers) => {
+    const index = getCenterContainerIndex(containers);
+    return containers[index];
+  }
+
+  // Returns true is another card exists in the cycle direction.
+  // For example, if user wants to cycle right, this returns true if there exists another card to the right of the current center card. And false if not.
+  const cardExistsInDirection = (containers, direction) => {
+    const cardIndex = getCenterContainer(containers).cardIndex;
+    const nextCardIndex = (direction === "left") ? cardIndex + 1 : cardIndex - 1;
+    if (nextCardIndex <= 0 || nextCardIndex > cardsArr.length - 1)    // Pretend index 0 is out of range because it is reserved for cards showing display: none.
+      return false;
+    return true;
+  }
+
+  // Updates container properties to display new cards and to move them around. Returns an array of objects.
+  const moveContainers = (containers, cardsArr, direction) => {
+    if (!cardExistsInDirection(containers, cardsArr, direction)) return containers;
+
     const numOfContainers = containers.length;
     const xPositionIncrementAmnt = (direction === "left") ? -50 : 50;
 
@@ -39,10 +64,8 @@ const CardsReducer = () => {
 
   const flipContainer = (containers) => {
     let updatedContainers = [...containers];
-    let centerConIndex = updatedContainers.findIndex(x => x.xPosition === 50);
-    if (centerConIndex === -1) throw "Unable to find index of the center container/card";
-
-    updatedContainers[centerConIndex].flipped = !updatedContainers[centerConIndex].flipped;
+    const index = getCenterContainerIndex(updatedContainers);
+    updatedContainers[index].flipped = !updatedContainers[index].flipped;
     return updatedContainers;
   }
 
@@ -54,9 +77,9 @@ const CardsReducer = () => {
       case "flip":
         return flipContainer(state);
       case "cycle-left":
-        return moveContainers(state, "left");
+        return moveContainers(state, cardsArr, "left");
       case "cycle-right":
-        return moveContainers(state, "right");
+        return moveContainers(state, cardsArr, "right");
       case "update-text":
         return state;
       default:
