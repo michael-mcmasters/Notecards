@@ -7,21 +7,21 @@ const CardsReducer = () => {
   const [allowHotKeys, setAllowHotKeys] = useState(true);
 
   // The index of the container directly at the center of the screen
-  const getCenterContainerIndex = (containers) => {
+  function getCenterContainerIndex(containers) {
     const index = containers.findIndex(c => c.xPosition === 50);
     if (index === -1) throw "Unable to find index of the center card container";
     return index;
   }
 
   // The container directly at the center of the screen
-  const getCenterContainer = (containers) => {
+  function getCenterContainer(containers) {
     const index = getCenterContainerIndex(containers);
     return containers[index];
   }
 
   // Returns true is another card exists in the cycle direction.
   // For example, if user wants to cycle right, this returns true if there exists another card to the right of the current center card. And false if not.
-  const cardExistsInDirection = (containers, cardsArr, direction) => {
+  function cardExistsInDirection (containers, cardsArr, direction) {
     const cardIndex = getCenterContainer(containers).cardIndex;
     const nextCardIndex = (direction === "left") ? cardIndex + 1 : cardIndex - 1;
     if (nextCardIndex <= 0 || nextCardIndex > cardsArr.length - 1)    // Pretend index 0 is out of range because it is reserved for cards showing display: none.
@@ -30,7 +30,7 @@ const CardsReducer = () => {
   }
 
   // Updates container properties to display new cards and to move them around. Returns an array of objects.
-  const moveContainers = (containers, cardsArr, direction) => {
+  function moveContainers (containers, cardsArr, direction) {
     if (!cardExistsInDirection(containers, cardsArr, direction)) return containers;
 
     const numOfContainers = containers.length;
@@ -62,28 +62,28 @@ const CardsReducer = () => {
     return updatedContainers;
   }
 
-  const flipContainer = (containers) => {
+  function flipContainer (containers) {
     let updatedContainers = [...containers];
     const index = getCenterContainerIndex(updatedContainers);
     updatedContainers[index].flipped = !updatedContainers[index].flipped;
     return updatedContainers;
   }
 
-  const addAnimation = (containers, cardCorrect) => {
+  function addAnimation (containers, cardCorrect) {
     const updatedContainers = [...containers];
     const index = getCenterContainerIndex(updatedContainers);
     updatedContainers[index].animation = cardCorrect ? "CardBumpUpAnimation" : "CardBumpDownAnimation";
     return updatedContainers;
   }
 
-  const updateText = ([cardIndex, side, editedText], cardsArr) => {
+  function updateText ([cardIndex, side, editedText], cardsArr) {
     const cardsArrCopy = [...cardsArr];
     const sideOfCardText = (side === "front") ? "frontText" : "backText";
     cardsArrCopy[cardIndex][sideOfCardText] = editedText;
     setCardsArr(cardsArrCopy);
   }
 
-  const reducer = (state, action) => {
+  function reducer(state, action) {
     switch (action.type) {
       case "enable-hot-keys":
         setAllowHotKeys(action.payload);
@@ -152,7 +152,7 @@ const CardsReducer = () => {
   ]);
 
   // Left/right to move card. Space key to flip.
-  const handleKeyDown = (event) => {
+  function handleKeyDown(event) {
     if (!allowHotKeys) return;
 
     switch (event.key) {
@@ -190,7 +190,7 @@ const CardsReducer = () => {
   }, [])
 
   // If cardIndex is out of bounds, default it to index 0 which will hide the card from appearing on the page.
-  const getCardAtIndex = (index) => {
+  function getCardAtIndex(index) {
     if (index > 0 && index < cardsArr.length)
       return cardsArr[index];
     return cardsArr[0];
