@@ -17,13 +17,13 @@ function getCenterContainer(containers) {
 
 // Returns true is another card exists in the cycle direction.
 // For example, if user wants to cycle right, this returns true if there exists another card to the right of the current center card. And false if not.
-// function cardExistsInDirection(containers, cardsArr, direction) {
-//   const cardIndex = getCenterContainer(containers).cardIndex;
-//   const nextCardIndex = (direction === "left") ? cardIndex + 1 : cardIndex - 1;
-//   if (nextCardIndex <= 0 || nextCardIndex > cardsArr.length - 1)    // Pretend index 0 is out of range because it is reserved for cards showing display: none.
-//     return false;
-//   return true;
-// }
+function cardExistsInDirection(containers, cardsArr, direction) {
+  const cardIndex = getCenterContainer(containers).cardIndex;
+  const nextCardIndex = (direction === "left") ? cardIndex + 1 : cardIndex - 1;
+  if (nextCardIndex <= 0 || nextCardIndex > cardsArr.length - 1)    // Pretend index 0 is out of range because it is reserved for cards showing display: none.
+    return false;
+  return true;
+}
 
 // function flipContainer(containers) {
 //   let updatedContainers = [...containers];
@@ -48,10 +48,10 @@ function getCenterContainer(containers) {
 
 // Updates container properties to display new cards and to move them around. Returns an array of objects.
 function moveContainers(state, direction) {
-  //if (!cardExistsInDirection(containers, cardsArr, direction)) return containers;
+  if (!cardExistsInDirection(state.containers, state.cardsArr, direction))
+    return state;
 
-  let copy = { ...state }
-  let containers = copy.containers;
+  let containers = state.containers;
   
   const numOfContainers = containers.length;
   const xPositionIncrementAmnt = (direction === "left") ? -50 : 50;
@@ -80,11 +80,12 @@ function moveContainers(state, direction) {
     });
   }
   
-  copy.containers = updatedContainers;
-  return copy;
+  state.containers = updatedContainers;
+  return state;
 }
 
 function reducer(state, action) {
+  let stateCopy = { ...state }
   switch (action.type) {
     // case "enable-hot-keys":
     //   setAllowHotKeys(action.payload);
@@ -97,14 +98,14 @@ function reducer(state, action) {
     //   return addAnimation(state, false);
     
     case "cycle-left":
-      return moveContainers(state, "left");
+      return moveContainers(stateCopy, "left");
     case "cycle-right":
-      return moveContainers(state, "right");
+      return moveContainers(stateCopy, "right");
     // case "update-text":
     //   updateText(action.payload, cardsArr)
     //   return state;
     default:
-      return state;
+      return stateCopy;
   }
 }
 
