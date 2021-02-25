@@ -2,7 +2,7 @@ import React, { useEffect, useReducer } from 'react';
 import CardReducer from "./CardReducer";
 import cardsJSON from "../../resources/card-data.json";
 
-// Flips the center container on screen.
+// Flips only the center container.
 function flipContainer({ containers }) {
   const centerIndex = getCenterContainerIndex(containers);
   return containers.map(({ ...c }, index) => {              // Copy objects in array with spread operator so we are not manipulating state before React sees it.
@@ -13,19 +13,20 @@ function flipContainer({ containers }) {
   })
 }
 
-// Updates container properties to display new cards and to move them around. Returns an array of objects.
+// Moves all containers left or right. There are 7 containers that are recycled to each represent a card in the array. (Object Pooling.)
+// The container at the very end (off-screen) will move to the opposing side of the screen and will update with a new card to display for when it is back on screen.
 function moveContainers(state, direction) {
   if (!cardExistsInDirection(state.containers, state.cardsArr, direction))
     return state.containers;
 
   const numOfContainers = state.containers.length;
-  const xPositionIncrementAmnt = (direction === "left") ? -50 : 50;
+  const xPositionAmountToMove = (direction === "left") ? -50 : 50;
   return state.containers.map(({ ...c }, index) => {
     c.animation = "";                                                                 // Cancels any current animations in progress before moving.
     c.flipped = false;                                                                // Makes sure flipped containers unflip before moving.
 
     c.cardIndex = state.containers[index].cardIndex;                                  // The card properties this container will show.
-    c.xPosition = state.containers[index].xPosition + xPositionIncrementAmnt;         // How far from left side of screen container will be. (CSS property.)
+    c.xPosition = state.containers[index].xPosition + xPositionAmountToMove;          // How far from left side of screen container will be. (CSS property.)
     c.transition = "0.39s ease";                                                      // Smooths movement.
     if (c.xPosition < -150) {
       c.cardIndex += numOfContainers;
@@ -40,7 +41,7 @@ function moveContainers(state, direction) {
   });
 }
 
-// Assigns it the name of a CSS animation which plays on the next render.
+// Assigns container the name of a CSS animation which plays on the next render.
 function addAnimation({ containers }, animation) {
   const centerIndex = getCenterContainerIndex(containers);
   return containers.map(({ ...c }, index) => {
@@ -51,6 +52,8 @@ function addAnimation({ containers }, animation) {
   })
 }
 
+// Saves data to array so that when container displays a new card, the data is not lost.
+// ToDo: Save to backend.
 function saveEditedText([...cardsArr], [cardIndex, side, editedText]) {
   const sideOfCardText = (side === "front") ? "frontText" : "backText";
   cardsArr[cardIndex][sideOfCardText] = editedText;
@@ -72,9 +75,9 @@ function getCenterContainerIndex(containers) {
 // Returns true is another card exists in the cycle direction.
 // For example, if user wants to cycle right, this returns true if there exists another card to the right of the current center card. And false if not.
 function cardExistsInDirection(containers, cardsArr, direction) {
-  const cardIndex = getCenterContainer(containers).cardIndex;
-  const nextCardIndex = (direction === "left") ? cardIndex + 1 : cardIndex - 1;
-  if (nextCardIndex <= 0 || nextCardIndex > cardsArr.length - 1)    // Pretend index 0 is out of range because it is reserved for cards showing display: none.
+  const centerContainerIndex = getCenterContainer(containers).cardIndex;
+  const nextContainerIndex = (direction === "left") ? centerContainerIndex + 1 : centerContainerIndex - 1;
+  if (nextContainerIndex <= 0 || nextContainerIndex > cardsArr.length - 1)    // Pretend index 0 is out of range because it is reserved for cards showing display: none.
     return false;
   return true;
 }
@@ -193,7 +196,7 @@ const CardsReducer = () => {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [state]);
+  }, [state]);  // Without this, space and arrow keys will move card when user is editing its text.
 
   // ToDo: Use this to fetch card data from the backend.
   useEffect(async () => {
