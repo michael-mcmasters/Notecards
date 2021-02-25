@@ -51,34 +51,26 @@ function moveContainers(state, direction) {
   if (!cardExistsInDirection(state.containers, state.cardsArr, direction))
     return state.containers;
 
-  let containers = [...state.containers];
-  const numOfContainers = containers.length;
+  const numOfContainers = state.containers.length;
   const xPositionIncrementAmnt = (direction === "left") ? -50 : 50;
+  return state.containers.map(({ ...c }, index) => {
+    c.animation = "";                                                                 // Cancels any current animations in progress before moving.
+    c.flipped = false;                                                                // Makes sure flipped containers unflip before moving.
 
-  let updatedContainers = [];
-  for (let i = 0; i < numOfContainers; i++) {
-    let newCardIndex = containers[i].cardIndex;
-    let newXPosition = containers[i].xPosition + xPositionIncrementAmnt;
-    let transition = "0.39s ease";
-    if (newXPosition < -150) {
-      newCardIndex += numOfContainers;
-      newXPosition = 150;
-      transition = "";
-    } else if (newXPosition > 150) {
-      newCardIndex -= numOfContainers;
-      newXPosition = -150;
-      transition = "";
+    c.cardIndex = state.containers[index].cardIndex;                                  // The card properties this container will show.
+    c.xPosition = state.containers[index].xPosition + xPositionIncrementAmnt;         // How far from left side of screen container will be. (CSS property.)
+    c.transition = "0.39s ease";                                                      // Smooths movement.
+    if (c.xPosition < -150) {
+      c.cardIndex += numOfContainers;
+      c.xPosition = 150;
+      c.transition = "";
+    } else if (c.xPosition > 150) {
+      c.cardIndex -= numOfContainers;
+      c.xPosition = -150;
+      c.transition = "";
     }
-
-    updatedContainers.push({
-      cardIndex: newCardIndex,       // The card properties this container will show. If out of bounds of cards array, container will have display: none.
-      xPosition: newXPosition,       // The value of the CSS property, left. Which works with position absolute.
-      transition: transition,
-      animation: "",                 // Stops animation when moving.
-      flipped: false,                // Makes sure cards are unflipped when moving.
-    });
-  }
-  return updatedContainers;
+    return c;
+  });
 }
 
 function reducer(state, action) {
