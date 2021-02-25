@@ -45,8 +45,10 @@ function addAnimation({ containers }, animation) {
   })
 }
 
-function updateText({ ...cardsArr }, [cardIndex, side, editedText]) {
+function updateText([...cardsArr], [cardIndex, side, editedText]) {
   const sideOfCardText = (side === "front") ? "frontText" : "backText";
+  console.log("cardsArr: " + cardsArr)
+  console.log("card index: " + cardIndex);
   cardsArr[cardIndex][sideOfCardText] = editedText;
   return cardsArr;
 }
@@ -121,8 +123,6 @@ function reducer(state, action) {
 }
 
 const CardsReducer = () => {
-  const [cardsArr, setCardsArr] = useState(cardsJSON.cards);
-
   const containers = [
     {
       cardIndex: -3,
@@ -213,9 +213,9 @@ const CardsReducer = () => {
   }, [])
 
   // If cardIndex is out of bounds, default it to index 0 which will hide the card from appearing on the page.
-  function getCardAtIndex(index) {
-    if (index > 0 && index < cardsArr.length)
-      return cardsArr[index];
+  function getCardAtIndex(cardsArr, cardIndex) {
+    if (cardIndex > 0 && cardIndex < cardsArr.length)
+      return cardsArr[cardIndex];
     return cardsArr[0];
   }
 
@@ -225,7 +225,7 @@ const CardsReducer = () => {
         {state.containers.map((c, keyInd) => {
           return <CardReducer
             key={keyInd}
-            card={getCardAtIndex(c.cardIndex)}
+            card={getCardAtIndex(state.cardsArr, c.cardIndex)}
             cardIndex={c.cardIndex}
             xPosition={c.xPosition}
             transition={c.transition}
