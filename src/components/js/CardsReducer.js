@@ -49,10 +49,9 @@ function cardExistsInDirection(containers, cardsArr, direction) {
 // Updates container properties to display new cards and to move them around. Returns an array of objects.
 function moveContainers(state, direction) {
   if (!cardExistsInDirection(state.containers, state.cardsArr, direction))
-    return state;
+    return state.containers;
 
-  let containers = state.containers;
-  
+  let containers = [...state.containers];
   const numOfContainers = containers.length;
   const xPositionIncrementAmnt = (direction === "left") ? -50 : 50;
 
@@ -79,13 +78,17 @@ function moveContainers(state, direction) {
       flipped: false,                // Makes sure cards are unflipped when moving.
     });
   }
-  
-  state.containers = updatedContainers;
-  return state;
+  return updatedContainers;
 }
 
 function reducer(state, action) {
-  let stateCopy = { ...state }
+  // const containersCopy = state.containers.map((c, index) => {
+  //   const copy = { ...c }
+  //   if (index === 4) copy.flipped = !state.containers[index].flipped;
+  //   return copy;
+  // });
+  // containersCopy[4].flipped = !state.containers[4].flipped;
+
   switch (action.type) {
     // case "enable-hot-keys":
     //   setAllowHotKeys(action.payload);
@@ -96,23 +99,29 @@ function reducer(state, action) {
     //   return addAnimation(state, true);
     // case "got-card-wrong":
     //   return addAnimation(state, false);
-    
+
     case "cycle-left":
-      return moveContainers(stateCopy, "left");
+      return {
+        ...state,
+        containers: moveContainers(state, "left")
+      }
     case "cycle-right":
-      return moveContainers(stateCopy, "right");
+      return {
+        ...state,
+        containers: moveContainers(state, "right")
+      }
     // case "update-text":
     //   updateText(action.payload, cardsArr)
     //   return state;
     default:
-      return stateCopy;
+      return state;
   }
 }
 
 const CardsReducer = () => {
   const [cardsArr, setCardsArr] = useState(cardsJSON.cards);
   const [allowHotKeys, setAllowHotKeys] = useState(true);
-  
+
   const containers = [
     {
       cardIndex: -3,
