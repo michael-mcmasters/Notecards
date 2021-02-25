@@ -79,19 +79,12 @@ function moveContainers(state, direction) {
 }
 
 function reducer(state, action) {
-  // const containersCopy = state.containers.map((c, index) => {
-  //   const copy = { ...c }
-  //   if (index === 4) copy.flipped = !state.containers[index].flipped;
-  //   return copy;
-  // });
-  // containersCopy[4].flipped = !state.containers[4].flipped;
-
   switch (action.type) {
-    // case "enable-hot-keys":
-    //   setAllowHotKeys(action.payload);
-    //   return state;
-    // case "flip":
-    //   return flipContainer(state);
+    case "enable-hot-keys":
+      return {
+        ...state,
+        allowHotKeys: action.payload
+      }
     case "flip":
       return {
         ...state,
@@ -129,7 +122,6 @@ function reducer(state, action) {
 
 const CardsReducer = () => {
   const [cardsArr, setCardsArr] = useState(cardsJSON.cards);
-  const [allowHotKeys, setAllowHotKeys] = useState(true);
 
   const containers = [
     {
@@ -184,7 +176,7 @@ const CardsReducer = () => {
 
   // Left/right to move card. Space key to flip.
   function handleKeyDown(event) {
-    if (!allowHotKeys) return;
+    if (!state.allowHotKeys) return;
 
     switch (event.key) {
       case "ArrowLeft": dispatch({ type: "cycle-left" }); break;
@@ -201,7 +193,7 @@ const CardsReducer = () => {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [allowHotKeys]);
+  }, [state]);
 
   useEffect(async () => {
     //const response = await fetch("https://jsonplaceholder.typicode.com/posts");
