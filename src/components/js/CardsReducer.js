@@ -25,7 +25,7 @@ function cardExistsInDirection(containers, cardsArr, direction) {
   return true;
 }
 
-function fliipCenterContainer({ containers }) {
+function flipCenterContainer({ containers }) {
   const centerIndex = getCenterContainerIndex(containers);
   return containers.map(({ ...c }, index) => {              // Copy objects in array with spread operator so we are not manipulating state before React sees it.
     if (index === centerIndex) {
@@ -41,6 +41,16 @@ function fliipCenterContainer({ containers }) {
 //   updatedContainers[index].animation = cardCorrect ? "CardBumpUpAnimation" : "CardBumpDownAnimation";
 //   return updatedContainers;
 // }
+
+function addAnimation({ containers }, animation) {
+  const centerIndex = getCenterContainerIndex(containers);
+  return containers.map(({ ...c }, index) => {
+    if (index === centerIndex) {
+      c.animation = animation;
+    }
+    return c;
+  })
+}
 
 // function updateText([cardIndex, side, editedText], cardsArr) {
 //   const cardsArrCopy = [...cardsArr];
@@ -91,16 +101,20 @@ function reducer(state, action) {
     // case "flip":
     //   return flipContainer(state);
     case "flip":
-      //return flipContainer(state);
       return {
         ...state,
-        containers: fliipCenterContainer(state)
+        containers: flipCenterContainer(state)
       }
-    // case "got-card-correct":
-    //   return addAnimation(state, true);
-    // case "got-card-wrong":
-    //   return addAnimation(state, false);
-
+    case "got-card-correct":
+      return {
+        ...state,
+        containers: addAnimation(state, "CardBumpUpAnimation")
+      }
+    case "got-card-wrong":
+      return {
+        ...state,
+        containers: addAnimation(state, "CardBumpDownAnimation")
+      }
     case "cycle-left":
       return {
         ...state,
