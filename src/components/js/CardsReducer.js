@@ -25,12 +25,15 @@ function cardExistsInDirection(containers, cardsArr, direction) {
   return true;
 }
 
-// function flipContainer(containers) {
-//   let updatedContainers = [...containers];
-//   const index = getCenterContainerIndex(updatedContainers);
-//   updatedContainers[index].flipped = !updatedContainers[index].flipped;
-//   return updatedContainers;
-// }
+function fliipCenterContainer({ containers }) {
+  const centerIndex = getCenterContainerIndex(containers);
+  return containers.map(({ ...c }, index) => {              // Copy objects in array with spread operator so we are not manipulating state before React sees it.
+    if (index === centerIndex) {
+      c.flipped = !containers[index].flipped;
+    }
+    return c;
+  })
+}
 
 // function addAnimation(containers, cardCorrect) {
 //   const updatedContainers = [...containers];
@@ -87,6 +90,12 @@ function reducer(state, action) {
     //   return state;
     // case "flip":
     //   return flipContainer(state);
+    case "flip":
+      //return flipContainer(state);
+      return {
+        ...state,
+        containers: fliipCenterContainer(state)
+      }
     // case "got-card-correct":
     //   return addAnimation(state, true);
     // case "got-card-wrong":
