@@ -7,11 +7,9 @@ const CardReducer = ({ card, cardIndex, xPosition, transition, flipped, animatio
     <Container xPosition={xPosition} transition={transition} animation={animation}>
       <FlipCard flipped={flipped}>
         <Front backgroundColor={card.backgroundColor}>
-          {cardIndex}
           <CardContent text={card.frontText} cardIndex={cardIndex} side={"front"} dispatch={dispatch} />
         </Front>
         <Back>
-          {cardIndex}
           <CardContent text={card.backText} cardIndex={cardIndex} side={"back"} dispatch={dispatch} />
         </Back>
       </FlipCard>

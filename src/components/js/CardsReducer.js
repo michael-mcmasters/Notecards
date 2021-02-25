@@ -1,31 +1,9 @@
-import React, { useEffect, useReducer, useState } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import CardReducer from "./CardReducer";
 import cardsJSON from "../../resources/card-data.json";
 
-// The index of the container directly at the center of the screen
-function getCenterContainerIndex(containers) {
-  const index = containers.findIndex(c => c.xPosition === 50);
-  if (index === -1) throw "Unable to find index of the center card container";
-  return index;
-}
-
-// The container directly at the center of the screen
-function getCenterContainer(containers) {
-  const index = getCenterContainerIndex(containers);
-  return containers[index];
-}
-
-// Returns true is another card exists in the cycle direction.
-// For example, if user wants to cycle right, this returns true if there exists another card to the right of the current center card. And false if not.
-function cardExistsInDirection(containers, cardsArr, direction) {
-  const cardIndex = getCenterContainer(containers).cardIndex;
-  const nextCardIndex = (direction === "left") ? cardIndex + 1 : cardIndex - 1;
-  if (nextCardIndex <= 0 || nextCardIndex > cardsArr.length - 1)    // Pretend index 0 is out of range because it is reserved for cards showing display: none.
-    return false;
-  return true;
-}
-
-function flipCenterContainer({ containers }) {
+// Flips the center container on screen.
+function flipContainer({ containers }) {
   const centerIndex = getCenterContainerIndex(containers);
   return containers.map(({ ...c }, index) => {              // Copy objects in array with spread operator so we are not manipulating state before React sees it.
     if (index === centerIndex) {
@@ -33,24 +11,6 @@ function flipCenterContainer({ containers }) {
     }
     return c;
   })
-}
-
-function addAnimation({ containers }, animation) {
-  const centerIndex = getCenterContainerIndex(containers);
-  return containers.map(({ ...c }, index) => {
-    if (index === centerIndex) {
-      c.animation = animation;
-    }
-    return c;
-  })
-}
-
-function updateText([...cardsArr], [cardIndex, side, editedText]) {
-  const sideOfCardText = (side === "front") ? "frontText" : "backText";
-  console.log("cardsArr: " + cardsArr)
-  console.log("card index: " + cardIndex);
-  cardsArr[cardIndex][sideOfCardText] = editedText;
-  return cardsArr;
 }
 
 // Updates container properties to display new cards and to move them around. Returns an array of objects.
@@ -80,6 +40,45 @@ function moveContainers(state, direction) {
   });
 }
 
+// Assigns it the name of a CSS animation which plays on the next render.
+function addAnimation({ containers }, animation) {
+  const centerIndex = getCenterContainerIndex(containers);
+  return containers.map(({ ...c }, index) => {
+    if (index === centerIndex) {
+      c.animation = animation;
+    }
+    return c;
+  })
+}
+
+function saveEditedText([...cardsArr], [cardIndex, side, editedText]) {
+  const sideOfCardText = (side === "front") ? "frontText" : "backText";
+  cardsArr[cardIndex][sideOfCardText] = editedText;
+  return cardsArr;
+}
+
+// The container directly at the center of the screen
+function getCenterContainer(containers) {
+  const index = getCenterContainerIndex(containers);
+  return containers[index];
+}
+
+function getCenterContainerIndex(containers) {
+  const index = containers.findIndex(c => c.xPosition === 50);
+  if (index === -1) throw "Unable to find index of the center card container";
+  return index;
+}
+
+// Returns true is another card exists in the cycle direction.
+// For example, if user wants to cycle right, this returns true if there exists another card to the right of the current center card. And false if not.
+function cardExistsInDirection(containers, cardsArr, direction) {
+  const cardIndex = getCenterContainer(containers).cardIndex;
+  const nextCardIndex = (direction === "left") ? cardIndex + 1 : cardIndex - 1;
+  if (nextCardIndex <= 0 || nextCardIndex > cardsArr.length - 1)    // Pretend index 0 is out of range because it is reserved for cards showing display: none.
+    return false;
+  return true;
+}
+
 function reducer(state, action) {
   switch (action.type) {
     case "enable-hot-keys":
@@ -90,17 +89,7 @@ function reducer(state, action) {
     case "flip":
       return {
         ...state,
-        containers: flipCenterContainer(state)
-      }
-    case "got-card-correct":
-      return {
-        ...state,
-        containers: addAnimation(state, "CardBumpUpAnimation")
-      }
-    case "got-card-wrong":
-      return {
-        ...state,
-        containers: addAnimation(state, "CardBumpDownAnimation")
+        containers: flipContainer(state)
       }
     case "cycle-left":
       return {
@@ -112,10 +101,20 @@ function reducer(state, action) {
         ...state,
         containers: moveContainers(state, "right")
       }
+    case "got-card-correct":
+      return {
+        ...state,
+        containers: addAnimation(state, "CardBumpUpAnimation")
+      }
+    case "got-card-wrong":
+      return {
+        ...state,
+        containers: addAnimation(state, "CardBumpDownAnimation")
+      }
     case "update-text":
       return {
         ...state,
-        cardsArr: updateText(state.cardsArr, action.payload)
+        cardsArr: saveEditedText(state.cardsArr, action.payload)
       }
     default:
       return state;
@@ -123,6 +122,7 @@ function reducer(state, action) {
 }
 
 const CardsReducer = () => {
+
   const containers = [
     {
       cardIndex: -3,
@@ -195,6 +195,7 @@ const CardsReducer = () => {
     };
   }, [state]);
 
+  // ToDo: Use this to fetch card data from the backend.
   useEffect(async () => {
     //const response = await fetch("https://jsonplaceholder.typicode.com/posts");
     // const response = await fetch("http://localhost:8080/");
@@ -212,7 +213,7 @@ const CardsReducer = () => {
     // setCardsArr(newCardsArr);
   }, [])
 
-  // If cardIndex is out of bounds, default it to index 0 which will hide the card from appearing on the page.
+  // Returns card from array. If cardIndex is out of bounds, defaults it to index 0 which will hide the card from appearing on the page. (display: none.)
   function getCardAtIndex(cardsArr, cardIndex) {
     if (cardIndex > 0 && cardIndex < cardsArr.length)
       return cardsArr[cardIndex];
