@@ -35,13 +35,6 @@ function flipCenterContainer({ containers }) {
   })
 }
 
-// function addAnimation(containers, cardCorrect) {
-//   const updatedContainers = [...containers];
-//   const index = getCenterContainerIndex(updatedContainers);
-//   updatedContainers[index].animation = cardCorrect ? "CardBumpUpAnimation" : "CardBumpDownAnimation";
-//   return updatedContainers;
-// }
-
 function addAnimation({ containers }, animation) {
   const centerIndex = getCenterContainerIndex(containers);
   return containers.map(({ ...c }, index) => {
@@ -52,12 +45,11 @@ function addAnimation({ containers }, animation) {
   })
 }
 
-// function updateText([cardIndex, side, editedText], cardsArr) {
-//   const cardsArrCopy = [...cardsArr];
-//   const sideOfCardText = (side === "front") ? "frontText" : "backText";
-//   cardsArrCopy[cardIndex][sideOfCardText] = editedText;
-//   setCardsArr(cardsArrCopy);
-// }
+function updateText({ ...cardsArr }, [cardIndex, side, editedText]) {
+  const sideOfCardText = (side === "front") ? "frontText" : "backText";
+  cardsArr[cardIndex][sideOfCardText] = editedText;
+  return cardsArr;
+}
 
 // Updates container properties to display new cards and to move them around. Returns an array of objects.
 function moveContainers(state, direction) {
@@ -125,9 +117,11 @@ function reducer(state, action) {
         ...state,
         containers: moveContainers(state, "right")
       }
-    // case "update-text":
-    //   updateText(action.payload, cardsArr)
-    //   return state;
+    case "update-text":
+      return {
+        ...state,
+        cardsArr: updateText(state.cardsArr, action.payload)
+      }
     default:
       return state;
   }
