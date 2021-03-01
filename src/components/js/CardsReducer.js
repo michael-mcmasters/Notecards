@@ -1,6 +1,6 @@
 import React, { useEffect, useReducer } from 'react';
-import CardReducer from "./CardReducer";
 import cardsJSON from "../../resources/card-data.json";
+import CardReducer from "./CardReducer";
 
 function reducer(state, action) {
   switch (action.type) {
@@ -53,47 +53,62 @@ const CardsReducer = () => {
       {
         cardIndex: -3,
         xPosition: -150,
+        transition: "",
         animation: "",
         flipped: false,
       },
       {
         cardIndex: -2,
         xPosition: -100,
+        transition: "",
         animation: "",
         flipped: false,
       },
       {
         cardIndex: -1,
         xPosition: -50,
+        transition: "",
         animation: "",
         flipped: false,
       },
       {
         cardIndex: 0,
         xPosition: 0,
+        transition: "",
         animation: "",
         flipped: false,
       },
       {
         cardIndex: 1,
         xPosition: 50,
+        transition: "",
         animation: "",
         flipped: false,
       },
       {
         cardIndex: 2,
         xPosition: 100,
+        transition: "",
         animation: "",
         flipped: false,
       },
       {
         cardIndex: 3,
         xPosition: 150,
+        transition: "",
         animation: "",
         flipped: false,
       },
     ]
   });
+
+  useEffect(() => {
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [state]);  // Without this, space and arrow keys will move card when user is editing its text.
 
   // Left/right to move card. Space key to flip.
   function handleKeyDown(event) {
@@ -108,54 +123,24 @@ const CardsReducer = () => {
     }
   }
 
-  useEffect(() => {
-    window.addEventListener('keydown', handleKeyDown);
-
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [state]);  // Without this, space and arrow keys will move card when user is editing its text.
-
-  // ToDo: Use this to fetch card data from the backend.
-  useEffect(async () => {
-    //const response = await fetch("https://jsonplaceholder.typicode.com/posts");
-    // const response = await fetch("http://localhost:8080/");
-    // const data = await response.json();
-    // console.log(data);
-    // console.log(data[0].backText)
-
-    // const newCardsArr = [];
-    // newCardsArr.push({ backgroundColor: "#", frontText: " ", backText: "", timesAccepted: 0 });   // make sure first card is empty.
-    // for (let d of data) {
-    //   console.log("loop");
-    //   newCardsArr.push(d);
-    // }
-
-    // setCardsArr(newCardsArr);
-  }, [])
-
-  // Returns card from array. If cardIndex is out of bounds, defaults it to index 0 which will hide the card from appearing on the page. (display: none.)
+  // Returns the card the container will display. If index is out of range, the container will be invisible (display: none).
   function getCardAtIndex(cardsArr, cardIndex) {
-    if (cardIndex > 0 && cardIndex < cardsArr.length)
+    if (cardIndex >= 0 && cardIndex < cardsArr.length)
       return cardsArr[cardIndex];
-    return cardsArr[0];
+    return null;
   }
 
   return (
     <>
       <div className="flex">
-        {state.containers.map((c, keyInd) => {
-          return <CardReducer
-            key={keyInd}
+        {state.containers.map((c, keyIndex) => (
+          <CardReducer
+            key={keyIndex}
+            container={c}
             card={getCardAtIndex(state.cardsArr, c.cardIndex)}
-            cardIndex={c.cardIndex}
-            xPosition={c.xPosition}
-            transition={c.transition}
-            flipped={c.flipped}
-            animation={c.animation}
             dispatch={dispatch}
           />
-        })}
+        ))}
       </div>
     </>
   );
@@ -236,9 +221,27 @@ function getCenterContainerIndex(containers) {
 function cardExistsInDirection(containers, cardsArr, direction) {
   const centerContainerIndex = getCenterContainer(containers).cardIndex;
   const nextContainerIndex = (direction === "left") ? centerContainerIndex + 1 : centerContainerIndex - 1;
-  if (nextContainerIndex <= 0 || nextContainerIndex > cardsArr.length - 1)    // Pretend index 0 is out of range because it is reserved for cards showing display: none.
-    return false;
-  return true;
+  if (nextContainerIndex >= 0 && nextContainerIndex < cardsArr.length)
+    return true;
+  return false;
 }
+
+// ToDo: Use this to fetch card data from the backend.
+// useEffect(async () => {
+//   //const response = await fetch("https://jsonplaceholder.typicode.com/posts");
+//   // const response = await fetch("http://localhost:8080/");
+//   // const data = await response.json();
+//   // console.log(data);
+//   // console.log(data[0].backText)
+
+//   // const newCardsArr = [];
+//   // newCardsArr.push({ backgroundColor: "#", frontText: " ", backText: "", timesAccepted: 0 });   // make sure first card is empty.
+//   // for (let d of data) {
+//   //   console.log("loop");
+//   //   newCardsArr.push(d);
+//   // }
+
+//   // setCardsArr(newCardsArr);
+// }, [])
 
 export default CardsReducer;

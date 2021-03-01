@@ -2,11 +2,19 @@ import React from 'react';
 import styled, { keyframes } from "styled-components";
 import CardContent from "./CardContent";
 
-const CardReducer = ({ card, cardIndex, xPosition, transition, flipped, animation, dispatch }) => {
+const CardReducer = ({ container, card, dispatch }) => {
+
+  const { cardIndex, xPosition, transition, animation, flipped } = container;
+
+  // Don't render container if it doesn't have a card to display.
+  if (card === null)
+    return null;
+
   return (
     <Container xPosition={xPosition} transition={transition} animation={animation}>
       <FlipCard flipped={flipped}>
         <Front backgroundColor={card.backgroundColor}>
+          {cardIndex}
           <CardContent text={card.frontText} cardIndex={cardIndex} side={"front"} dispatch={dispatch} />
         </Front>
         <Back>

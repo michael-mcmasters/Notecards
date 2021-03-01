@@ -1,12 +1,6 @@
 {
   "cards": [
     {
-      "backgroundColor": "#",
-      "frontText": " ",
-      "backText": "",
-      "timesAccepted": "0"
-    },
-    {
       "backgroundColor": "#31587A",
       "frontText": "What are the 4 principles of Object Oriented Programming?",
       "backText": "A PIE. Abstraction, Polymorphism, Inheritance, Encapsulation",
