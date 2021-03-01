@@ -2,10 +2,169 @@ import React, { useEffect, useReducer } from 'react';
 import CardReducer from "./CardReducer";
 import cardsJSON from "../../resources/card-data.json";
 
+function reducer(state, action) {
+  switch (action.type) {
+    case "enable-hot-keys":
+      return {
+        ...state,
+        allowHotKeys: action.payload
+      }
+    case "flip":
+      return {
+        ...state,
+        containers: flipContainer(state)
+      }
+    case "cycle-left":
+      return {
+        ...state,
+        containers: moveContainers(state, "left")
+      }
+    case "cycle-right":
+      return {
+        ...state,
+        containers: moveContainers(state, "right")
+      }
+    case "got-card-correct":
+      return {
+        ...state,
+        containers: addAnimation(state, "CardBumpUpAnimation")
+      }
+    case "got-card-wrong":
+      return {
+        ...state,
+        containers: addAnimation(state, "CardBumpDownAnimation")
+      }
+    case "update-text":
+      return {
+        ...state,
+        cardsArr: saveEditedText(state.cardsArr, action.payload)
+      }
+    default:
+      return state;
+  }
+}
+
+const CardsReducer = () => {
+
+  let [state, dispatch] = useReducer(reducer, {
+    allowHotKeys: true,
+    cardsArr: cardsJSON.cards,
+    containers: [
+      {
+        cardIndex: -3,
+        xPosition: -150,
+        animation: "",
+        flipped: false,
+      },
+      {
+        cardIndex: -2,
+        xPosition: -100,
+        animation: "",
+        flipped: false,
+      },
+      {
+        cardIndex: -1,
+        xPosition: -50,
+        animation: "",
+        flipped: false,
+      },
+      {
+        cardIndex: 0,
+        xPosition: 0,
+        animation: "",
+        flipped: false,
+      },
+      {
+        cardIndex: 1,
+        xPosition: 50,
+        animation: "",
+        flipped: false,
+      },
+      {
+        cardIndex: 2,
+        xPosition: 100,
+        animation: "",
+        flipped: false,
+      },
+      {
+        cardIndex: 3,
+        xPosition: 150,
+        animation: "",
+        flipped: false,
+      },
+    ]
+  });
+
+  // Left/right to move card. Space key to flip.
+  function handleKeyDown(event) {
+    if (!state.allowHotKeys) return;
+
+    switch (event.key) {
+      case "ArrowLeft": dispatch({ type: "cycle-left" }); break;
+      case "ArrowRight": dispatch({ type: "cycle-right" }); break;
+      case "ArrowUp": dispatch({ type: "got-card-correct" }); break;
+      case "ArrowDown": dispatch({ type: "got-card-wrong" }); break;
+      case " ": dispatch({ type: "flip" }); break;
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [state]);  // Without this, space and arrow keys will move card when user is editing its text.
+
+  // ToDo: Use this to fetch card data from the backend.
+  useEffect(async () => {
+    //const response = await fetch("https://jsonplaceholder.typicode.com/posts");
+    // const response = await fetch("http://localhost:8080/");
+    // const data = await response.json();
+    // console.log(data);
+    // console.log(data[0].backText)
+
+    // const newCardsArr = [];
+    // newCardsArr.push({ backgroundColor: "#", frontText: " ", backText: "", timesAccepted: 0 });   // make sure first card is empty.
+    // for (let d of data) {
+    //   console.log("loop");
+    //   newCardsArr.push(d);
+    // }
+
+    // setCardsArr(newCardsArr);
+  }, [])
+
+  // Returns card from array. If cardIndex is out of bounds, defaults it to index 0 which will hide the card from appearing on the page. (display: none.)
+  function getCardAtIndex(cardsArr, cardIndex) {
+    if (cardIndex > 0 && cardIndex < cardsArr.length)
+      return cardsArr[cardIndex];
+    return cardsArr[0];
+  }
+
+  return (
+    <>
+      <div className="flex">
+        {state.containers.map((c, keyInd) => {
+          return <CardReducer
+            key={keyInd}
+            card={getCardAtIndex(state.cardsArr, c.cardIndex)}
+            cardIndex={c.cardIndex}
+            xPosition={c.xPosition}
+            transition={c.transition}
+            flipped={c.flipped}
+            animation={c.animation}
+            dispatch={dispatch}
+          />
+        })}
+      </div>
+    </>
+  );
+};
+
 // Flips only the center container.
 function flipContainer({ containers }) {
   const centerIndex = getCenterContainerIndex(containers);
-  return containers.map(({ ...c }, index) => {              // Copy objects in array with spread operator so we are not manipulating state before React sees it.
+  return containers.map(({ ...c }, index) => {                        // { ...c } to copy objects in array so we are not manipulating state before React sees it.
     if (index === centerIndex) {
       c.flipped = !containers[index].flipped;
     }
@@ -81,166 +240,5 @@ function cardExistsInDirection(containers, cardsArr, direction) {
     return false;
   return true;
 }
-
-function reducer(state, action) {
-  switch (action.type) {
-    case "enable-hot-keys":
-      return {
-        ...state,
-        allowHotKeys: action.payload
-      }
-    case "flip":
-      return {
-        ...state,
-        containers: flipContainer(state)
-      }
-    case "cycle-left":
-      return {
-        ...state,
-        containers: moveContainers(state, "left")
-      }
-    case "cycle-right":
-      return {
-        ...state,
-        containers: moveContainers(state, "right")
-      }
-    case "got-card-correct":
-      return {
-        ...state,
-        containers: addAnimation(state, "CardBumpUpAnimation")
-      }
-    case "got-card-wrong":
-      return {
-        ...state,
-        containers: addAnimation(state, "CardBumpDownAnimation")
-      }
-    case "update-text":
-      return {
-        ...state,
-        cardsArr: saveEditedText(state.cardsArr, action.payload)
-      }
-    default:
-      return state;
-  }
-}
-
-const CardsReducer = () => {
-
-  const containers = [
-    {
-      cardIndex: -3,
-      xPosition: -150,
-      animation: "",
-      flipped: false,
-    },
-    {
-      cardIndex: -2,
-      xPosition: -100,
-      animation: "",
-      flipped: false,
-    },
-    {
-      cardIndex: -1,
-      xPosition: -50,
-      animation: "",
-      flipped: false,
-    },
-    {
-      cardIndex: 0,
-      xPosition: 0,
-      animation: "",
-      flipped: false,
-    },
-    {
-      cardIndex: 1,
-      xPosition: 50,
-      animation: "",
-      flipped: false,
-    },
-    {
-      cardIndex: 2,
-      xPosition: 100,
-      animation: "",
-      flipped: false,
-    },
-    {
-      cardIndex: 3,
-      xPosition: 150,
-      animation: "",
-      flipped: false,
-    },
-  ];
-
-  let [state, dispatch] = useReducer(reducer, {
-    containers: containers,
-    cardsArr: cardsJSON.cards,
-    allowHotKeys: true
-  });
-
-  // Left/right to move card. Space key to flip.
-  function handleKeyDown(event) {
-    if (!state.allowHotKeys) return;
-
-    switch (event.key) {
-      case "ArrowLeft": dispatch({ type: "cycle-left" }); break;
-      case "ArrowRight": dispatch({ type: "cycle-right" }); break;
-      case "ArrowUp": dispatch({ type: "got-card-correct" }); break;
-      case "ArrowDown": dispatch({ type: "got-card-wrong" }); break;
-      case " ": dispatch({ type: "flip" }); break;
-    }
-  }
-
-  useEffect(() => {
-    window.addEventListener('keydown', handleKeyDown);
-
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [state]);  // Without this, space and arrow keys will move card when user is editing its text.
-
-  // ToDo: Use this to fetch card data from the backend.
-  useEffect(async () => {
-    //const response = await fetch("https://jsonplaceholder.typicode.com/posts");
-    // const response = await fetch("http://localhost:8080/");
-    // const data = await response.json();
-    // console.log(data);
-    // console.log(data[0].backText)
-
-    // const newCardsArr = [];
-    // newCardsArr.push({ backgroundColor: "#", frontText: " ", backText: "", timesAccepted: 0 });   // make sure first card is empty.
-    // for (let d of data) {
-    //   console.log("loop");
-    //   newCardsArr.push(d);
-    // }
-
-    // setCardsArr(newCardsArr);
-  }, [])
-
-  // Returns card from array. If cardIndex is out of bounds, defaults it to index 0 which will hide the card from appearing on the page. (display: none.)
-  function getCardAtIndex(cardsArr, cardIndex) {
-    if (cardIndex > 0 && cardIndex < cardsArr.length)
-      return cardsArr[cardIndex];
-    return cardsArr[0];
-  }
-
-  return (
-    <>
-      <div className="flex">
-        {state.containers.map((c, keyInd) => {
-          return <CardReducer
-            key={keyInd}
-            card={getCardAtIndex(state.cardsArr, c.cardIndex)}
-            cardIndex={c.cardIndex}
-            xPosition={c.xPosition}
-            transition={c.transition}
-            flipped={c.flipped}
-            animation={c.animation}
-            dispatch={dispatch}
-          />
-        })}
-      </div>
-    </>
-  );
-};
 
 export default CardsReducer;
