@@ -79,8 +79,8 @@ const CardsReducer = () => {
         flipped: false,
       },
       {
-        cardIndex: 0,
-        xPosition: 50,
+        cardIndex: 0,   // On init, this container appears at the center of screen. There are an equal number of containers before and after it.
+        xPosition: 50,  // More containers gives a smoother experience for the user if they are holding the arrow key down to cycle fast. Because containers disappearing will happen off screen.
         transition: "",
         animation: "",
         flipped: false,
@@ -95,6 +95,20 @@ const CardsReducer = () => {
       {
         cardIndex: 2,
         xPosition: 150,
+        transition: "",
+        animation: "",
+        flipped: false,
+      },
+      {
+        cardIndex: 3,
+        xPosition: 200,
+        transition: "",
+        animation: "",
+        flipped: false,
+      },
+      {
+        cardIndex: 4,
+        xPosition: 250,
         transition: "",
         animation: "",
         flipped: false,
@@ -174,9 +188,9 @@ function moveContainers(state, direction) {
     c.transition = "0.39s ease";                                                      // Smooths movement.
     if (c.xPosition < -150) {
       c.cardIndex += numOfContainers;
-      c.xPosition = 150;
+      c.xPosition = 250;
       c.transition = "";
-    } else if (c.xPosition > 150) {
+    } else if (c.xPosition > 250) {
       c.cardIndex -= numOfContainers;
       c.xPosition = -150;
       c.transition = "";
