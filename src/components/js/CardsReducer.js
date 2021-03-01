@@ -20,13 +20,13 @@ function moveContainers(state, direction) {
     return state.containers;
 
   const numOfContainers = state.containers.length;
-  const xPositionAmountToMove = (direction === "left") ? -50 : 50;
+  const amountToMove = (direction === "left") ? -50 : 50;
   return state.containers.map(({ ...c }, index) => {
-    c.animation = "";                                                                 // Cancels any current animations in progress before moving.
+    c.animation = "";                                                                 // Cancels any current animations in progress. (Containers may overlap with one another without this.)
     c.flipped = false;                                                                // Makes sure flipped containers unflip before moving.
 
-    c.cardIndex = state.containers[index].cardIndex;                                  // The card properties this container will show.
-    c.xPosition = state.containers[index].xPosition + xPositionAmountToMove;          // How far from left side of screen container will be. (CSS property.)
+    c.cardIndex = state.containers[index].cardIndex;                                  // The card this container will display.
+    c.xPosition = state.containers[index].xPosition + amountToMove;                   // How far from the left side of screen this container will be. (CSS property.)
     c.transition = "0.39s ease";                                                      // Smooths movement.
     if (c.xPosition < -150) {
       c.cardIndex += numOfContainers;
