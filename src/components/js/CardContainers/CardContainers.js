@@ -134,6 +134,7 @@ const CardContainers = () => {
         case "ArrowUp": dispatch({ type: "got-card-correct" }); break;
         case "ArrowDown": dispatch({ type: "got-card-wrong" }); break;
         case " ": dispatch({ type: "flip" }); break;
+        default: break;
       }
     }
 
@@ -236,7 +237,7 @@ function getCenterContainer(containers) {
 
 function getCenterContainerIndex(containers) {
   const index = containers.findIndex(c => c.xPosition === 50);
-  if (index === -1) throw "Unable to find index of the center card container";
+  if (index === -1) throw new Error("Unable to find index of the center card container");
   return index;
 }
 
