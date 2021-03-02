@@ -1,4 +1,5 @@
 import React from 'react';
+import "../css/Card.css";
 import styled, { keyframes } from "styled-components";
 import CardContent from "./CardContent";
 
@@ -16,6 +17,7 @@ const CardReducer = ({ container, card, dispatch }) => {
         <Front backgroundColor={card.backgroundColor}>
           <CardContent text={card.frontText} cardIndex={cardIndex} side={"front"} dispatch={dispatch} />
         </Front>
+        {/* <Back className="card"> */}
         <Back>
           <CardContent text={card.backText} cardIndex={cardIndex} side={"back"} dispatch={dispatch} />
         </Back>
