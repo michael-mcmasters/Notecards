@@ -74,7 +74,27 @@ const Front = styled.div`
   -webkit-backface-visibility: hidden;
   overflow: hidden;
 
-  background-color: ${props => props.backgroundColor};  
+  background-color: ${props => props.backgroundColor}; 
+  
+    textarea::-webkit-scrollbar {
+    color: transparent;
+    background-color: transparent;
+    width: 10px;      // Width of verticle scrollbar
+    height: 0px;      // 0px hides the horizontal scrollbar
+  }
+
+  textarea::-webkit-scrollbar-thumb:vertical{
+    background: white;
+    border-radius: 10px;
+  } 
+  
+  textarea::-webkit-scrollbar-thumb::horizontal{
+    height: 0px;
+  }
+  
+  textarea::-webkit-scrollbar-corner {
+    display: none;
+  }
 `;
 
 const Back = styled.div`
