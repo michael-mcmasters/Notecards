@@ -14,10 +14,10 @@ const CardReducer = ({ container, card, dispatch }) => {
   return (
     <Container xPosition={xPosition} transition={transition} animation={animation}>
       <FlipCard flipped={flipped}>
-        <Front backgroundColor={card.backgroundColor}>
+        <Front backgroundColor={card.backgroundColor} scrollbarColor={card.backgroundColor}>
           <CardContent text={card.frontText} cardIndex={cardIndex} side={"front"} dispatch={dispatch} />
         </Front>
-        <Back>
+        <Back scrollbarColor={card.backgroundColor}>
           <CardContent text={card.backText} cardIndex={cardIndex} side={"back"} dispatch={dispatch} />
         </Back>
       </FlipCard>
@@ -100,7 +100,7 @@ const Back = styled.div`
   }
   
   textarea::-webkit-scrollbar-thumb:vertical{
-    background: blue;
+    background: ${props => props.scrollbarColor};
     border-radius: 10px;
   } 
   
