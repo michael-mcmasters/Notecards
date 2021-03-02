@@ -1,5 +1,5 @@
 import './App.css';
-import CardContainers from "./components/js/CardContainers/CardContainers.js"
+import CardContainers from "./components/CardContainers/CardContainers.js"
 
 function App() {
 

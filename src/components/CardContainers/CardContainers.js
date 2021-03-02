@@ -1,5 +1,5 @@
 import React, { useEffect, useReducer } from 'react';
-import cardsJSON from "../../../resources/card-data.json";
+import cardsJSON from "../../resources/card-data.json";
 import CardContainer from "./CardContainer";
 
 function reducer(state, action) {
