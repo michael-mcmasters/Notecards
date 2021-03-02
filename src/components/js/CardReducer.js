@@ -17,7 +17,6 @@ const CardReducer = ({ container, card, dispatch }) => {
         <Front backgroundColor={card.backgroundColor}>
           <CardContent text={card.frontText} cardIndex={cardIndex} side={"front"} dispatch={dispatch} />
         </Front>
-        {/* <Back className="card"> */}
         <Back>
           <CardContent text={card.backText} cardIndex={cardIndex} side={"back"} dispatch={dispatch} />
         </Back>
@@ -92,6 +91,26 @@ const Back = styled.div`
   color: #333;
   text-align: center;
   transform: rotateY(180deg);
+  
+  textarea::-webkit-scrollbar {
+    color: transparent;
+    background-color: transparent;
+    width: 10px;      // Width of verticle scrollbar
+    height: 0px;      // 0px hides the horizontal scrollbar
+  }
+  
+  textarea::-webkit-scrollbar-thumb:vertical{
+    background: blue;
+    border-radius: 10px;
+  } 
+  
+  textarea::-webkit-scrollbar-thumb::horizontal{
+    height: 0px;
+  }
+  
+  textarea::-webkit-scrollbar-corner {
+    display: none;
+  }
 `;
 
 export default CardReducer;

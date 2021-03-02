@@ -7,26 +7,3 @@
 .width {
   width: fit-content;
 }
-
-
-
-textarea::-webkit-scrollbar {
-  width: 10px;
-}
-
-::-webkit-scrollbar-thumb:vertical{
-    background: rgb(224, 123, 123);
-    border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:horizontal{
-    display: none;
-}
-
-textarea::-webkit-scrollbar-button:vertical:decrement,
-textarea::-webkit-scrollbar-button:vertical:increment,
-textarea::-webkit-scrollbar-button:horizontal:decrement,
-textarea::-webkit-scrollbar-button:horizontal:increment,
-textarea::-webkit-scrollbar-corner {
-  display: none;
-}
