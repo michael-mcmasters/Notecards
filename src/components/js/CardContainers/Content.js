@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from "styled-components";
 import Button from "./Button";
 
-const CardContent = ({ text, cardIndex, side, dispatch }) => {
+const Content = ({ text, cardIndex, side, dispatch }) => {
   const [userEditingText, setUserEditingText] = useState(false);
   const [editedText, setEditedText] = useState("");   // The new text the user types into the card. text will be set to the edtedText when user clicks the save button.
 
@@ -74,7 +74,7 @@ const Input = styled.textarea`
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
 `;
 
-export default CardContent;
+export default Content;
 
 
 

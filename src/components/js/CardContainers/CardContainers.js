@@ -1,6 +1,6 @@
 import React, { useEffect, useReducer } from 'react';
-import cardsJSON from "../../resources/card-data.json";
-import CardReducer from "./CardReducer";
+import cardsJSON from "../../../resources/card-data.json";
+import CardContainer from "./CardContainer";
 
 function reducer(state, action) {
   switch (action.type) {
@@ -44,7 +44,7 @@ function reducer(state, action) {
   }
 }
 
-const CardsReducer = () => {
+const CardContainers = () => {
 
   const [state, dispatch] = useReducer(reducer, {
     allowHotKeys: true,
@@ -155,7 +155,7 @@ const CardsReducer = () => {
     <>
       <div className="flex">
         {state.containers.map((c, keyIndex) => (
-          <CardReducer
+          <CardContainer
             key={keyIndex}
             container={c}
             card={getCardAtIndex(state.cardsArr, c.cardIndex)}
@@ -268,4 +268,4 @@ function cardExistsInDirection(containers, cardsArr, direction) {
 //   // setCardsArr(newCardsArr);
 // }, [])
 
-export default CardsReducer;
+export default CardContainers;

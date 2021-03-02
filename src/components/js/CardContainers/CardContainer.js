@@ -1,9 +1,8 @@
 import React from 'react';
-import "../css/Card.css";
 import styled, { css, keyframes } from "styled-components";
-import CardContent from "./CardContent";
+import Content from "./Content";
 
-const CardReducer = ({ container, card, dispatch }) => {
+const CardContainer = ({ container, card, dispatch }) => {
 
   const { cardIndex, xPosition, transition, animation, flipped } = container;
 
@@ -15,10 +14,10 @@ const CardReducer = ({ container, card, dispatch }) => {
     <Container xPosition={xPosition} transition={transition} animation={animation}>
       <FlipCard flipped={flipped}>
         <Front backgroundColor={card.backgroundColor} scrollbarColor="white">
-          <CardContent text={card.frontText} cardIndex={cardIndex} side={"front"} dispatch={dispatch} />
+          <Content text={card.frontText} cardIndex={cardIndex} side={"front"} dispatch={dispatch} />
         </Front>
         <Back scrollbarColor={card.backgroundColor}>
-          <CardContent text={card.backText} cardIndex={cardIndex} side={"back"} dispatch={dispatch} />
+          <Content text={card.backText} cardIndex={cardIndex} side={"back"} dispatch={dispatch} />
         </Back>
       </FlipCard>
     </Container>
@@ -119,4 +118,4 @@ const Back = styled.div`
   ${ScrollBar}
 `;
 
-export default CardReducer;
+export default CardContainer;
