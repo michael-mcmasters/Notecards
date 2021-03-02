@@ -1,6 +1,6 @@
 import React from 'react';
 import "../css/Card.css";
-import styled, { keyframes } from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 import CardContent from "./CardContent";
 
 const CardReducer = ({ container, card, dispatch }) => {
@@ -14,7 +14,7 @@ const CardReducer = ({ container, card, dispatch }) => {
   return (
     <Container xPosition={xPosition} transition={transition} animation={animation}>
       <FlipCard flipped={flipped}>
-        <Front backgroundColor={card.backgroundColor} scrollbarColor={card.backgroundColor}>
+        <Front backgroundColor={card.backgroundColor} scrollbarColor="white">
           <CardContent text={card.frontText} cardIndex={cardIndex} side={"front"} dispatch={dispatch} />
         </Front>
         <Back scrollbarColor={card.backgroundColor}>
@@ -64,6 +64,28 @@ const FlipCard = styled.div`
   transform: ${props => props.flipped ? "rotateY(180deg)" : "rotateY(0deg)"};
 `;
 
+const ScrollBar = css`
+    textarea::-webkit-scrollbar {
+    color: transparent;
+    background-color: transparent;
+    width: 10px;      // Width of verticle scrollbar
+    height: 0px;      // 0px hides the horizontal scrollbar
+  }
+
+  textarea::-webkit-scrollbar-thumb:vertical{
+    background: ${props => props.scrollbarColor};
+    border-radius: 10px;
+  } 
+  
+  textarea::-webkit-scrollbar-thumb::horizontal{
+    height: 0px;
+  }
+  
+  textarea::-webkit-scrollbar-corner {
+    display: none;
+  }
+`;
+
 const Front = styled.div`
   font-size: 28px;
 
@@ -76,25 +98,7 @@ const Front = styled.div`
 
   background-color: ${props => props.backgroundColor}; 
   
-    textarea::-webkit-scrollbar {
-    color: transparent;
-    background-color: transparent;
-    width: 10px;      // Width of verticle scrollbar
-    height: 0px;      // 0px hides the horizontal scrollbar
-  }
-
-  textarea::-webkit-scrollbar-thumb:vertical{
-    background: white;
-    border-radius: 10px;
-  } 
-  
-  textarea::-webkit-scrollbar-thumb::horizontal{
-    height: 0px;
-  }
-  
-  textarea::-webkit-scrollbar-corner {
-    display: none;
-  }
+  ${ScrollBar}
 `;
 
 const Back = styled.div`
@@ -112,25 +116,7 @@ const Back = styled.div`
   text-align: center;
   transform: rotateY(180deg);
   
-  textarea::-webkit-scrollbar {
-    color: transparent;
-    background-color: transparent;
-    width: 10px;      // Width of verticle scrollbar
-    height: 0px;      // 0px hides the horizontal scrollbar
-  }
-  
-  textarea::-webkit-scrollbar-thumb:vertical{
-    background: ${props => props.scrollbarColor};
-    border-radius: 10px;
-  } 
-  
-  textarea::-webkit-scrollbar-thumb::horizontal{
-    height: 0px;
-  }
-  
-  textarea::-webkit-scrollbar-corner {
-    display: none;
-  }
+  ${ScrollBar}
 `;
 
 export default CardReducer;
