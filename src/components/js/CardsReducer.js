@@ -129,8 +129,10 @@ const CardsReducer = () => {
   function handleKeyDown(event) {
     if (!state.allowHotKeys) return;
 
-    if (event.key == " " && event.target == document.body) {
-      event.preventDefault(); // Disable space bar scrolling screen down.
+    if (event.target === document.body) {
+      if (event.key === " " || event.key === "ArrowUp" || event.key === "ArrowDown") {
+        event.preventDefault();   // Prevent keys from scrolling window.
+      }
     }
 
     switch (event.key) {
