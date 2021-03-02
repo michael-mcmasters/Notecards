@@ -117,32 +117,32 @@ const CardContainers = () => {
   });
 
   useEffect(() => {
+
+    const handleKeyDown = (event) => {
+      if (!state.allowHotKeys)
+        return;
+
+      if (event.target === document.body) {
+        if (event.key === " " || event.key === "ArrowUp" || event.key === "ArrowDown") {
+          event.preventDefault();   // Prevent keys from scrolling window.
+        }
+      }
+
+      switch (event.key) {
+        case "ArrowLeft": dispatch({ type: "cycle-left" }); break;
+        case "ArrowRight": dispatch({ type: "cycle-right" }); break;
+        case "ArrowUp": dispatch({ type: "got-card-correct" }); break;
+        case "ArrowDown": dispatch({ type: "got-card-wrong" }); break;
+        case " ": dispatch({ type: "flip" }); break;
+      }
+    }
+
     window.addEventListener('keydown', handleKeyDown);
 
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [state]);  // Without this, space and arrow keys will move card when user is editing its text.
-
-
-  // Left/right to move card. Space key to flip.
-  function handleKeyDown(event) {
-    if (!state.allowHotKeys) return;
-
-    if (event.target === document.body) {
-      if (event.key === " " || event.key === "ArrowUp" || event.key === "ArrowDown") {
-        event.preventDefault();   // Prevent keys from scrolling window.
-      }
-    }
-
-    switch (event.key) {
-      case "ArrowLeft": dispatch({ type: "cycle-left" }); break;
-      case "ArrowRight": dispatch({ type: "cycle-right" }); break;
-      case "ArrowUp": dispatch({ type: "got-card-correct" }); break;
-      case "ArrowDown": dispatch({ type: "got-card-wrong" }); break;
-      case " ": dispatch({ type: "flip" }); break;
-    }
-  }
+  }, [state.allowHotKeys]);
 
   // Returns the card the container will display. If index is out of range, the container will be invisible (display: none).
   function getCardAtIndex(cardsArr, cardIndex) {
