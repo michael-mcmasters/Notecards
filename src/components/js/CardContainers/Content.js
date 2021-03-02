@@ -40,7 +40,7 @@ const Content = ({ text, cardIndex, side, dispatch }) => {
         onBlur={handleInputUnfocus}
         onChange={handleUserTyping}
       />
-      <div class="flex justify-end">
+      <FlexEnd>
         <Button
           buttonText={"Cancel"}
           onClick={handleCancelButton}
@@ -53,13 +53,18 @@ const Content = ({ text, cardIndex, side, dispatch }) => {
           transitionDelay={"0.4s"}
           userEditingCardText={userEditingText}
         />
-      </div>
+      </FlexEnd>
     </Container>
   );
 };
 
 const Container = styled.div`
   padding: 1.5rem;
+`;
+
+const FlexEnd = styled.div`
+  display: flex;
+  justify-content: flex-end;
 `;
 
 // Have to set height manually because textarea's don't have an auto height property, and they don't fill parent div's height.
