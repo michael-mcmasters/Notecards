@@ -46,7 +46,7 @@ function reducer(state, action) {
 
 const CardsReducer = () => {
 
-  let [state, dispatch] = useReducer(reducer, {
+  const [state, dispatch] = useReducer(reducer, {
     allowHotKeys: true,
     cardsArr: cardsJSON.cards,
     containers: [
@@ -124,9 +124,14 @@ const CardsReducer = () => {
     };
   }, [state]);  // Without this, space and arrow keys will move card when user is editing its text.
 
+
   // Left/right to move card. Space key to flip.
   function handleKeyDown(event) {
     if (!state.allowHotKeys) return;
+
+    if (event.key == " " && event.target == document.body) {
+      event.preventDefault(); // Disable space bar scrolling screen down.
+    }
 
     switch (event.key) {
       case "ArrowLeft": dispatch({ type: "cycle-left" }); break;
@@ -160,6 +165,9 @@ const CardsReducer = () => {
   );
 };
 
+
+
+
 // Flips only the center container.
 function flipContainer({ containers }) {
   const centerIndex = getCenterContainerIndex(containers);
@@ -183,16 +191,16 @@ function moveContainers(state, direction) {
     c.animation = "";                                                                 // Cancels any current animations in progress. (Containers may overlap with one another without this.)
     c.flipped = false;                                                                // Makes sure flipped containers unflip before moving.
 
-    c.cardIndex = state.containers[index].cardIndex;                                  // The card this container will display.
     c.xPosition = state.containers[index].xPosition + amountToMove;                   // How far from the left side of screen this container will be. (CSS property.)
+    c.cardIndex = state.containers[index].cardIndex;                                  // The card this container will display.
     c.transition = "0.39s ease";                                                      // Smooths movement.
     if (c.xPosition < -150) {
-      c.cardIndex += numOfContainers;
       c.xPosition = 250;
+      c.cardIndex += numOfContainers;
       c.transition = "";
     } else if (c.xPosition > 250) {
-      c.cardIndex -= numOfContainers;
       c.xPosition = -150;
+      c.cardIndex -= numOfContainers;
       c.transition = "";
     }
     return c;
