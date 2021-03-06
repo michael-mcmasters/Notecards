@@ -5,9 +5,11 @@ Created with a modern design and smooth transitions, my inspiration for making t
 
 [The Spring backend can be found here](https://github.com/michael-mcmasters/Notecards-Spring).
 
-[View the live site here](https://master.d2u3nakn42rssp.amplifyapp.com/). It's deployed using AWS.
+## To View
+The website is deployed using AWS.<br>
+[View it here.](https://master.d2u3nakn42rssp.amplifyapp.com/)
 
-## To Run
+## To Run Locally
 Using Node
 ```
 git clone https://github.com/michael-mcmasters/Notecards.git
