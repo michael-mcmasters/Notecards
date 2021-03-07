@@ -1,10 +1,12 @@
 import './App.css';
 import CardContainers from "./components/CardContainers/CardContainers.js"
+import Navbar from "./components/Navbar/Navbar.js";
 
 function App() {
 
   return (
     <div className="App">
+      <Navbar></Navbar>
       <h1 className="title App-logo">Java</h1>
       <CardContainers></CardContainers>
       <div className="controls-description">
