@@ -5,8 +5,8 @@ const Navbar = () => {
   return (
       <Container>
         <FirstItem>Home</FirstItem>
-        <Item>My Cards</Item>
         <Item>Popular Cards</Item>
+        <Item>Account</Item>
         
       </Container>
   );
@@ -16,7 +16,7 @@ const Container = styled.div`
   padding: 1em;
   border: 1px solid red;
   display: flex;
-  
+  /* width: 100vw; */
 `;
 
 const Item = styled.div`
