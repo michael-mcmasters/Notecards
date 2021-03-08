@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled, { css } from "styled-components";
-const { detect } = require('detect-browser');
+import { detect } from "detect-browser";
+
 
 const Button = ({ buttonText, transitionDelay, onClick, userEditingCardText }) => {
   const [clicked, setClicked] = useState(false);

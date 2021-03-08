@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { css, keyframes } from "styled-components";
+import { detect } from "detect-browser";
 import Content from "./Content";
 
 const CardContainer = ({ container, card, dispatch }) => {
@@ -10,10 +11,11 @@ const CardContainer = ({ container, card, dispatch }) => {
   if (card === null)
     return null;
 
+  const browser = detect();
   return (
     <Container xPosition={xPosition} transition={transition} animation={animation}>
       <FlipCard flipped={flipped}>
-        <Front backgroundColor={card.backgroundColor} scrollbarColor="white">
+        <Front browser={browser} backgroundColor={card.backgroundColor} scrollbarColor="white">
           <Content text={card.frontText} cardIndex={cardIndex} side={"front"} dispatch={dispatch} />
         </Front>
         <Back scrollbarColor={card.backgroundColor}>
@@ -93,7 +95,7 @@ const Front = styled.div`
   border-radius: 10px;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
-  /* overflow: hidden; */
+  overflow: ${props => props.browser.name === "safari" ? "initial" : "hidden"};
 
   background-color: ${props => props.backgroundColor}; 
   
