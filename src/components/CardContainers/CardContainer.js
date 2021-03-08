@@ -93,7 +93,7 @@ const Front = styled.div`
   border-radius: 10px;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
-  overflow: hidden;
+  /* overflow: hidden; */
 
   background-color: ${props => props.backgroundColor}; 
   

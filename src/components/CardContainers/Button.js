@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 const Button = ({ buttonText, transitionDelay, onClick, userEditingCardText }) => {
   const [clicked, setClicked] = useState(false);
@@ -39,9 +39,24 @@ const StyledButton = styled.button`
   border-radius: 100px;
   background-color: ${props => props.clicked ? "green" : "red"};
   
-  bottom: ${props => props.userEditingText ? "1em" : "-5em"};
-  transition: bottom 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  transition-delay: ${props => props.transitionDelay};
+  /* bottom: ${props => props.userEditingText ? "1em" : "-5em"}; */
+  /* display: none; */
+  visibility: hidden;
+  transition: 0.4s;
+  width: 0;
+  height: 0;
+  padding: 0;
+  font-size: 0em;
+  ${props => props.userEditingText === true && css`
+      /* display: inherit; */
+      visibility: inherit;
+      /* height: 3.5em; */
+      /* width: 3.5em; */
+      padding: 1em;
+      font-size: 1rem;
+`}
+  /* transition: bottom 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); */
+  /* transition-delay: ${props => props.transitionDelay}; */
   cursor: pointer;
   
   &:focus {
