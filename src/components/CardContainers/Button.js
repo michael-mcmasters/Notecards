@@ -5,14 +5,6 @@ const { detect } = require('detect-browser');
 const Button = ({ buttonText, transitionDelay, onClick, userEditingCardText }) => {
   const [clicked, setClicked] = useState(false);
 
-  const browser = detect();
-  if (browser) {
-    console.log(browser.name);
-    console.log(browser.version);
-    console.log(browser.os);
-  }
-
-
   useEffect(() => {
     if (userEditingCardText) {
       setClicked(false);
@@ -24,27 +16,57 @@ const Button = ({ buttonText, transitionDelay, onClick, userEditingCardText }) =
     onClick();
   }
 
+  const browser = detect();
   if (browser.name === "safari") {
-    return <div style={{ backgroundColor: "red" }}>safari</div>
+    return (
+      <div>
+        <ButtonSafari
+          onClick={handleOnClick}
+          clicked={clicked}
+          userEditingText={userEditingCardText}
+          transitionDelay={transitionDelay}
+        >
+          {buttonText}
+        </ButtonSafari>
+      </div>
+    )
   } else {
-    return <div style={{ backgroundColor: "blue" }}>chrome</div>
+    return (
+      <div>
+        <ButtonChrome
+          onClick={handleOnClick}
+          clicked={clicked}
+          userEditingText={userEditingCardText}
+          transitionDelay={transitionDelay}
+        >
+          {buttonText}
+        </ButtonChrome>
+      </div>
+    )
   }
-
-  return (
-    <div>
-      <StyledButton
-        onClick={handleOnClick}
-        clicked={clicked}
-        userEditingText={userEditingCardText}
-        transitionDelay={transitionDelay}
-      >
-        {buttonText}
-      </StyledButton>
-    </div>
-  );
 };
 
-const StyledButton = styled.button`
+const ButtonChrome = styled.button`
+  position: relative;
+  border: none;
+  width: 4em;
+  height: 4em;
+  margin-bottom: 3em;
+  margin-right: 1em;
+  border-radius: 100px;
+  background-color: ${props => props.clicked ? "green" : "red"};
+  
+  bottom: ${props => props.userEditingText ? "1em" : "-5em"};
+  transition: bottom 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition-delay: ${props => props.transitionDelay};
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
+`;
+
+const ButtonSafari = styled.button`
   position: relative;
   border: none;
   width: 4em;
