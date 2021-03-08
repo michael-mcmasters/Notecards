@@ -1,8 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import styled, { css } from "styled-components";
+const { detect } = require('detect-browser');
 
 const Button = ({ buttonText, transitionDelay, onClick, userEditingCardText }) => {
   const [clicked, setClicked] = useState(false);
+
+  const browser = detect();
+  if (browser) {
+    console.log(browser.name);
+    console.log(browser.version);
+    console.log(browser.os);
+  }
+
 
   useEffect(() => {
     if (userEditingCardText) {
@@ -13,6 +22,12 @@ const Button = ({ buttonText, transitionDelay, onClick, userEditingCardText }) =
   const handleOnClick = () => {
     setClicked(true);
     onClick();
+  }
+
+  if (browser.name === "safari") {
+    return <div style={{ backgroundColor: "red" }}>safari</div>
+  } else {
+    return <div style={{ backgroundColor: "blue" }}>chrome</div>
   }
 
   return (
