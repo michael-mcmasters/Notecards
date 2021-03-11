@@ -6,8 +6,7 @@ Created with a modern design and smooth transitions, my inspiration for making t
 [The Spring backend can be found here](https://github.com/michael-mcmasters/Notecards-Spring).
 
 ## To View
-[Homepage.](https://master.d2u3nakn42rssp.amplifyapp.com/)<br>
-The website is deployed using AWS.<br>
+[Live site](https://master.d2u3nakn42rssp.amplifyapp.com/) deployed using AWS Amplify.
 
 ## To Run Locally
 Using Node
