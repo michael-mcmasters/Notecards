@@ -5,13 +5,18 @@ import Card from "./Card.js";
 const CardGallary = ({deck}) => {
   return (
     <Container>
-      {/* {deck[0].frontText} */}
-      {deck.cards[0].frontText}
+      {deck.cards.map((c, index) => (
+        <Card
+          key={index} 
+          card={c}
+        />
+      ))}
     </Container>
   );
 };
 
 const Container = styled.div`
+  display: flex;
   padding: 1rem;
 `;
 
