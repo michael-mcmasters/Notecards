@@ -11,7 +11,9 @@ class HomePage extends Component {
           <Option><P>Create Deck</P></Option>
         </OptionContainer>
         
-        <PopularDecks />
+        <PopularDecksContainer>
+          <PopularDecks />
+        </PopularDecksContainer>
       </>
     );
   }
@@ -33,7 +35,12 @@ const Option = styled.div`
 `;
 
 const P = styled.p`
-    margin: auto;
+  margin: auto;
+`;
+
+const PopularDecksContainer = styled.div`
+  display: flex;
+  justify-content: center;
 `;
 
 export default HomePage;

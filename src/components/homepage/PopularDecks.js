@@ -43,6 +43,7 @@ const PopularDecks = () => {
 
 const Wrapper = styled.div`
   margin-top: 5rem;
+  width: fit-content;
 `;
 
 const DeckTitle = styled.p`
