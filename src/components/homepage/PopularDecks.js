@@ -9,15 +9,15 @@ const PopularDecks = () => {
   // ToDo: Import decks from an API.
   let deckOne = {
     name: "Java",
-    cards: cards.slice(0, 4)
+    cards: cards.slice(0, 7)
   }
   let deckTwo = {
     name: "Spanish",
-    cards: cards.slice(4, 10)
+    cards: cards.slice(15, 23)
   }
   let deckThree = {
     name: "State Capitals",
-    cards: cards.slice(10, 20)
+    cards: cards.slice(30, 37)
   }
   
   const decks = [ deckOne, deckTwo, deckThree ];
@@ -28,7 +28,9 @@ const PopularDecks = () => {
         Popular Decks
         {decks.map((deck, index) => (
           <Container key={index}>
-            {deck.name}
+            <DeckTitle>
+              {deck.name}
+            </DeckTitle>
             <Deck>
               <CardGallary deck={deck} />
             </Deck>
@@ -43,16 +45,21 @@ const Wrapper = styled.div`
   margin-top: 5rem;
 `;
 
+const DeckTitle = styled.p`
+  width: fit-content;
+  margin: 0;
+  margin-left: 1rem;
+  margin-bottom: 1rem;
+  height: 0rem;
+`;
+
 const Container = styled.div`
   margin: 4rem;
   margin-top: 0;
-  display: flex;
-  justify-content: space-between;
   border: 1px solid green;
 `;
 
 const Deck = styled.div`
-  border: 1px solid red;
   display: flex;
 `;
 

@@ -6,7 +6,6 @@ class HomePage extends Component {
   render() {
     return (
       <>
-        home
         <OptionContainer>
           <Option><P>View Popular Decks</P></Option>
           <Option><P>Create Deck</P></Option>
