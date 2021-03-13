@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from "styled-components";
 
-const CardGallary = () => {
+const CardGallary = ({deck}) => {
   return (
     <Container>
-      syyee
+      {deck[0].frontText}
     </Container>
   );
 };

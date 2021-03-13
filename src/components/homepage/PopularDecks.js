@@ -4,15 +4,27 @@ import cardsJSON from "../../resources/card-data.json";
 import CardGallary from "./CardGallary.js";
 
 const PopularDecks = () => {
-  const [decks, setDecks] = useState(cardsJSON.cards);
+  const [cards, setCards] = useState(cardsJSON.cards);
   
-  console.log(decks);
+  let deckOne = cards.slice(0, 4);
+  let deckTwo = cards.slice(4, 10);
+  let deckThree = cards.slice(10, 20);
+  
+  // In the future, will import decks from an API.
+  const decks = [ deckOne, deckTwo, deckThree ];
   
   return (
     <div>
       <Wrapper>
         Popular Decks
-        <Container>
+        {decks.map((deck, index) => (
+          <Container>
+           Spanish:
+           <CardGallary key={index} deck={deck} />
+          </Container>
+        ))}
+        
+        {/* <Container>
           Java: <CardGallary />
         </Container>
         <Container>
@@ -20,7 +32,7 @@ const PopularDecks = () => {
         </Container>
         <Container>
           State Capitals: <CardGallary />
-        </Container>
+        </Container> */}
       </Wrapper>
     </div>
   );
