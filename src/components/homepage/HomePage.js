@@ -1,25 +1,23 @@
 import React, { Component } from 'react';
-import styled, { css, keyframes } from "styled-components";
+import styled from "styled-components";
+import PopularDecks from "./PopularDecks.js"
 
 class HomePage extends Component {
   render() {
     return (
-      <div>
+      <>
         home
-        <Container>
+        <OptionContainer>
           <Option><P>View Popular Decks</P></Option>
           <Option><P>Create Deck</P></Option>
-        </Container>
-      </div>
+        </OptionContainer>
+        <PopularDecks />
+      </>
     );
   }
 }
 
-const Flex = css`
-  
-`;
-
-const Container = styled.div`
+const OptionContainer = styled.div`
   margin-top: 5rem;
   display: flex;
   justify-content: center;
@@ -37,7 +35,5 @@ const Option = styled.div`
 const P = styled.p`
     margin: auto;
 `;
-
-
 
 export default HomePage;

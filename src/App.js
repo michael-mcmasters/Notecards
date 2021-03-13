@@ -1,7 +1,7 @@
 import './App.css';
-import Navbar from "./components/Navbar/Navbar.js";
-import HomePage from "./components/HomePage.js";
-import CardContainers from "./components/CardContainers/CardContainers.js"
+import Navbar from "./components/navbar/Navbar.js";
+import HomePage from "./components/homepage/HomePage.js";
+import CardContainers from "./components/cards/CardContainers.js"
 
 function App() {
 
