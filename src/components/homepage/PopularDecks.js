@@ -1,8 +1,13 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import styled from "styled-components";
+import cardsJSON from "../../resources/card-data.json";
 import CardGallary from "./CardGallary.js";
 
 const PopularDecks = () => {
+  const [decks, setDecks] = useState(cardsJSON.cards);
+  
+  console.log(decks);
+  
   return (
     <div>
       <Wrapper>
