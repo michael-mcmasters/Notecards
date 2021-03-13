@@ -10,7 +10,7 @@ const PopularDecks = () => {
   let deckTwo = cards.slice(4, 10);
   let deckThree = cards.slice(10, 20);
   
-  // In the future, will import decks from an API.
+  // ToDo: Import decks from an API.
   const decks = [ deckOne, deckTwo, deckThree ];
   
   return (
@@ -18,9 +18,9 @@ const PopularDecks = () => {
       <Wrapper>
         Popular Decks
         {decks.map((deck, index) => (
-          <Container>
+          <Container key={index}>
            Spanish:
-           <CardGallary key={index} deck={deck} />
+           <CardGallary deck={deck} />
           </Container>
         ))}
         
