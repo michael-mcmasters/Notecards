@@ -1,18 +1,20 @@
 import React from 'react';
 import styled from "styled-components";
+import CardGallary from "./CardGallary.js";
 
 const PopularDecks = () => {
   return (
     <div>
       <Wrapper>
+        Popular Decks
         <Container>
-          Java: <Gallary />
+          Java: <CardGallary />
         </Container>
         <Container>
-          Spanish: <Gallary />
+          Spanish: <CardGallary />
         </Container>
         <Container>
-          State Capitals: <Gallary />
+          State Capitals: <CardGallary />
         </Container>
       </Wrapper>
     </div>
@@ -24,11 +26,10 @@ const Wrapper = styled.div`
 `;
 
 const Container = styled.div`
+  margin: 4rem;
+  margin-top: 0;
+  border: 1px solid red;
   display: flex;
-`;
-
-const Gallary = styled.div`
-
 `;
 
 export default PopularDecks;
