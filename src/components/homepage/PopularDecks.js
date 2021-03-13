@@ -56,7 +56,7 @@ const DeckTitle = styled.p`
 const Container = styled.div`
   margin: 4rem;
   margin-top: 0;
-  border: 1px solid green;
+  /* border: 1px solid green; */
 `;
 
 const Deck = styled.div`

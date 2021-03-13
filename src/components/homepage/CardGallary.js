@@ -17,7 +17,7 @@ const CardGallary = ({deck}) => {
 
 const Container = styled.div`
   display: flex;
-  padding: 1rem;
+  padding: 0 0.5rem;
 `;
 
 export default CardGallary;

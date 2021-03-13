@@ -10,10 +10,13 @@ const Card = ({card}) => {
 };
 
 const Container = styled.div`
-  padding: 0.5rem;
+  margin: 0.5rem;
+  padding: 1rem;
   max-width: 7rem;
-  font-size: 0.6rem;
-  border: 1px solid yellow;
+  min-width: 7rem;
+  font-size: 0.7rem;
+  background-color: skyblue;
+  border-radius: 10px;
 `;
 
 export default Card;
