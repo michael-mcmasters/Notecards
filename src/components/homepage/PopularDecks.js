@@ -6,11 +6,20 @@ import CardGallary from "./CardGallary.js";
 const PopularDecks = () => {
   const [cards, setCards] = useState(cardsJSON.cards);
   
-  let deckOne = cards.slice(0, 4);
-  let deckTwo = cards.slice(4, 10);
-  let deckThree = cards.slice(10, 20);
-  
   // ToDo: Import decks from an API.
+  let deckOne = {
+    name: "Spanish",
+    cards: cards.slice(0, 4)
+  }
+  let deckTwo = {
+    name: "Spanish",
+    cards: cards.slice(4, 10)
+  }
+  let deckThree = {
+    name: "Spanish",
+    cards: cards.slice(10, 20)
+  }
+  
   const decks = [ deckOne, deckTwo, deckThree ];
   
   return (
