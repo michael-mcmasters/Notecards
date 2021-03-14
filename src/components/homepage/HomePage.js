@@ -20,10 +20,12 @@ class HomePage extends Component {
 }
 
 const OptionContainer = styled.div`
-  margin-top: 5rem;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
   display: flex;
   justify-content: center;
-  `;
+  background-color: yellow;
+`;
 
 const Option = styled.div`
   margin: 0 3rem;
