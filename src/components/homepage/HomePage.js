@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styled from "styled-components";
 import Options from "./Options.js"
+import FeaturedCards from "./FeaturedCard.js";
 import PopularDecks from "./PopularDecks.js"
 
 class HomePage extends Component {
@@ -8,6 +9,7 @@ class HomePage extends Component {
     return (
       <>
         <Options />
+        <FeaturedCards />
         <PopularDecks />
 
         {/* <PopularDecksContainer>

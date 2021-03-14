@@ -15,8 +15,8 @@ const Navbar = () => {
 const Container = styled.div`
   padding: 1.7rem;
   border: 1px solid red;
-  display: flex;
   background-color: #0094E8;
+  display: flex;
 `;
 
 const Item = styled.div`

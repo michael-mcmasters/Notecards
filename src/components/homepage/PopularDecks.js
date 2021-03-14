@@ -23,6 +23,9 @@ const HomePage2 = () => {
 
   return (
     <Wrapper>
+      <Header>
+        Popular Decks
+      </Header>
       <DeckRow>
         <DeckName>
           {decks[0].name}
@@ -67,11 +70,16 @@ const Wrapper = styled.div`
   /* border: 1px solid yellow; */
 `;
 
+const Header = styled.h1`
+  
+`;
+
 const DeckRow = styled.div`
   display: flex;
   justify-content: space-evenly;
   background-color: gray;
-  margin: 5rem 0;
+  /* margin: 5rem 0; */
+  margin-bottom: 1rem;
   overflow: hidden;
   /* border: 1px solid red; */
 `;
