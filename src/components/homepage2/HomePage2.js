@@ -29,7 +29,7 @@ const HomePage2 = () => {
           <Card>This is a really long sentence. We want to see what happens when we have really long sentences.</Card>
           <Card>{decks[0].cards[6].frontText}</Card>
           <Card>{decks[0].cards[5].frontText}</Card>
-          <Card>{decks[0].cards[4].frontText}</Card>
+          <Card>{decks[0].cards[5].frontText}</Card>
         </CardsGallary>
       </DeckRow>
       <DeckRow>
@@ -53,22 +53,17 @@ const DeckRow = styled.div`
   background-color: gray;
   margin: 5rem 0;
   border: 1px solid red;
+  overflow: hidden;
 `;
 
 const CardsGallary = styled.div`
-  display: flex;
-  width: 40rem;
+  position: relative;
+  left: 10%;              /* Div is pushed to the right so that only part of last card is shown. */
+  margin-left: -2rem;     /* Offset its margin */
   border: 1px solid teal;
+  overflow: hidden;
+  display: flex;
 `;
-
-// const Card = styled.p`
-//   background-color: skyblue;
-//   margin: 0.5rem;
-//   /* white-space: nowrap; */
-//   /* overflow: hidden; */
-//   text-overflow: ellipsis;
-//   max-height: 3rem;
-// `;
 
 const Card = styled.p`
   margin: 1rem;
@@ -78,7 +73,5 @@ const Card = styled.p`
   text-overflow: ellipsis;
   border: 1px solid #000000;
 `;
-
-
 
 export default HomePage2;
