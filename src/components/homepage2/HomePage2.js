@@ -64,7 +64,7 @@ const Wrapper = styled.div`
   margin: auto;
   margin-top: 5rem;
   max-width: 50rem;
-  border: 1px solid yellow;
+  /* border: 1px solid yellow; */
 `;
 
 const DeckRow = styled.div`
@@ -72,14 +72,15 @@ const DeckRow = styled.div`
   justify-content: space-evenly;
   background-color: gray;
   margin: 5rem 0;
-  border: 1px solid red;
   overflow: hidden;
+  /* border: 1px solid red; */
 `;
 
 const DeckName = styled.div`
-  border: 1px solid red;
-  padding: 2rem;
   margin: 1rem;
+  padding: 2rem;
+  width: 5rem;
+  border: 1px solid red;
 `;
 
 const CardsGallary = styled.div`
@@ -87,9 +88,9 @@ const CardsGallary = styled.div`
   left: 10%;              /* Div is pushed to the right so that only part of last card is shown. */
                           /* Offset its margin */
   margin-left: -4rem;  
-  /* border: 1px solid teal;   */
   overflow: hidden;
   display: flex;
+  /* border: 1px solid teal;   */
 `;
 
 const Card = styled.p`
