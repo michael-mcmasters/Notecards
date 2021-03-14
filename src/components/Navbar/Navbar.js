@@ -13,10 +13,10 @@ const Navbar = () => {
 };
 
 const Container = styled.div`
-  padding: 1em;
+  padding: 1.7rem;
   border: 1px solid red;
   display: flex;
-  /* width: 100vw; */
+  background-color: #0094E8;
 `;
 
 const Item = styled.div`
