@@ -50,14 +50,14 @@ const Wrapper = styled.div`
 const DeckRow = styled.div`
   display: flex;
   justify-content: space-between;
+  background-color: gray;
   margin: 5rem 0;
   border: 1px solid red;
 `;
 
 const CardsGallary = styled.div`
   display: flex;
-  /* justify-content: space-between; */
-  width: 30rem;
+  width: 40rem;
   border: 1px solid teal;
 `;
 
@@ -71,9 +71,8 @@ const CardsGallary = styled.div`
 // `;
 
 const Card = styled.p`
-  /* white-space: nowrap; */
   margin: 1rem;
-  width: 7rem;
+  width: 8rem;
   height: 5rem;
   overflow: hidden;
   text-overflow: ellipsis;
