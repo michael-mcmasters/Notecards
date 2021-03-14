@@ -3,12 +3,12 @@ import styled from "styled-components";
 
 const Navbar = () => {
   return (
-      <Container>
-        <FirstItem>Home</FirstItem>
-        <Item>Popular Cards</Item>
-        <Item>Account</Item>
-        
-      </Container>
+    <Container>
+      <FirstItem>Home</FirstItem>
+      <Item>Popular Cards</Item>
+      <Item>Account</Item>
+
+    </Container>
   );
 };
 

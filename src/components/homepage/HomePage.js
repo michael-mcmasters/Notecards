@@ -10,10 +10,10 @@ class HomePage extends Component {
           <Option><P>View Popular Decks</P></Option>
           <Option><P>Create Deck</P></Option>
         </OptionContainer>
-        
-        <PopularDecksContainer>
+
+        {/* <PopularDecksContainer>
           <PopularDecks />
-        </PopularDecksContainer>
+        </PopularDecksContainer> */}
       </>
     );
   }

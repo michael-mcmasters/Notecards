@@ -1,11 +1,11 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from "styled-components";
 import cardsJSON from "../../resources/card-data.json";
 import CardGallary from "./CardGallary.js";
 
 const PopularDecks = () => {
   const [cards, setCards] = useState(cardsJSON.cards);
-  
+
   // ToDo: Import decks from an API.
   let deckOne = {
     name: "Java",
@@ -13,29 +13,29 @@ const PopularDecks = () => {
   }
   let deckTwo = {
     name: "Spanish",
-    cards: cards.slice(15, 23)
+    cards: cards.slice(15, 21)
   }
   let deckThree = {
     name: "State Capitals",
     cards: cards.slice(30, 37)
   }
-  
-  const decks = [ deckOne, deckTwo, deckThree ];
-  
+
+  const decks = [deckOne, deckTwo, deckThree];
+
   return (
     <div>
       <Wrapper>
         Popular Decks
         {decks.map((deck, index) => (
-          <Container key={index}>
-            <DeckTitle>
-              {deck.name}
-            </DeckTitle>
-            <Deck>
-              <CardGallary deck={deck} />
-            </Deck>
-          </Container>
-        ))}
+        <Container key={index}>
+          <DeckTitle>
+            {deck.name}
+          </DeckTitle>
+          <Deck>
+            <CardGallary deck={deck} />
+          </Deck>
+        </Container>
+      ))}
       </Wrapper>
     </div>
   );
@@ -57,7 +57,8 @@ const DeckTitle = styled.p`
 const Container = styled.div`
   margin: 4rem;
   margin-top: 0;
-  /* border: 1px solid green; */
+  max-width: 90%;
+  border: 1px solid green;
 `;
 
 const Deck = styled.div`
