@@ -12,7 +12,7 @@ const HomePage2 = () => {
   }
   let deckTwo = {
     name: "Spanish",
-    cards: cards.slice(15, 21)
+    cards: cards.slice(15, 30)
   }
   let deckThree = {
     name: "State Capitals",
@@ -24,7 +24,9 @@ const HomePage2 = () => {
   return (
     <Wrapper>
       <DeckRow>
-        {decks[0].name}
+        <DeckName>
+          {decks[0].name}
+        </DeckName>
         <CardsGallary>
           <Card>This is a really long sentence. We want to see what happens when we have really long sentences.</Card>
           <Card>{decks[0].cards[6].frontText}</Card>
@@ -33,10 +35,26 @@ const HomePage2 = () => {
         </CardsGallary>
       </DeckRow>
       <DeckRow>
-        Spanish
+        <DeckName>
+          {decks[1].name}
+        </DeckName>
+        <CardsGallary>
+          <Card>This is a really long sentence. We want to see what happens when we have really long sentences.</Card>
+          <Card>{decks[1].cards[6].frontText}</Card>
+          <Card>{decks[1].cards[5].frontText}</Card>
+          <Card>{decks[1].cards[5].frontText}</Card>
+        </CardsGallary>
       </DeckRow>
       <DeckRow>
-        Spanish
+        <DeckName>
+          {decks[2].name}
+        </DeckName>
+        <CardsGallary>
+          <Card>This is a really long sentence. We want to see what happens when we have really long sentences.</Card>
+          <Card>{decks[2].cards[6].frontText}</Card>
+          <Card>{decks[2].cards[5].frontText}</Card>
+          <Card>{decks[2].cards[5].frontText}</Card>
+        </CardsGallary>
       </DeckRow>
     </Wrapper>
   );
@@ -49,18 +67,25 @@ const Wrapper = styled.div`
 
 const DeckRow = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   background-color: gray;
   margin: 5rem 0;
   border: 1px solid red;
   overflow: hidden;
 `;
 
+const DeckName = styled.div`
+  border: 1px solid red;
+  padding: 2rem;
+  margin: 1rem;
+`;
+
 const CardsGallary = styled.div`
   position: relative;
   left: 10%;              /* Div is pushed to the right so that only part of last card is shown. */
-  margin-left: -2rem;     /* Offset its margin */
-  border: 1px solid teal;
+                          /* Offset its margin */
+  margin-left: -4rem;  
+  /* border: 1px solid teal;   */
   overflow: hidden;
   display: flex;
 `;
