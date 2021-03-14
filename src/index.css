@@ -22,3 +22,7 @@ code {
 .justify-end {
   justify-content: flex-end;
 }
+
+.center {
+  align-items: center;
+}

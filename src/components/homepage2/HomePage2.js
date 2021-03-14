@@ -61,7 +61,9 @@ const HomePage2 = () => {
 };
 
 const Wrapper = styled.div`
-  margin: 5rem;
+  margin: auto;
+  margin-top: 5rem;
+  max-width: 50rem;
   border: 1px solid yellow;
 `;
 
