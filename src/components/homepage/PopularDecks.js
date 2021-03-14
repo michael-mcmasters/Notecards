@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import styled from "styled-components";
 import cardsJSON from "../../resources/card-data.json";
-import CardGallary from "./CardGallary.js";
 
-const PopularDecks = () => {
+const HomePage2 = () => {
   const [cards, setCards] = useState(cardsJSON.cards);
 
   // ToDo: Import decks from an API.
@@ -13,7 +12,7 @@ const PopularDecks = () => {
   }
   let deckTwo = {
     name: "Spanish",
-    cards: cards.slice(15, 21)
+    cards: cards.slice(15, 30)
   }
   let deckThree = {
     name: "State Capitals",
@@ -23,46 +22,84 @@ const PopularDecks = () => {
   const decks = [deckOne, deckTwo, deckThree];
 
   return (
-    <div>
-      <Wrapper>
-        Popular Decks
-        {decks.map((deck, index) => (
-        <Container key={index}>
-          <DeckTitle>
-            {deck.name}
-          </DeckTitle>
-          <Deck>
-            <CardGallary deck={deck} />
-          </Deck>
-        </Container>
-      ))}
-      </Wrapper>
-    </div>
+    <Wrapper>
+      <DeckRow>
+        <DeckName>
+          {decks[0].name}
+        </DeckName>
+        <CardsGallary>
+          <Card>This is a really long sentence. We want to see what happens when we have really long sentences.</Card>
+          <Card>{decks[0].cards[6].frontText}</Card>
+          <Card>{decks[0].cards[5].frontText}</Card>
+          <Card>{decks[0].cards[5].frontText}</Card>
+        </CardsGallary>
+      </DeckRow>
+      <DeckRow>
+        <DeckName>
+          {decks[1].name}
+        </DeckName>
+        <CardsGallary>
+          <Card>This is a really long sentence. We want to see what happens when we have really long sentences.</Card>
+          <Card>{decks[1].cards[6].frontText}</Card>
+          <Card>{decks[1].cards[5].frontText}</Card>
+          <Card>{decks[1].cards[5].frontText}</Card>
+        </CardsGallary>
+      </DeckRow>
+      <DeckRow>
+        <DeckName>
+          {decks[2].name}
+        </DeckName>
+        <CardsGallary>
+          <Card>This is a really long sentence. We want to see what happens when we have really long sentences.</Card>
+          <Card>{decks[2].cards[6].frontText}</Card>
+          <Card>{decks[2].cards[5].frontText}</Card>
+          <Card>{decks[2].cards[5].frontText}</Card>
+        </CardsGallary>
+      </DeckRow>
+    </Wrapper>
   );
 };
 
 const Wrapper = styled.div`
+  margin: auto;
   margin-top: 5rem;
-  width: fit-content;
+  max-width: 50rem;
+  /* border: 1px solid yellow; */
 `;
 
-const DeckTitle = styled.p`
-  width: fit-content;
-  margin: 0;
-  margin-left: 1rem;
-  margin-bottom: 1rem;
-  height: 0rem;
-`;
-
-const Container = styled.div`
-  margin: 4rem;
-  margin-top: 0;
-  max-width: 90%;
-  border: 1px solid green;
-`;
-
-const Deck = styled.div`
+const DeckRow = styled.div`
   display: flex;
+  justify-content: space-evenly;
+  background-color: gray;
+  margin: 5rem 0;
+  overflow: hidden;
+  /* border: 1px solid red; */
 `;
 
-export default PopularDecks;
+const DeckName = styled.div`
+  margin: 1rem;
+  padding: 2rem;
+  width: 5rem;
+  border: 1px solid red;
+`;
+
+const CardsGallary = styled.div`
+  position: relative;
+  left: 10%;              /* Div is pushed to the right so that only part of last card is shown. */
+                          /* Offset its margin */
+  margin-left: -4rem;  
+  overflow: hidden;
+  display: flex;
+  /* border: 1px solid teal;   */
+`;
+
+const Card = styled.p`
+  margin: 1rem;
+  width: 8rem;
+  height: 5rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border: 1px solid #000000;
+`;
+
+export default HomePage2;
