@@ -64,8 +64,7 @@ const HomePage2 = () => {
 };
 
 const Wrapper = styled.div`
-  margin: auto;
-  margin-top: 5rem;
+  /* margin: auto; */
   max-width: 50rem;
   /* border: 1px solid yellow; */
 `;
@@ -78,7 +77,6 @@ const DeckRow = styled.div`
   display: flex;
   justify-content: space-evenly;
   background-color: gray;
-  /* margin: 5rem 0; */
   margin-bottom: 1rem;
   overflow: hidden;
   /* border: 1px solid red; */

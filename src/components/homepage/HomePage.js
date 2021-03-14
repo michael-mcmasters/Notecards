@@ -9,16 +9,21 @@ class HomePage extends Component {
     return (
       <>
         <Options />
-        <FeaturedCards />
-        <PopularDecks />
 
-        {/* <PopularDecksContainer>
+        <RowContainer>
+          <FeaturedCards />
           <PopularDecks />
-        </PopularDecksContainer> */}
+        </RowContainer>
       </>
     );
   }
 }
+
+const RowContainer = styled.div`
+  margin-top: 5rem;
+  display: flex;
+  justify-content: space-around;
+`;
 
 
 
