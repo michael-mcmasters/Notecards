@@ -15,10 +15,14 @@ const FeaturedCard = () => {
   const handleGetNewCard = () => {
     setFlipped(false);
 
-    const filteredCards = cards.filter(c => c !== featuredCard)
-    const newCardIndex = Math.floor(Math.random() * filteredCards.length);
+    const filteredCards = cards.filter(c => {
+      if (c !== featuredCard && c.frontText.length < 150 && c.backText.length < 150)
+        return true;
+      return false;
+    })
+    const randomIndex = Math.floor(Math.random() * filteredCards.length);
     setTimeout(() => {
-      setFeaturedCard(filteredCards[newCardIndex]);
+      setFeaturedCard(filteredCards[randomIndex]);
     }, 270);  // use timeout so that card text changes between flip animation (so that user doesn't see it change).
   }
 
@@ -30,7 +34,7 @@ const FeaturedCard = () => {
       <Card card={featuredCard} flipped={flipped} />
 
       <Footer>
-        <Button onClick={handleFlipCard}>Reveal Answer</Button>
+        <Button onClick={handleFlipCard}>Flip card</Button>
         <Button onClick={handleGetNewCard}>See another card</Button>
         {/* {!revealedAnswer
           ? (

@@ -6,10 +6,14 @@ const Card = ({ card, flipped }) => {
     <Container>
       <FlipCard flipped={flipped}>
         <Front backgroundColor={card.backgroundColor} scrollbarColor="white">
-          {card.frontText}
+          <Content>
+            {card.frontText}
+          </Content>
         </Front>
         <Back scrollbarColor={card.backgroundColor}>
-          {card.backText}
+          <Content>
+            {card.backText}
+          </Content>
         </Back>
       </FlipCard>
     </Container>
@@ -38,23 +42,23 @@ const FlipCard = styled.div`
 `;
 
 const ScrollBar = css`
-    textarea::-webkit-scrollbar {
+  div::-webkit-scrollbar {
     color: transparent;
     background-color: transparent;
     width: 10px;      // Width of verticle scrollbar
     height: 0px;      // 0px hides the horizontal scrollbar
   }
 
-  textarea::-webkit-scrollbar-thumb:vertical{
+  div::-webkit-scrollbar-thumb:vertical{
     background: ${props => props.scrollbarColor};
     border-radius: 10px;
   } 
   
-  textarea::-webkit-scrollbar-thumb::horizontal{
+  div::-webkit-scrollbar-thumb::horizontal{
     height: 0px;
   }
   
-  textarea::-webkit-scrollbar-corner {
+  div::-webkit-scrollbar-corner {
     display: none;
   }
 `;
@@ -85,13 +89,17 @@ const Back = styled.div`
   height: 100%;
   border-radius: 10px;
   backface-visibility: hidden;
-  overflow: hidden;
+  overflow: scroll;
   background: #fafafa;
   color: #333;
   text-align: center;
   transform: rotateY(180deg);
   
   ${ScrollBar}
+`;
+
+const Content = styled.div`
+    /* ${ScrollBar} */
 `;
 
 export default Card;
