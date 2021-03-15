@@ -36,16 +36,6 @@ const FeaturedCard = () => {
       <Footer>
         <Button onClick={handleFlipCard}>Flip card</Button>
         <Button onClick={handleGetNewCard}>See another card</Button>
-        {/* {!revealedAnswer
-          ? (
-            <>
-              <Button onClick={handleRevealAnswer}>Reveal Answer</Button>
-              <Button onClick={handleGetNewCard}>See another card</Button>
-            </>
-          )
-
-          : "Did you guess correctly?"
-        } */}
       </Footer>
     </Container>
   );
