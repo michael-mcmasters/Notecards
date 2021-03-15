@@ -7,7 +7,7 @@ const HomePage2 = () => {
 
   // ToDo: Import decks from an API.
   let deckOne = {
-    name: "Java",
+    name: "Core Java",
     cards: cards.slice(0, 7)
   }
   let deckTwo = {
