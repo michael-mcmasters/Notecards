@@ -8,7 +8,7 @@ const FeaturedCard = () => {
   const [revealedAnswer, setRevealedAnswer] = useState(false);
 
   const handleRevealAnswer = () => {
-    setRevealedAnswer(true);
+    setRevealedAnswer(!revealedAnswer);
   }
 
   const handleGetNewCard = () => {
@@ -24,7 +24,9 @@ const FeaturedCard = () => {
       <Card card={cards[0]} flipped={revealedAnswer} />
 
       <Footer>
-        {!revealedAnswer
+        <Button onClick={handleRevealAnswer}>Reveal Answer</Button>
+        <Button onClick={handleGetNewCard}>See another card</Button>
+        {/* {!revealedAnswer
           ? (
             <>
               <Button onClick={handleRevealAnswer}>Reveal Answer</Button>
@@ -33,7 +35,7 @@ const FeaturedCard = () => {
           )
 
           : "Did you guess correctly?"
-        }
+        } */}
       </Footer>
     </Container>
   );

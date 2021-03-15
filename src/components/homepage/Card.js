@@ -17,20 +17,14 @@ const Card = ({ card, flipped }) => {
 };
 
 const Container = styled.div`
-  display: ${props => props.display};
-  width: 450px;
-  height: 320px;
+  width: 20rem;
+  height: 10rem;
   background: none;
   margin: 0;
   margin-top: 2rem;
   cursor: pointer;
-  position: absolute;
   transition: ${props => props.transition};
 
-  left: ${props => props.xPosition}%;
-  transform: translateX(-50%);
-  -webkit-transform:translateX(-50%);
-  
   animation-duration: 0.4s;
 `;
 
