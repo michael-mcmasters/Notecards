@@ -8,6 +8,10 @@ const FeaturedCard = () => {
     setRevealedAnswer(true);
   }
 
+  const handleGetNewCard = () => {
+
+  }
+
   return (
     <Container>
       <Header>
@@ -17,7 +21,12 @@ const FeaturedCard = () => {
 
       <Footer>
         {!revealedAnswer
-          ? <Button onClick={handleRevealAnswer}>Reveal Answer</Button>
+          ? (
+            <>
+              <Button onClick={handleRevealAnswer}>Reveal Answer</Button>
+              <Button onClick={handleGetNewCard}>See another card</Button>
+            </>
+          )
 
           : "Did you guess correctly?"
         }
