@@ -27,8 +27,16 @@ const Option = styled.div`
   width: 25rem;
   height: 15rem;
   border-radius: 10px;
-  background-color: red;
+  background-color: skyblue;
+  color: white;
+  font-size: 2rem;
+  
   display: flex;
+  
+  &:hover {
+    cursor: pointer;
+    color: red;
+  }
 `;
 
 const P = styled.p`
