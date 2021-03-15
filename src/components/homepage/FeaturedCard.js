@@ -5,14 +5,21 @@ import Card from "./Card.js";
 
 const FeaturedCard = () => {
   const [cards, setCards] = useState(cardsJSON.cards);
-  const [revealedAnswer, setRevealedAnswer] = useState(false);
+  const [featuredCard, setFeaturedCard] = useState(cards[0]);
+  const [flipped, setFlipped] = useState(false);
 
-  const handleRevealAnswer = () => {
-    setRevealedAnswer(!revealedAnswer);
+  const handleFlipCard = () => {
+    setFlipped(flipped => !flipped);
   }
 
   const handleGetNewCard = () => {
+    setFlipped(false);
 
+    const filteredCards = cards.filter(c => c !== featuredCard)
+    const newCardIndex = Math.floor(Math.random() * filteredCards.length);
+    setTimeout(() => {
+      setFeaturedCard(filteredCards[newCardIndex]);
+    }, 270);  // use timeout so that card text changes between flip animation (so that user doesn't see it change).
   }
 
   return (
@@ -20,11 +27,10 @@ const FeaturedCard = () => {
       <Header>
         Featured Card!
       </Header>
-      {/* <Card flipped={revealedAnswer}>What are the 4 access modifiers and their access specifiers</Card> */}
-      <Card card={cards[0]} flipped={revealedAnswer} />
+      <Card card={featuredCard} flipped={flipped} />
 
       <Footer>
-        <Button onClick={handleRevealAnswer}>Reveal Answer</Button>
+        <Button onClick={handleFlipCard}>Reveal Answer</Button>
         <Button onClick={handleGetNewCard}>See another card</Button>
         {/* {!revealedAnswer
           ? (
@@ -50,15 +56,6 @@ const Container = styled.div`
 const Header = styled.h1`
   
 `;
-
-// const Card = styled.div`
-//   /* background-color: aqua; */
-//   padding: 1rem;
-//   border-radius: 10px;
-//   width: 20rem;
-//   height: 10rem;
-//   background-color: ${props => props.flipped ? "green" : "aqua"};
-// `;
 
 const Footer = styled.div`
   margin-top: 1rem;

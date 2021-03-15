@@ -6,10 +6,10 @@ const Card = ({ card, flipped }) => {
     <Container>
       <FlipCard flipped={flipped}>
         <Front backgroundColor={card.backgroundColor} scrollbarColor="white">
-          Front
+          {card.frontText}
         </Front>
         <Back scrollbarColor={card.backgroundColor}>
-          Back
+          {card.backText}
         </Back>
       </FlipCard>
     </Container>
@@ -17,8 +17,8 @@ const Card = ({ card, flipped }) => {
 };
 
 const Container = styled.div`
-  width: 20rem;
-  height: 10rem;
+  width: 23rem;
+  height: 14rem;
   background: none;
   margin: 0;
   margin-top: 2rem;
