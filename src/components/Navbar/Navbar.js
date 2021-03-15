@@ -15,8 +15,8 @@ const Navbar = () => {
 };
 
 const Wrapper = styled.div`
-  position: sticky;
-  top: 0;
+  /* position: sticky;
+  top: 0; */
 `;
 
 const NavContainer = styled.div`
