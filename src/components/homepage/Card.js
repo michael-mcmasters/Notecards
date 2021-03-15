@@ -17,8 +17,8 @@ const Card = ({ card, flipped }) => {
 };
 
 const Container = styled.div`
-  width: 23rem;
-  height: 14rem;
+  width: 22rem;
+  height: 13rem;
   background: none;
   margin: 0;
   margin-top: 2rem;
@@ -62,6 +62,7 @@ const ScrollBar = css`
 const Front = styled.div`
   font-size: 28px;
 
+  padding: 1rem 0;
   width: 100%;
   height: 100%;
   border-radius: 10px;
@@ -75,7 +76,8 @@ const Front = styled.div`
 `;
 
 const Back = styled.div`
-  font-size: ${props => props.fontSize};
+  padding: 1rem 0;
+  font-size: 28px;
   position: absolute;
   top: 0;
   left: 0;

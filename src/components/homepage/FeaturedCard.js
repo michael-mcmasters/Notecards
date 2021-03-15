@@ -58,7 +58,7 @@ const Header = styled.h1`
 `;
 
 const Footer = styled.div`
-  margin-top: 1rem;
+  margin-top: 5rem;
 `;
 
 const Button = styled.button`
