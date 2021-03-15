@@ -1,13 +1,14 @@
 import React from 'react';
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
     <Wrapper>
       <NavContainer>
-        <FirstItem>Home</FirstItem>
-        <Item>Popular Cards</Item>
-        <Item>Account</Item>
+        <FirstItem><Link to="/">Home</Link></FirstItem>
+        <Item><Link to="/cards">My Decks</Link></Item>
+        <Item><Link to="/">Account</Link></Item>
       </NavContainer>
     </Wrapper>
   );
@@ -20,7 +21,6 @@ const Wrapper = styled.div`
 
 const NavContainer = styled.div`
   padding: 1.7rem;
-  border: 1px solid red;
   background-color: #0094E8;
   display: flex;
 `;
