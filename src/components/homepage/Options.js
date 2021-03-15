@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
-import img from "../../resources/images/abstract-background.jpeg";
+import img from "../../resources/images/mountains.png";
 
 const Options = () => {
   return (
@@ -14,12 +14,12 @@ const Options = () => {
 };
 
 const OptionContainer = styled.div`
-  padding-top: 5rem;
-  padding-bottom: 10rem;
+  padding: 10rem;
   display: flex;
   justify-content: center;
   /* background-color: yellow; */
   background-image: url(${img});
+  background-repeat: round;
 `;
 
 const Option = styled.div`

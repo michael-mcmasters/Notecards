@@ -15,13 +15,14 @@ const Navbar = () => {
 };
 
 const Wrapper = styled.div`
-  /* position: sticky;
-  top: 0; */
+  position: sticky;
+  top: 0;
 `;
 
 const NavContainer = styled.div`
   padding: 1.7rem;
-  background-color: #0094E8;
+  /* background-color: #37474F; */
+  background-color: #1C5B4C;
   display: flex;
 `;
 
