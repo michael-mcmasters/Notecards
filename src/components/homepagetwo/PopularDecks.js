@@ -7,20 +7,41 @@ const HomePage2 = () => {
   const [cards, setCards] = useState(cardsJSON.cards);
 
   // ToDo: Import decks from an API.
-  let deckOne = {
-    name: "Core Java",
-    cards: cards.slice(0, 7)
-  }
-  let deckTwo = {
-    name: "Spanish",
-    cards: cards.slice(15, 30)
-  }
-  let deckThree = {
-    name: "State Capitals",
-    cards: cards.slice(30, 37)
+  const [decks, setDecks] = useState([
+    {
+      name: "Core Java",
+      cards: cards.slice(0, 7)
+    },
+    {
+      name: "Spanish",
+      cards: cards.slice(15, 30)
+    },
+    {
+      name: "State Capitals",
+      cards: cards.slice(30, 37)
+    }
+  ])
+
+  const handleFlipRandomCard = () => {
+    const randomDeckInd = Math.floor(Math.random() * decks.length);
+    const randomCardInd = Math.floor(Math.random() * decks[randomDeckInd].cards.length);
+
+    const decksCopy = [...decks];
+    decksCopy[randomDeckInd].cards[randomCardInd].flipped = !decksCopy[randomDeckInd].cards[randomCardInd].flipped;
+    setDecks(decksCopy);
   }
 
-  const decks = [deckOne, deckTwo, deckThree];
+  useEffect(() => {
+    const interval = setInterval(() => {
+      console.log("interval")
+      handleFlipRandomCard();
+    }, [1000])
+
+    return () => clearInterval(interval);
+
+  }, [])
+
+  //const decks = [deckOne, deckTwo, deckThree];
 
   return (
     <Wrapper>
@@ -32,11 +53,9 @@ const HomePage2 = () => {
           {decks[0].name}
         </DeckName>
         <CardsGallary>
-          {/* <Card>This is a really long sentence. We want to see what happens when we have really long sentences.</Card> */}
-          {/* <Card>{decks[0].cards[6].frontText}</Card> */}
           <TinyCard card={decks[0].cards[6]} flipped={false} />
           <TinyCard card={decks[0].cards[2]} flipped={false} />
-          <TinyCard card={decks[0].cards[3]} flipped={true} />
+          <TinyCard card={decks[0].cards[3]} flipped={false} />
           <TinyCard card={decks[0].cards[1]} flipped={false} />
         </CardsGallary>
       </DeckRow>
@@ -45,10 +64,14 @@ const HomePage2 = () => {
           {decks[1].name}
         </DeckName>
         <CardsGallary>
-          <Card>This is a really long sentence. We want to see what happens when we have really long sentences.</Card>
-          <Card>{decks[1].cards[6].frontText}</Card>
-          <Card>{decks[1].cards[5].frontText}</Card>
-          <Card>{decks[1].cards[5].frontText}</Card>
+          {decks[1].cards.map((c, i) => {
+            if (i > 3) return;
+            return <TinyCard
+              key={i}
+              card={c}
+              flipped={c.flipped}
+            />
+          })}
         </CardsGallary>
       </DeckRow>
       <DeckRow>
