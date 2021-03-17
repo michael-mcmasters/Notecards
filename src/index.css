@@ -5,7 +5,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  background-image: linear-gradient(to top, #db7092 20%, #d9a059 80%);
+  /* background-image: linear-gradient(to top, #db7092 20%, #d9a059 80%); */
+  background-image: linear-gradient(to top, #e76f51 20%, #efb366 80%);
   background-repeat: no-repeat;
   background-attachment: fixed;
   height: 100vh;

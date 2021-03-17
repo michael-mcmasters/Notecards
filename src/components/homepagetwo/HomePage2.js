@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from "styled-components";
 import { GiCardRandom } from "react-icons/gi";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import FeaturedCards from "./FeaturedCards.js";
 import PopularDecks from "./PopularDecks.js"
 
@@ -49,7 +49,7 @@ const ButtonContainer = styled.div`
 const Button = styled.button`
   padding: 1em 2em;
   margin: 0.5rem;
-  background-color: #1F2C76;
+  background-color: #2A9D8F;
   font-weight: bold;
   font-size: 1.2rem;
   color: white;
