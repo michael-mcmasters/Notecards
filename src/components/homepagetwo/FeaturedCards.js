@@ -29,7 +29,7 @@ const FeaturedCard = () => {
   return (
     <Container>
       <Header>
-        Featured Card!
+        Featured Card
       </Header>
       <Card card={featuredCard} flipped={flipped} />
 

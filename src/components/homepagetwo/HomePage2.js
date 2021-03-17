@@ -41,6 +41,10 @@ const Icon = styled(GiCardRandom)`
   height: 14rem;
   width: 14rem;
   margin-right: 5em;
+  
+  @media(max-width: 675px) {
+    margin-right: 1em;
+  }
 `;
 
 const ButtonContainer = styled.div`
@@ -65,6 +69,11 @@ const SecondRow = styled.div`
   margin-top: 12rem;
   display: flex;
   justify-content: space-around;
+  
+  @media(max-width: 1225px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 export default HomePage2;
