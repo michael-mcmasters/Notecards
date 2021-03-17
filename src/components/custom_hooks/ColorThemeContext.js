@@ -2,14 +2,11 @@ import React, { createContext, useState } from "react";
 
 export const COLORS = {
   lightMode: {
-    background: "white",
-    textPrime: "#222527",
-    textSec: "#b7bfc6",
+    icon: "white",
+    btnBG: "#287271",
+    btnText: "white"
   },
   darkMode: {
-    background: "#15202b",
-    textPrime: "#d8dadc",
-    textSec: "#8796a0",
   },
 };
 
@@ -20,9 +17,9 @@ export const SetColorThemeContext = createContext();
 // Contexts are essentially functional components. By passing children here,
 // any children <> tags referencing this tag from the parent class can access these properties.
 export function ColorThemeProvider({ children }) {
-  const [colorTheme, setColorTheme] = useState(COLORS.darkMode);
+  const [colorTheme, setColorTheme] = useState(COLORS.lightMode);
 
-  function handleSetColorTheme() {
+  function handleToggleColorTheme() {
     if (colorTheme === COLORS.lightMode) {
       setColorTheme(COLORS.darkMode);
     } else {
@@ -32,7 +29,7 @@ export function ColorThemeProvider({ children }) {
 
   return (
     <ColorThemeContext.Provider value={colorTheme}>
-      <SetColorThemeContext.Provider value={handleSetColorTheme}>
+      <SetColorThemeContext.Provider value={handleToggleColorTheme}>
         {children}
       </SetColorThemeContext.Provider>
     </ColorThemeContext.Provider>

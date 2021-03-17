@@ -2,24 +2,22 @@ import React, { useContext } from 'react';
 import styled from "styled-components";
 import { ColorThemeContext } from "../custom_hooks/ColorThemeContext";
 import { GiCardRandom } from "react-icons/gi";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import FeaturedCards from "./FeaturedCards.js";
 import PopularDecks from "./PopularDecks.js"
 
 const HomePage2 = () => {
-  const colorTheme = useContext(ColorThemeContext);
-
-  console.log(colorTheme);
+  const theme = useContext(ColorThemeContext);
 
   return (
     <>
       <FirstRow>
-        <Icon>
+        <Icon theme={theme}>
           <GiCardRandom />
         </Icon>
         <ButtonContainer>
-          <Button>Create Deck</Button>
-          <Button>View Decks</Button>
+          <Button theme={theme}>Create Deck</Button>
+          <Button theme={theme}>View Decks</Button>
         </ButtonContainer>
       </FirstRow>
 
@@ -39,7 +37,7 @@ const FirstRow = styled.div`
 `;
 
 const Icon = styled(GiCardRandom)`
-  color: white;
+  color: ${props => props.theme.icon};
   height: 14rem;
   width: 14rem;
   margin-right: 5em;
@@ -54,10 +52,10 @@ const ButtonContainer = styled.div`
 const Button = styled.button`
   padding: 1em 2em;
   margin: 0.5rem;
-  background-color: #2A9D8F;
+  background-color: ${props => props.theme.btnBG};
   font-weight: bold;
   font-size: 1.2rem;
-  color: white;
+  color: ${props => props.theme.btnText};
   border-radius: 10px;
   border: none;
   
