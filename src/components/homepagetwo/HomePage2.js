@@ -1,22 +1,31 @@
 import React from 'react';
 import styled from "styled-components";
 import { GiCardRandom } from "react-icons/gi";
+import FeaturedCards from "./FeaturedCards.js";
+import PopularDecks from "./PopularDecks.js"
 
 const HomePage2 = () => {
   return (
-    <FlexContainer>
-      <Icon>
-        <GiCardRandom />
-      </Icon>
-      <ButtonContainer>
-        <Button>View Decks</Button>
-        <Button>Create Deck</Button>
-      </ButtonContainer>
-    </FlexContainer>
+    <>
+      <FirstRow>
+        <Icon>
+          <GiCardRandom />
+        </Icon>
+        <ButtonContainer>
+          <Button>View Decks</Button>
+          <Button>Create Deck</Button>
+        </ButtonContainer>
+      </FirstRow>
+
+      <SecondRow>
+        <FeaturedCards />
+        <PopularDecks />
+      </SecondRow>
+    </>
   );
 };
 
-const FlexContainer = styled.div`
+const FirstRow = styled.div`
   margin-top: 10rem;
   display: flex;
   justify-content: center;
@@ -25,9 +34,9 @@ const FlexContainer = styled.div`
 
 const Icon = styled(GiCardRandom)`
   color: white;
-  height: 13rem;
-  width: 13rem;
-  margin-right: 6em;
+  height: 14rem;
+  width: 14rem;
+  margin-right: 5em;
 `;
 
 const ButtonContainer = styled.div`
@@ -37,7 +46,7 @@ const ButtonContainer = styled.div`
 `;
 
 const Button = styled.button`
-  padding: 1em 1em;
+  padding: 1em 2em;
   margin: 0.5rem;
   background-color: #1F2C76;
   font-weight: bold;
@@ -46,6 +55,14 @@ const Button = styled.button`
   border-radius: 10px;
   border: none;
   
+`;
+
+
+
+const SecondRow = styled.div`
+  margin-top: 12rem;
+  display: flex;
+  justify-content: space-around;
 `;
 
 export default HomePage2;

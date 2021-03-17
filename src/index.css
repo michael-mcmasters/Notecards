@@ -6,6 +6,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
 
   background-image: linear-gradient(to top, #db7092 20%, #d9a059 80%);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   height: 100vh;
 
   max-width: 100%; /* Prevents scrolling out of viewport to see cards at edge of screen. */
