@@ -4,7 +4,7 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
-import Navbar from "./components/navbar/Navbar.js";
+import NavbarTwo from "./components/navbar/NavbarTwo.js";
 // import HomePage from "./components/homepage/HomePage.js";
 import HomePage2 from "./components/homepagetwo/HomePage2.js";
 import CardContainers from "./components/cards/CardContainers.js"
@@ -16,6 +16,7 @@ function App() {
       <Router>
 
         {/* <Navbar></Navbar> */}
+        <NavbarTwo />
 
         <Switch>
           <Route path="/cards">

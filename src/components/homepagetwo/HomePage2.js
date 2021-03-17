@@ -8,19 +8,13 @@ import PopularDecks from "./PopularDecks.js"
 const HomePage2 = () => {
   return (
     <>
-      <Account>
-        <Link to="/" style={{ textDecoration: 'none' }}> {/* Override style to remove underline. Wasn't working when using styled-component's css */}
-          Account
-        </Link>
-      </Account>
-
       <FirstRow>
         <Icon>
           <GiCardRandom />
         </Icon>
         <ButtonContainer>
-          <Button>View Decks</Button>
           <Button>Create Deck</Button>
+          <Button>View Decks</Button>
         </ButtonContainer>
       </FirstRow>
 
@@ -31,23 +25,6 @@ const HomePage2 = () => {
     </>
   );
 };
-
-const Account = styled(Link)`
-  margin: 1em;
-  padding: 0.7em 1.2em;
-  width: fit-content;
-  background-color: white;
-  border: none;
-  border-radius: 10px;
-  font-size: 1.1em;
-  font-weight: bold;
-  text-decoration: none;
-  color: #1F2C76;
-  
-  position: fixed;
-  right: 0;
-  top: 0;
-`;
 
 const FirstRow = styled.div`
   margin-top: 8rem;
