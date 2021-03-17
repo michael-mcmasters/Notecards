@@ -4,6 +4,7 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
+import { ColorThemeProvider } from "./components/custom_hooks/ColorThemeContext";
 import NavbarTwo from "./components/navbar/NavbarTwo.js";
 // import HomePage from "./components/homepage/HomePage.js";
 import HomePage2 from "./components/homepagetwo/HomePage2.js";
@@ -13,31 +14,34 @@ function App() {
 
   return (
     <div className="App">
-      <Router>
+      <ColorThemeProvider>
 
-        {/* <Navbar></Navbar> */}
-        <NavbarTwo />
+        <Router>
 
-        <Switch>
-          <Route path="/cards">
-            <h1 className="title App-logo">Java</h1>
-            <CardContainers></CardContainers>
-            <div className="controls-description">
-              <p>Use the arrow keys to cycle</p>
-              <p>Space bar to flip</p>
-              <p>Up key if you knew the answer</p>
-              <p>And click a card to edit its content</p>
-            </div>
-          </Route>
+          {/* <Navbar></Navbar> */}
+          <NavbarTwo />
 
-          {/* Home path must be last path for router to work */}
-          <Route path="/">
-            {/* <HomePage></HomePage> */}
-            <HomePage2 />
-          </Route>
-        </Switch>
+          <Switch>
+            <Route path="/cards">
+              <h1 className="title App-logo">Java</h1>
+              <CardContainers></CardContainers>
+              <div className="controls-description">
+                <p>Use the arrow keys to cycle</p>
+                <p>Space bar to flip</p>
+                <p>Up key if you knew the answer</p>
+                <p>And click a card to edit its content</p>
+              </div>
+            </Route>
 
-      </Router>
+            {/* Home path must be last path for router to work */}
+            <Route path="/">
+              {/* <HomePage></HomePage> */}
+              <HomePage2 />
+            </Route>
+          </Switch>
+        </Router>
+
+      </ColorThemeProvider>
     </div>
   );
 }

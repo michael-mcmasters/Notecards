@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from "styled-components";
+import { ColorThemeContext } from "../custom_hooks/ColorThemeContext";
 import { GiCardRandom } from "react-icons/gi";
 import { Link, Redirect } from "react-router-dom";
 import FeaturedCards from "./FeaturedCards.js";
 import PopularDecks from "./PopularDecks.js"
 
 const HomePage2 = () => {
+  const colorTheme = useContext(ColorThemeContext);
+
+  console.log(colorTheme);
+
   return (
     <>
       <FirstRow>
