@@ -1,13 +1,19 @@
 import React from 'react';
 import styled from "styled-components";
 import { GiCardRandom } from "react-icons/gi";
+import { Link } from "react-router-dom";
 import FeaturedCards from "./FeaturedCards.js";
 import PopularDecks from "./PopularDecks.js"
 
 const HomePage2 = () => {
   return (
     <>
-      <Account>Account</Account>
+      <Account>
+        <Link to="/" style={{ textDecoration: 'none' }}> {/* Override style to remove underline. Wasn't working when using styled-component's css */}
+          Account
+        </Link>
+      </Account>
+
       <FirstRow>
         <Icon>
           <GiCardRandom />
@@ -26,7 +32,7 @@ const HomePage2 = () => {
   );
 };
 
-const Account = styled.button`
+const Account = styled(Link)`
   margin: 1em;
   padding: 0.7em 1.2em;
   width: fit-content;
@@ -35,6 +41,7 @@ const Account = styled.button`
   border-radius: 10px;
   font-size: 1.1em;
   font-weight: bold;
+  text-decoration: none;
   color: #1F2C76;
   
   position: fixed;
