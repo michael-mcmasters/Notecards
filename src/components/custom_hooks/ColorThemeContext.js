@@ -4,18 +4,20 @@ export const COLORS = {
   lightMode: {
     icon: "white",
     btnBG: "#287271",
-    btnText: "white"
+    btnText: "white",
+    secBtnBG: "white",
+    secBtnText: "#287271"
   },
   darkMode: {
+    icon: "red",
+    btnBG: "orange",
+    btnText: "yellow"
   },
 };
 
-// When these are "called", they reference the <> provider tags below.
 export const ColorThemeContext = createContext();
 export const SetColorThemeContext = createContext();
 
-// Contexts are essentially functional components. By passing children here,
-// any children <> tags referencing this tag from the parent class can access these properties.
 export function ColorThemeProvider({ children }) {
   const [colorTheme, setColorTheme] = useState(COLORS.lightMode);
 

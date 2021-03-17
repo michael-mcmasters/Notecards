@@ -1,14 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { ColorThemeContext } from "../custom_hooks/ColorThemeContext";
 
 const NavbarTwo = () => {
+  const theme = useContext(ColorThemeContext);
+
   return (
-    // Set style here to get rid of underline. Property is ignored when set as a styled-component.
-    <Account>
-      <Link to="/" style={{ textDecoration: 'none' }}>
+    // styled-components will not override Link's default styling, so must inline the styling instead.
+    <Account theme={theme}>
+      <Link to="/" style={{ color: theme.secBtnText, textDecoration: 'none' }}>
         Account
-        </Link>
+      </Link>
     </Account>
   );
 };
@@ -17,13 +20,12 @@ const Account = styled(Link)`
   margin: 1em;
   padding: 0.7em 1.2em;
   width: fit-content;
-  background-color: white;
+  background-color: ${props => props.theme.secBtnBG};
   border: none;
   border-radius: 10px;
   font-size: 1.1em;
   font-weight: bold;
   text-decoration: none;
-  color: #1F2C76;
   
   position: fixed;
   right: 0;
