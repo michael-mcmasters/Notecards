@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from "styled-components";
 import cardsJSON from "../../resources/card-data.json";
+import TinyCard from "./TinyCard";
 
 const HomePage2 = () => {
   const [cards, setCards] = useState(cardsJSON.cards);
@@ -31,10 +32,12 @@ const HomePage2 = () => {
           {decks[0].name}
         </DeckName>
         <CardsGallary>
-          <Card>This is a really long sentence. We want to see what happens when we have really long sentences.</Card>
-          <Card>{decks[0].cards[6].frontText}</Card>
-          <Card>{decks[0].cards[5].frontText}</Card>
-          <Card>{decks[0].cards[5].frontText}</Card>
+          {/* <Card>This is a really long sentence. We want to see what happens when we have really long sentences.</Card> */}
+          {/* <Card>{decks[0].cards[6].frontText}</Card> */}
+          <TinyCard card={decks[0].cards[6]} flipped={false} />
+          <TinyCard card={decks[0].cards[2]} flipped={false} />
+          <TinyCard card={decks[0].cards[3]} flipped={true} />
+          <TinyCard card={decks[0].cards[1]} flipped={false} />
         </CardsGallary>
       </DeckRow>
       <DeckRow>
