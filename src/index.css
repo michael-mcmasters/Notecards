@@ -5,9 +5,10 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  background-color: #a8dadc;
-  /* Prevents scrolling out of viewport to see cards at edge of screen. */
-  max-width: 100%;
+  background-image: linear-gradient(to top, #db7092 20%, #d9a059 80%);
+  height: 100vh;
+
+  max-width: 100%; /* Prevents scrolling out of viewport to see cards at edge of screen. */
   overflow-x: hidden;
 }
 
