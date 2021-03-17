@@ -5,7 +5,8 @@ import {
   Route,
 } from "react-router-dom";
 import Navbar from "./components/navbar/Navbar.js";
-import HomePage from "./components/homepage/HomePage.js";
+// import HomePage from "./components/homepage/HomePage.js";
+import HomePage2 from "./components/homepagetwo/HomePage2.js";
 import CardContainers from "./components/cards/CardContainers.js"
 
 function App() {
@@ -14,7 +15,7 @@ function App() {
     <div className="App">
       <Router>
 
-        <Navbar></Navbar>
+        {/* <Navbar></Navbar> */}
 
         <Switch>
           <Route path="/cards">
@@ -30,7 +31,8 @@ function App() {
 
           {/* Home path must be last path for router to work */}
           <Route path="/">
-            <HomePage></HomePage>
+            {/* <HomePage></HomePage> */}
+            <HomePage2 />
           </Route>
         </Switch>
 
