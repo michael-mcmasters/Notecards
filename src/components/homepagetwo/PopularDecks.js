@@ -4,21 +4,19 @@ import cardsJSON from "../../resources/card-data.json";
 import TinyCard from "./TinyCard";
 
 const HomePage2 = () => {
-  const [cards, setCards] = useState(cardsJSON.cards);
-
   // ToDo: Import decks from an API.
   const [decks, setDecks] = useState([
     {
       name: "Core Java",
-      cards: cards.slice(0, 7)
+      cards: cardsJSON.cards.slice(0, 7)
     },
     {
       name: "Spanish",
-      cards: cards.slice(15, 30)
+      cards: cardsJSON.cards.slice(15, 30)
     },
     {
       name: "State Capitals",
-      cards: cards.slice(30, 37)
+      cards: cardsJSON.cards.slice(30, 37)
     }
   ])
 
@@ -28,6 +26,16 @@ const HomePage2 = () => {
 
     const decksCopy = [...decks];
     decksCopy[randomDeckInd].cards[randomCardInd].flipped = !decksCopy[randomDeckInd].cards[randomCardInd].flipped;
+
+    for (let i = 0; i < decksCopy.length; i++) {
+      for (let j = 0; j < decksCopy[i].cards.length; j++) {
+        if (i === randomDeckInd && j === randomCardInd)
+          decksCopy[i].cards[j].flipped = true;
+        else
+          decksCopy[i].cards[j].flipped = false;
+      }
+    }
+
     setDecks(decksCopy);
   }
 
@@ -46,6 +54,7 @@ const HomePage2 = () => {
       <Header>
         Popular Decks
       </Header>
+
       <DeckRow>
         <DeckName>
           {decks[0].name}
@@ -57,6 +66,7 @@ const HomePage2 = () => {
           })}
         </CardsGallary>
       </DeckRow>
+
       <DeckRow>
         <DeckName>
           {decks[1].name}
@@ -68,6 +78,7 @@ const HomePage2 = () => {
           })}
         </CardsGallary>
       </DeckRow>
+
       <DeckRow>
         <DeckName>
           {decks[2].name}
@@ -79,6 +90,7 @@ const HomePage2 = () => {
           })}
         </CardsGallary>
       </DeckRow>
+
     </Wrapper>
   );
 };
@@ -96,7 +108,7 @@ const Header = styled.h1`
 const DeckRow = styled.div`
   display: flex;
   justify-content: space-evenly;
-  background-color: gray;
+  /* background-color: gray; */
   margin-bottom: 1rem;
   overflow: hidden;
   /* border: 1px solid red; */
