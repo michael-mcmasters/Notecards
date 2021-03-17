@@ -93,6 +93,7 @@ const Back = styled.div`
 `;
 
 const Content = styled.div`
+    padding: 0.5rem 0.3rem;
     /* ${ScrollBar} */
 `;
 
