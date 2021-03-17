@@ -4,6 +4,7 @@ import cardsJSON from "../../resources/card-data.json";
 import TinyCard from "./TinyCard";
 
 const HomePage2 = () => {
+
   // ToDo: Import decks from an API.
   const [decks, setDecks] = useState([
     {
@@ -21,21 +22,17 @@ const HomePage2 = () => {
   ])
 
   const handleFlipRandomCard = () => {
-    const randomDeckInd = Math.floor(Math.random() * decks.length);
-    const randomCardInd = Math.floor(Math.random() * decks[randomDeckInd].cards.length);
+    const randomDeckIndx = Math.floor(Math.random() * decks.length);
+    const randomCardIndx = Math.floor(Math.random() * decks[randomDeckIndx].cards.length);
 
+    // Animation may look cooler if a second timer unflipped cards separately from this one.
     const decksCopy = [...decks];
-    decksCopy[randomDeckInd].cards[randomCardInd].flipped = !decksCopy[randomDeckInd].cards[randomCardInd].flipped;
-
     for (let i = 0; i < decksCopy.length; i++) {
       for (let j = 0; j < decksCopy[i].cards.length; j++) {
-        if (i === randomDeckInd && j === randomCardInd)
-          decksCopy[i].cards[j].flipped = true;
-        else
-          decksCopy[i].cards[j].flipped = false;
+        decksCopy[i].cards[j].flipped = false;
       }
     }
-
+    decksCopy[randomDeckIndx].cards[randomCardIndx].flipped = true;
     setDecks(decksCopy);
   }
 
@@ -51,6 +48,7 @@ const HomePage2 = () => {
 
   return (
     <Wrapper>
+
       <Header>
         Popular Decks
       </Header>
