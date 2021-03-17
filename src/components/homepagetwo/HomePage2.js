@@ -7,6 +7,7 @@ import PopularDecks from "./PopularDecks.js"
 const HomePage2 = () => {
   return (
     <>
+      <Account>Account</Account>
       <FirstRow>
         <Icon>
           <GiCardRandom />
@@ -25,8 +26,21 @@ const HomePage2 = () => {
   );
 };
 
+const Account = styled.div`
+  margin-left: auto;
+  width: fit-content;
+  background-color: white;
+  border-radius: 10px;
+  padding: 1em 2em;
+  margin: 1rem 1rem 1rem auto;
+  color: #1F2C76;
+  font-weight: bold;
+  position: sticky;
+  top: 1em;
+`;
+
 const FirstRow = styled.div`
-  margin-top: 10rem;
+  margin-top: 8rem;
   display: flex;
   justify-content: center;
   align-items: center;
