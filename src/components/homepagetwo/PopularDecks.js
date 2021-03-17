@@ -41,8 +41,6 @@ const HomePage2 = () => {
 
   }, [])
 
-  //const decks = [deckOne, deckTwo, deckThree];
-
   return (
     <Wrapper>
       <Header>
@@ -53,10 +51,10 @@ const HomePage2 = () => {
           {decks[0].name}
         </DeckName>
         <CardsGallary>
-          <TinyCard card={decks[0].cards[6]} flipped={false} />
-          <TinyCard card={decks[0].cards[2]} flipped={false} />
-          <TinyCard card={decks[0].cards[3]} flipped={false} />
-          <TinyCard card={decks[0].cards[1]} flipped={false} />
+          {decks[0].cards.map((card, i) => {
+            if (i > 3) return;
+            return <TinyCard key={i} card={card} flipped={card.flipped} />
+          })}
         </CardsGallary>
       </DeckRow>
       <DeckRow>
@@ -64,13 +62,9 @@ const HomePage2 = () => {
           {decks[1].name}
         </DeckName>
         <CardsGallary>
-          {decks[1].cards.map((c, i) => {
+          {decks[1].cards.map((card, i) => {
             if (i > 3) return;
-            return <TinyCard
-              key={i}
-              card={c}
-              flipped={c.flipped}
-            />
+            return <TinyCard key={i} card={card} flipped={card.flipped} />
           })}
         </CardsGallary>
       </DeckRow>
@@ -79,10 +73,10 @@ const HomePage2 = () => {
           {decks[2].name}
         </DeckName>
         <CardsGallary>
-          <Card>This is a really long sentence. We want to see what happens when we have really long sentences.</Card>
-          <Card>{decks[2].cards[6].frontText}</Card>
-          <Card>{decks[2].cards[5].frontText}</Card>
-          <Card>{decks[2].cards[5].frontText}</Card>
+          {decks[2].cards.map((card, i) => {
+            if (i > 3) return;
+            return <TinyCard key={i} card={card} flipped={card.flipped} />
+          })}
         </CardsGallary>
       </DeckRow>
     </Wrapper>
