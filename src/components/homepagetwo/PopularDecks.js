@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import styled from "styled-components";
+import { ColorThemeContext } from "../custom_hooks/ColorThemeContext";
 import cardsJSON from "../../resources/card-data.json";
 import CardsGallary from "./CardsGallary";
 import TinyCard from "./TinyCard";
 
 const HomePage2 = () => {
+  const theme = useContext(ColorThemeContext);
 
   // ToDo: Import decks from an API.
   const [decks, setDecks] = useState([
@@ -56,21 +58,21 @@ const HomePage2 = () => {
       </Header>
 
       <DeckRow>
-        <DeckName>
+        <DeckName theme={theme}>
           {decks[0].name}
         </DeckName>
         <CardsGallary deck={decks[0]} amntCardsToShow={amntCardsToShow} />
       </DeckRow>
 
       <DeckRow>
-        <DeckName>
+        <DeckName theme={theme}>
           {decks[1].name}
         </DeckName>
         <CardsGallary deck={decks[1]} amntCardsToShow={amntCardsToShow} />
       </DeckRow>
 
       <DeckRow>
-        <DeckName>
+        <DeckName theme={theme}>
           {decks[2].name}
         </DeckName>
         <CardsGallary deck={decks[2]} amntCardsToShow={amntCardsToShow} />
@@ -98,10 +100,8 @@ const DeckRow = styled.div`
 
 const DeckName = styled.div`
   margin: 1rem;
-  margin-right: -1em;
-  z-index: 1;
-  
-  width: 8rem;
+  padding: 0 0.8rem;
+  width: 7rem;
   height: 5rem;
   align-self: flex-start;
   display: flex;
@@ -110,9 +110,17 @@ const DeckName = styled.div`
   overflow: hidden;
   text-overflow: ellipsis;
 
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: white;
+
   /* border: 1px solid yellow; */
-  background-color: teal;
+  background-color: ${props => props.theme.btnBG};
+  /* border: 1px solid black; */
+  /* border-right: none; */
+  border-right: 2px solid black;
   border-radius: 10px;
+  /* box-shadow: 1px 2px black; */
 `;
 
 export default HomePage2;
