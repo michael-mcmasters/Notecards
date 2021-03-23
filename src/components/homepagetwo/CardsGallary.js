@@ -2,26 +2,29 @@ import React, { useState, useEffect } from 'react';
 import styled from "styled-components";
 import TinyCard from "./TinyCard";
 
-const CardsGallary = ({ deck, cardCountToShow }) => {
-  const [cards, setCards] = useState(getCards(deck));
+const CardsGallary = ({ deck, amntCardsToShow }) => {
+  const [cards, setCards] = useState(getRowOfCards(deck.cards, amntCardsToShow));
   const [absolutePos, setAbsolutePos] = useState(0);
 
   // Cards will slowly move to this position. -4 so that the last 4 cards stay on screen.
-  const targetAbsolutePos = -25 * (cardCountToShow - 4);
+  const targetAbsolutePos = -25 * (amntCardsToShow - 4);
 
   useEffect(() => {
     setAbsolutePos(targetAbsolutePos);
   }, [])
 
-  function getCards(deck) {
+  // Returns an array of cards the length of amntCardsToShow. If deck doesn't have enough cards, repeats cards.
+  function getRowOfCards(cards, amntCardsToShow) {
     let cardsToShow = [];
-    let index = 0;
-    for (let i = 0; i < cardCountToShow; i++) {
-      console.log(index);
-      if (index >= deck.cards.length)
-        index = 0;
-      cardsToShow.push(deck.cards[index]);
-      index++;
+    let cardIndx = 0;
+    let amnt = 0;
+    while (amnt < amntCardsToShow) {
+      if (cardIndx >= cards.length) {
+        cardIndx = 0;
+      }
+      cardsToShow.push(cards[cardIndx]);
+      cardIndx++;
+      amnt++;
     }
     return cardsToShow;
   }

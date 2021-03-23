@@ -47,7 +47,7 @@ const HomePage2 = () => {
 
   }, [])
 
-  const cardCountToShow = 100;
+  const amntCardsToShow = 100;
   return (
     <Wrapper>
 
@@ -59,21 +59,21 @@ const HomePage2 = () => {
         <DeckName>
           {decks[0].name}
         </DeckName>
-        <CardsGallary deck={decks[0]} cardCountToShow={cardCountToShow} />
+        <CardsGallary deck={decks[0]} amntCardsToShow={amntCardsToShow} />
       </DeckRow>
 
       <DeckRow>
         <DeckName>
           {decks[1].name}
         </DeckName>
-        <CardsGallary deck={decks[1]} cardCountToShow={cardCountToShow} />
+        <CardsGallary deck={decks[1]} amntCardsToShow={amntCardsToShow} />
       </DeckRow>
 
       <DeckRow>
         <DeckName>
           {decks[2].name}
         </DeckName>
-        <CardsGallary deck={decks[2]} cardCountToShow={cardCountToShow} />
+        <CardsGallary deck={decks[2]} amntCardsToShow={amntCardsToShow} />
       </DeckRow>
 
     </Wrapper>
