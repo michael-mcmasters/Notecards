@@ -83,11 +83,12 @@ const HomePage2 = () => {
 
 const Wrapper = styled.div`
   max-width: 60rem;
-  /* border: 1px solid yellow; */
+  background-color: rgba(1, 1, 1, 0.15);
+  border-radius: 10px;
 `;
 
 const Header = styled.h1`
-  
+  color: white;
 `;
 
 const DeckRow = styled.div`
@@ -119,7 +120,6 @@ const DeckName = styled.div`
   font-weight: bold;
   color: white;
 
-  /* border: 1px solid yellow; */
   background-color: ${props => props.theme.btnBG};
   border-right: 2px solid black;
   border-radius: 10px;
