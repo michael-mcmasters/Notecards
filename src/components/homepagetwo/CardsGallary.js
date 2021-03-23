@@ -47,7 +47,7 @@ const CardsGallary = ({ deck, amntCardsToShow }) => {
 // Use position relative for cards to use as anchor. (They are using position absolute).
 const CardsContainer = styled.div`
   margin-left: -2rem;
-  z-index: -1;
+  z-index: 0;
 
   position: relative;
   overflow: hidden;

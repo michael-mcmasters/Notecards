@@ -3,10 +3,10 @@ import React, { createContext, useState } from "react";
 export const COLORS = {
   lightMode: {
     icon: "white",
-    btnBG: "#287271",
+    btnBG: "#2A9D8F",
     btnText: "white",
     secBtnBG: "white",
-    secBtnText: "#287271"
+    secBtnText: "#2A9D8F"
   },
   darkMode: {
     icon: "red",

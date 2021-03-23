@@ -41,7 +41,6 @@ const HomePage2 = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      // console.log("interval")
       handleFlipRandomCard();
     }, [2000])
 
@@ -95,10 +94,16 @@ const DeckRow = styled.div`
   display: flex;
   justify-content: space-evenly;
   margin-bottom: 1rem;
-  border: 1px solid red;
+  transition: background-color 0.2s;
+  cursor: pointer;
+  
+  &:hover {
+    background-color: #287271;
+  }
 `;
 
 const DeckName = styled.div`
+  z-index: 1;
   margin: 1rem;
   padding: 0 0.8rem;
   width: 7rem;
@@ -116,11 +121,8 @@ const DeckName = styled.div`
 
   /* border: 1px solid yellow; */
   background-color: ${props => props.theme.btnBG};
-  /* border: 1px solid black; */
-  /* border-right: none; */
   border-right: 2px solid black;
   border-radius: 10px;
-  /* box-shadow: 1px 2px black; */
 `;
 
 export default HomePage2;
