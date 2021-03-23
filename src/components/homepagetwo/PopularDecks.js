@@ -75,42 +75,6 @@ const HomePage2 = () => {
         <CardsGallary cards={decks[2].cards} />
       </DeckRow>
 
-      {/* <DeckRow>
-        <DeckName>
-          {decks[0].name}
-        </DeckName>
-        <CardsGallary>
-          {decks[0].cards.map((card, i) => {
-            if (i > 3) return;
-            return <TinyCard key={i} card={card} xPosition={i + 0.1} flipped={card.flipped} />
-          })}
-        </CardsGallary>
-      </DeckRow>
-
-      <DeckRow>
-        <DeckName>
-          {decks[1].name}
-        </DeckName>
-        <CardsGallary>
-          {decks[1].cards.map((card, i) => {
-            if (i > 3) return;
-            return <TinyCard key={i} card={card} xPosition={i} flipped={card.flipped} />
-          })}
-        </CardsGallary>
-      </DeckRow>
-
-      <DeckRow>
-        <DeckName>
-          {decks[2].name}
-        </DeckName>
-        <CardsGallary>
-          {decks[2].cards.map((card, i) => {
-            if (i > 3) return;
-            return <TinyCard key={i} card={card} flipped={card.flipped} />
-          })}
-        </CardsGallary>
-      </DeckRow> */}
-
     </Wrapper>
   );
 };
@@ -141,17 +105,5 @@ const DeckName = styled.div`
   width: 5rem;
   border: 1px solid red;
 `;
-
-// const CardsGallary = styled.div`
-//   /* These 3 props used to cut off end of card. Can remove them. */
-//   /* position: relative;
-//   left: 10%;              
-//   margin-left: -4rem;   */
-
-
-//   overflow: hidden;
-//   /* display: flex; */
-//   border: 1px solid teal;  
-// `;
 
 export default HomePage2;

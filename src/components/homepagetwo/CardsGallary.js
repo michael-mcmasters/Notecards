@@ -3,41 +3,20 @@ import styled from "styled-components";
 import TinyCard from "./TinyCard";
 
 const CardsGallary = ({ cards }) => {
-  const [xPosition, setXPosition] = useState(50);
-
-  console.log(cards)
+  const [absolutePos, setAbsolutePos] = useState(0);
+  const targetAbsolutePos = -200;
 
   useEffect(() => {
-    setXPosition(-100);
+    setAbsolutePos(targetAbsolutePos);
   }, [])
 
-  // const handleMoveCards = () => {
-  //   setXPosition(prev => prev - 2);
-  // }
-
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     console.log("interval")
-  //     handleMoveCards();
-  //   }, [1000])
-
-  //   return () => clearInterval(interval);
-
-  // }, [])
-
-
+  let spaceBtwnCards = 0;
   return (
-    // <Container>
-    //   {deck.cards.map((card, i) => {
-    //     if (i > 3) return;
-    //     return <TinyCard key={i} card={card} xPosition={i + 0.1} flipped={card.flipped} />
-    //   })}
-    // </Container>
-
     <Wrapper>
       {cards.map((c, i) => {
+        spaceBtwnCards += 25;
         console.log(c);
-        return <TinyCard key={i} card={c} xPosition={xPosition} flipped={c.flipped} />
+        return <TinyCard key={i} card={c} xPosition={absolutePos + spaceBtwnCards} flipped={c.flipped} />
       })}
     </Wrapper>
   );
