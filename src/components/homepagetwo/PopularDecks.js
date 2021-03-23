@@ -58,7 +58,7 @@ const HomePage2 = () => {
         <DeckName>
           {decks[0].name}
         </DeckName>
-        <CardsGallary deck={decks[0]} />
+        <CardsGallary cards={decks[0].cards} />
       </DeckRow>
 
       {/* <DeckRow>
