@@ -1,32 +1,52 @@
 import React, { useContext } from 'react';
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 import { ColorThemeContext } from "../custom_hooks/ColorThemeContext";
+import { AiFillHome } from "react-icons/ai";
 
 const NavbarTwo = () => {
   const theme = useContext(ColorThemeContext);
 
   return (
-    // styled-components will not override Link's default styling, so must inline the styling instead.
-    <Account theme={theme}>
-      <Link to="/" style={{ color: theme.secBtnText, textDecoration: 'none' }}>
-        Account
+    <>
+      <Home theme={theme}>
+        <AiFillHome />
+      </Home>
+      {/* styled-components will not override Link's default styling, so must use inline styling. */}
+      <Account theme={theme}>
+        <Link to="/" style={{ color: theme.secBtnText, textDecoration: 'none' }}>
+          Account
       </Link>
-    </Account>
+      </Account>
+    </>
   );
 };
 
-const Account = styled(Link)`
-  margin: 1em;
-  padding: 0.7em 1.2em;
+const ButtonStyling = css`
+  margin: 1rem;
+  padding: 0.7rem 1.2rem;
   width: fit-content;
   background-color: ${props => props.theme.secBtnBG};
   border: none;
   border-radius: 10px;
-  font-size: 1.1em;
+  font-size: 1.3rem;
   font-weight: bold;
   text-decoration: none;
+`;
+
+const Home = styled.div`
+  ${ButtonStyling};
   
+  position: fixed;
+  top: 0;
+  
+  color: ${props => props.theme.secBtnText};
+`;
+
+const Account = styled(Link)`
+
+  ${ButtonStyling};
+    
   position: fixed;
   right: 0;
   top: 0;
