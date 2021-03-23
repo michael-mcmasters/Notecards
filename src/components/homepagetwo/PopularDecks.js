@@ -105,6 +105,13 @@ const DeckRow = styled.div`
   &:hover {
     background-color: #287271;
   }
+  
+  @media(max-width: 800px) {
+    padding: 0.5rem 0.5rem;
+    border-radius: 10px;
+    margin: 0;
+    padding: 0;
+  }
 `;
 
 const DeckName = styled.div`

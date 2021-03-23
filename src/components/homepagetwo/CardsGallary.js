@@ -56,7 +56,6 @@ const CardsContainer = styled.div`
   max-height: 8rem;
   
   @media(max-width: 800px) {
-    /* background-color: red; */
     display: none;
   }
 `;
