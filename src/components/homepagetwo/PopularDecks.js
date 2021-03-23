@@ -92,18 +92,22 @@ const Header = styled.h1`
 const DeckRow = styled.div`
   display: flex;
   justify-content: space-evenly;
-  /* background-color: gray; */
   margin-bottom: 1rem;
-  /* overflow: hidden; */
   border: 1px solid red;
 `;
 
 const DeckName = styled.div`
   margin: 1rem;
   margin-right: 0;
-  padding: 2rem;
-  width: 5rem;
-  border: 1px solid red;
+  width: 8rem;
+  height: 5rem;
+  align-self: flex-start;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border: 1px solid yellow;
 `;
 
 export default HomePage2;

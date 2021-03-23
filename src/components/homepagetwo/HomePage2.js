@@ -25,6 +25,21 @@ const HomePage2 = () => {
         {/* <FeaturedCards /> */}
         <PopularDecks />
       </SecondRow>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
     </>
   );
 };
