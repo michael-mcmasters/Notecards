@@ -10,11 +10,11 @@ const HomePage2 = () => {
   const [decks, setDecks] = useState([
     {
       name: "Core Java",
-      cards: cardsJSON.cards.slice(0, 7)
+      cards: cardsJSON.cards.slice(0, 4)
     },
     {
       name: "Spanish",
-      cards: cardsJSON.cards.slice(15, 30)
+      cards: cardsJSON.cards.slice(15, 35)
     },
     {
       name: "State Capitals",
@@ -39,7 +39,7 @@ const HomePage2 = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      console.log("interval")
+      // console.log("interval")
       handleFlipRandomCard();
     }, [1000])
 
@@ -59,6 +59,20 @@ const HomePage2 = () => {
           {decks[0].name}
         </DeckName>
         <CardsGallary cards={decks[0].cards} />
+      </DeckRow>
+
+      <DeckRow>
+        <DeckName>
+          {decks[1].name}
+        </DeckName>
+        <CardsGallary cards={decks[1].cards} />
+      </DeckRow>
+
+      <DeckRow>
+        <DeckName>
+          {decks[2].name}
+        </DeckName>
+        <CardsGallary cards={decks[2].cards} />
       </DeckRow>
 
       {/* <DeckRow>

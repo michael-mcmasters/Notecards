@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from "styled-components";
 import TinyCard from "./TinyCard";
 
 const CardsGallary = ({ cards }) => {
-  const [xPosition, setXPosition] = useState(-20);
+  const [xPosition, setXPosition] = useState(50);
   const [containers, setContainers] = useState([
     {
       card: cards[0],
@@ -35,6 +35,25 @@ const CardsGallary = ({ cards }) => {
     },
   ]);
 
+  useEffect(() => {
+    setXPosition(-100);
+  }, [])
+
+  // const handleMoveCards = () => {
+  //   setXPosition(prev => prev - 2);
+  // }
+
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     console.log("interval")
+  //     handleMoveCards();
+  //   }, [1000])
+
+  //   return () => clearInterval(interval);
+
+  // }, [])
+
+
   return (
     // <Container>
     //   {deck.cards.map((card, i) => {
@@ -55,7 +74,8 @@ const Wrapper = styled.div`
   overflow: hidden;
   width: max-content;
   max-height: 8rem;
-  border: 1px solid teal; 
+  transition: 0.39s ease;
+  /* border: 1px solid teal;  */
 `;
 
 export default CardsGallary;

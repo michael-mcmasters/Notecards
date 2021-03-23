@@ -24,6 +24,8 @@ const Container = styled.div`
   float: left;
   position: relative;
   left: ${props => props.xPosition}%;
+/* transition: 0.39s ease; */
+  transition: 30s linear;
   margin: 1rem;
   width: 8rem;
   height: 5rem;
