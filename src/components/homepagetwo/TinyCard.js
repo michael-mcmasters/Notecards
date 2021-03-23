@@ -21,7 +21,8 @@ const TinyCard = ({ card, xPosition, flipped }) => {
 };
 
 const Container = styled.div`
-  float: left;
+  /* float: left; */
+  display: inline-block;
   position: relative;
   left: ${props => props.xPosition}%;
 /* transition: 0.39s ease; */
