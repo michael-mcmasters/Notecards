@@ -41,12 +41,13 @@ const HomePage2 = () => {
     const interval = setInterval(() => {
       // console.log("interval")
       handleFlipRandomCard();
-    }, [1000])
+    }, [2000])
 
     return () => clearInterval(interval);
 
   }, [])
 
+  const cardCountToShow = 50;
   return (
     <Wrapper>
 
@@ -58,21 +59,21 @@ const HomePage2 = () => {
         <DeckName>
           {decks[0].name}
         </DeckName>
-        <CardsGallary cards={decks[0].cards} />
+        <CardsGallary deck={decks[0]} cardCountToShow={4} />
       </DeckRow>
 
       <DeckRow>
         <DeckName>
           {decks[1].name}
         </DeckName>
-        <CardsGallary cards={decks[1].cards} />
+        <CardsGallary deck={decks[1]} cardCountToShow={cardCountToShow} />
       </DeckRow>
 
       <DeckRow>
         <DeckName>
           {decks[2].name}
         </DeckName>
-        <CardsGallary cards={decks[2].cards} />
+        <CardsGallary deck={decks[2]} cardCountToShow={cardCountToShow} />
       </DeckRow>
 
     </Wrapper>
@@ -80,9 +81,8 @@ const HomePage2 = () => {
 };
 
 const Wrapper = styled.div`
-  /* margin: auto; */
   max-width: 60rem;
-  /* border: 1px solid yellow; */
+  border: 1px solid yellow;
 `;
 
 const Header = styled.h1`
