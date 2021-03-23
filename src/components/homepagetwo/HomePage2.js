@@ -81,7 +81,7 @@ const Button = styled.button`
   color: ${props => props.theme.btnText};
   border-radius: 10px;
   border: none;
-  
+  cursor: pointer;
 `;
 
 const SecondRow = styled.div`

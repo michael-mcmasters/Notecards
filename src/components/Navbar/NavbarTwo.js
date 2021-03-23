@@ -10,11 +10,11 @@ const NavbarTwo = () => {
   // Can't override <Link>'s default styling with styled-component CSS. So must use inline styling instead.
   return (
     <>
-      <Home theme={theme}>
-        <Link to="/">
+      <Link to="/">
+        <Home theme={theme}>
           <AiFillHome style={{ color: theme.secBtnText, textDecoration: 'none' }} />
-        </Link>
-      </Home>
+        </Home>
+      </Link>
       <Account theme={theme}>
         <Link to="/" style={{ color: theme.secBtnText, textDecoration: 'none' }}>
           Account
@@ -35,6 +35,7 @@ const ButtonStyling = css`
   font-weight: bold;
   text-decoration: none;
   position: fixed;
+  cursor: pointer;
 `;
 
 const Home = styled.div`
