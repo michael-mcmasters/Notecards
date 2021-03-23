@@ -1,9 +1,9 @@
 import React from 'react';
 import styled, { css } from "styled-components";
 
-const TinyCard = ({ card, flipped }) => {
+const TinyCard = ({ card, xPosition, flipped }) => {
   return (
-    <Container>
+    <Container xPosition={xPosition}>
       <FlipCard flipped={flipped}>
         <Front backgroundColor={card.backgroundColor} scrollbarColor="white">
           <Content>
@@ -21,7 +21,9 @@ const TinyCard = ({ card, flipped }) => {
 };
 
 const Container = styled.div`
+  float: left;
   margin: 1rem;
+  margin-left: ${props => props.xPosition}rem;
   width: 8rem;
   height: 5rem;
   overflow: hidden;

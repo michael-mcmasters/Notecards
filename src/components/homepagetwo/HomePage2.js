@@ -22,7 +22,7 @@ const HomePage2 = () => {
       </FirstRow>
 
       <SecondRow>
-        <FeaturedCards />
+        {/* <FeaturedCards /> */}
         <PopularDecks />
       </SecondRow>
     </>
@@ -66,6 +66,8 @@ const Button = styled.button`
 `;
 
 const SecondRow = styled.div`
+  /* background-color: rgba(0, 0, 0, 0.2);
+  margin: 5em; */
   margin-top: 12rem;
   display: flex;
   justify-content: space-around;

@@ -60,7 +60,7 @@ const HomePage2 = () => {
         <CardsGallary>
           {decks[0].cards.map((card, i) => {
             if (i > 3) return;
-            return <TinyCard key={i} card={card} flipped={card.flipped} />
+            return <TinyCard key={i} card={card} xPosition={i + 0.1} flipped={card.flipped} />
           })}
         </CardsGallary>
       </DeckRow>
@@ -72,7 +72,7 @@ const HomePage2 = () => {
         <CardsGallary>
           {decks[1].cards.map((card, i) => {
             if (i > 3) return;
-            return <TinyCard key={i} card={card} flipped={card.flipped} />
+            return <TinyCard key={i} card={card} xPosition={i} flipped={card.flipped} />
           })}
         </CardsGallary>
       </DeckRow>
@@ -95,7 +95,7 @@ const HomePage2 = () => {
 
 const Wrapper = styled.div`
   /* margin: auto; */
-  max-width: 50rem;
+  max-width: 60rem;
   /* border: 1px solid yellow; */
 `;
 
@@ -109,7 +109,7 @@ const DeckRow = styled.div`
   /* background-color: gray; */
   margin-bottom: 1rem;
   overflow: hidden;
-  /* border: 1px solid red; */
+  border: 1px solid red;
 `;
 
 const DeckName = styled.div`
@@ -120,13 +120,15 @@ const DeckName = styled.div`
 `;
 
 const CardsGallary = styled.div`
-  position: relative;
-  left: 10%;              /* Div is pushed to the right so that only part of last card is shown. */
-                          /* Offset its margin */
-  margin-left: -4rem;  
+  /* These 3 props used to cut off end of card. Can remove them. */
+  /* position: relative;
+  left: 10%;              
+  margin-left: -4rem;   */
+  
+  
   overflow: hidden;
-  display: flex;
-  /* border: 1px solid teal;   */
+  /* display: flex; */
+  border: 1px solid teal;  
 `;
 
 const Card = styled.p`
