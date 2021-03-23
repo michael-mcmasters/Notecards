@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from "styled-components";
 import cardsJSON from "../../resources/card-data.json";
+import CardsGallary from "./CardsGallary";
 import TinyCard from "./TinyCard";
 
 const HomePage2 = () => {
@@ -57,6 +58,13 @@ const HomePage2 = () => {
         <DeckName>
           {decks[0].name}
         </DeckName>
+        <CardsGallary deck={decks[0]} />
+      </DeckRow>
+
+      {/* <DeckRow>
+        <DeckName>
+          {decks[0].name}
+        </DeckName>
         <CardsGallary>
           {decks[0].cards.map((card, i) => {
             if (i > 3) return;
@@ -87,7 +95,7 @@ const HomePage2 = () => {
             return <TinyCard key={i} card={card} flipped={card.flipped} />
           })}
         </CardsGallary>
-      </DeckRow>
+      </DeckRow> */}
 
     </Wrapper>
   );
@@ -119,17 +127,17 @@ const DeckName = styled.div`
   border: 1px solid red;
 `;
 
-const CardsGallary = styled.div`
-  /* These 3 props used to cut off end of card. Can remove them. */
-  /* position: relative;
-  left: 10%;              
-  margin-left: -4rem;   */
-  
-  
-  overflow: hidden;
-  /* display: flex; */
-  border: 1px solid teal;  
-`;
+// const CardsGallary = styled.div`
+//   /* These 3 props used to cut off end of card. Can remove them. */
+//   /* position: relative;
+//   left: 10%;              
+//   margin-left: -4rem;   */
+
+
+//   overflow: hidden;
+//   /* display: flex; */
+//   border: 1px solid teal;  
+// `;
 
 const Card = styled.p`
   margin: 1rem;
