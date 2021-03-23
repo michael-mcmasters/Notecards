@@ -18,7 +18,7 @@ const HomePage2 = () => {
     },
     {
       name: "State Capitals",
-      cards: cardsJSON.cards.slice(30, 37)
+      cards: cardsJSON.cards.slice(35, 50)
     }
   ])
 
@@ -47,7 +47,7 @@ const HomePage2 = () => {
 
   }, [])
 
-  const cardCountToShow = 50;
+  const cardCountToShow = 100;
   return (
     <Wrapper>
 
@@ -59,7 +59,7 @@ const HomePage2 = () => {
         <DeckName>
           {decks[0].name}
         </DeckName>
-        <CardsGallary deck={decks[0]} cardCountToShow={4} />
+        <CardsGallary deck={decks[0]} cardCountToShow={cardCountToShow} />
       </DeckRow>
 
       <DeckRow>
@@ -82,7 +82,7 @@ const HomePage2 = () => {
 
 const Wrapper = styled.div`
   max-width: 60rem;
-  border: 1px solid yellow;
+  /* border: 1px solid yellow; */
 `;
 
 const Header = styled.h1`

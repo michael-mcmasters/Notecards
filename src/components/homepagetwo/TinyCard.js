@@ -25,7 +25,7 @@ const Container = styled.div`
   display: inline-block;
   position: absolute;
   left: ${props => props.xPosition}%;
-  /* transition: 30s linear; */
+  transition: 300s linear;
   margin: 1rem;
   width: 8rem;
   height: 5rem;

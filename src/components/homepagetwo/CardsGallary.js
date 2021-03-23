@@ -5,8 +5,9 @@ import TinyCard from "./TinyCard";
 const CardsGallary = ({ deck, cardCountToShow }) => {
   const [cards, setCards] = useState(getCards(deck));
   const [absolutePos, setAbsolutePos] = useState(0);
-  // const targetAbsolutePos = -200;         // Cards will slowly move to this position.
-  const targetAbsolutePos = 0;         // Cards will slowly move to this position.
+
+  // Cards will slowly move to this position. -4 so that the last 4 cards stay on screen.
+  const targetAbsolutePos = -25 * (cardCountToShow - 4);
 
   useEffect(() => {
     setAbsolutePos(targetAbsolutePos);
@@ -25,21 +26,7 @@ const CardsGallary = ({ deck, cardCountToShow }) => {
     return cardsToShow;
   }
 
-  // useEffect(() => {
-  //   let cardsToShow = [];
-  //   let index = 0;
-  //   for (let i = 0; i < cardCountToShow; i++) {
-  //     console.log(index);
-  //     if (index >= deck.cards.length)
-  //       index = 0;
-  //     cardsToShow.push(deck.cards[index]);
-  //     index++;
-  //   }
-  //   setCards(cardsToShow);
-  // }, [])
-
   let spaceBtwnCards = 0;
-  // console.log(cards);
   return (
     < Wrapper >
       {cards.map((c, i) => {
