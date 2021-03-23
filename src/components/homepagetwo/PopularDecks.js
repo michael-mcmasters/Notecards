@@ -10,7 +10,7 @@ const HomePage2 = () => {
   const [decks, setDecks] = useState([
     {
       name: "Core Java",
-      cards: cardsJSON.cards.slice(0, 4)
+      cards: cardsJSON.cards.slice(0, 10)
     },
     {
       name: "Spanish",
@@ -130,7 +130,7 @@ const DeckRow = styled.div`
   justify-content: space-evenly;
   /* background-color: gray; */
   margin-bottom: 1rem;
-  overflow: hidden;
+  /* overflow: hidden; */
   border: 1px solid red;
 `;
 

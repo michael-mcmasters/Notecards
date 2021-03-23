@@ -4,36 +4,8 @@ import TinyCard from "./TinyCard";
 
 const CardsGallary = ({ cards }) => {
   const [xPosition, setXPosition] = useState(50);
-  const [containers, setContainers] = useState([
-    {
-      card: cards[0],
-      xPosition: 1,
-      transition: "",
-      animation: "",
-      flipped: cards[0].flipped,
-    },
-    {
-      card: cards[1],
-      xPosition: 1,
-      transition: "",
-      animation: "",
-      flipped: cards[1].flipped,
-    },
-    {
-      card: cards[2],
-      xPosition: 1,
-      transition: "",
-      animation: "",
-      flipped: cards[2].flipped,
-    },
-    {
-      card: cards[3],
-      xPosition: 1,
-      transition: "",
-      animation: "",
-      flipped: cards[3].flipped,
-    },
-  ]);
+
+  console.log(cards)
 
   useEffect(() => {
     setXPosition(-100);
@@ -63,19 +35,21 @@ const CardsGallary = ({ cards }) => {
     // </Container>
 
     <Wrapper>
-      {containers.map((c, i) => {
-        return <TinyCard key={i} card={c.card} xPosition={xPosition} flipped={c.flipped} />
+      {cards.map((c, i) => {
+        console.log(c);
+        return <TinyCard key={i} card={c} xPosition={xPosition} flipped={c.flipped} />
       })}
     </Wrapper>
   );
 };
 
 const Wrapper = styled.div`
+  position: relative;
   overflow: hidden;
-  width: max-content;
+  width: 40rem;
+  max-width: 40rem;
   max-height: 8rem;
-  transition: 0.39s ease;
-  /* border: 1px solid teal;  */
+  border: 1px solid teal; 
 `;
 
 export default CardsGallary;
