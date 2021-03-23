@@ -98,7 +98,9 @@ const DeckRow = styled.div`
 
 const DeckName = styled.div`
   margin: 1rem;
-  margin-right: 0;
+  margin-right: -1em;
+  z-index: 1;
+  
   width: 8rem;
   height: 5rem;
   align-self: flex-start;
@@ -107,7 +109,10 @@ const DeckName = styled.div`
   align-items: center;
   overflow: hidden;
   text-overflow: ellipsis;
-  border: 1px solid yellow;
+
+  /* border: 1px solid yellow; */
+  background-color: teal;
+  border-radius: 10px;
 `;
 
 export default HomePage2;
