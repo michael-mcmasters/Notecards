@@ -23,7 +23,7 @@ const TinyCard = ({ card, xPosition, flipped }) => {
 const Container = styled.div`
   float: left;
   position: relative;
-  left: -10%;
+  left: ${props => props.xPosition}%;
   margin: 1rem;
   width: 8rem;
   height: 5rem;

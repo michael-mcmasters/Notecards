@@ -122,6 +122,7 @@ const DeckRow = styled.div`
 
 const DeckName = styled.div`
   margin: 1rem;
+  margin-right: 0;
   padding: 2rem;
   width: 5rem;
   border: 1px solid red;
@@ -138,14 +139,5 @@ const DeckName = styled.div`
 //   /* display: flex; */
 //   border: 1px solid teal;  
 // `;
-
-const Card = styled.p`
-  margin: 1rem;
-  width: 8rem;
-  height: 5rem;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  border: 1px solid #000000;
-`;
 
 export default HomePage2;

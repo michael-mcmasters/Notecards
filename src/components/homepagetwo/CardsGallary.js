@@ -3,6 +3,7 @@ import styled from "styled-components";
 import TinyCard from "./TinyCard";
 
 const CardsGallary = ({ cards }) => {
+  const [xPosition, setXPosition] = useState(-20);
   const [containers, setContainers] = useState([
     {
       card: cards[0],
@@ -44,7 +45,7 @@ const CardsGallary = ({ cards }) => {
 
     <Wrapper>
       {containers.map((c, i) => {
-        return <TinyCard key={i} card={c.card} xPosition={c.xPosition} flipped={c.flipped} />
+        return <TinyCard key={i} card={c.card} xPosition={xPosition} flipped={c.flipped} />
       })}
     </Wrapper>
   );
