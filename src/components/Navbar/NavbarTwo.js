@@ -7,12 +7,14 @@ import { AiFillHome } from "react-icons/ai";
 const NavbarTwo = () => {
   const theme = useContext(ColorThemeContext);
 
+  // Can't override <Link>'s default styling with styled-component CSS. So must use inline styling instead.
   return (
     <>
       <Home theme={theme}>
-        <AiFillHome />
+        <Link to="/">
+          <AiFillHome style={{ color: theme.secBtnText, textDecoration: 'none' }} />
+        </Link>
       </Home>
-      {/* styled-components will not override Link's default styling, so must use inline styling. */}
       <Account theme={theme}>
         <Link to="/" style={{ color: theme.secBtnText, textDecoration: 'none' }}>
           Account
@@ -32,22 +34,16 @@ const ButtonStyling = css`
   font-size: 1.3rem;
   font-weight: bold;
   text-decoration: none;
+  position: fixed;
 `;
 
 const Home = styled.div`
   ${ButtonStyling};
-  
-  position: fixed;
   top: 0;
-  
-  color: ${props => props.theme.secBtnText};
 `;
 
 const Account = styled(Link)`
-
   ${ButtonStyling};
-    
-  position: fixed;
   right: 0;
   top: 0;
 `;
