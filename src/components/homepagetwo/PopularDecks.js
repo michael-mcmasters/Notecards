@@ -85,6 +85,10 @@ const Wrapper = styled.div`
   max-width: 60rem;
   background-color: rgba(1, 1, 1, 0.15);
   border-radius: 10px;
+  
+  @media(max-width: 800px) {
+    padding: 1rem 2rem;
+  }
 `;
 
 const Header = styled.h1`

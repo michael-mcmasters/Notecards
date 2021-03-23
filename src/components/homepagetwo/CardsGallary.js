@@ -54,6 +54,11 @@ const CardsContainer = styled.div`
   width: 40rem;
   max-width: 40rem;
   max-height: 8rem;
+  
+  @media(max-width: 800px) {
+    /* background-color: red; */
+    display: none;
+  }
 `;
 
 export default CardsGallary;
