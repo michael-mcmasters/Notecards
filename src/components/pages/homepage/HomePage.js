@@ -19,7 +19,7 @@ const HomePage = () => {
           <Link to="/create-deck">
             <Button theme={theme}>Create Deck</Button>
           </Link>
-          <Link to="/cards">
+          <Link to="/popular-decks">
             <Button theme={theme}>View Decks</Button>
           </Link>
         </ButtonContainer>
