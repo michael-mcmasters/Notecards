@@ -44,7 +44,6 @@ const FeaturedCard = () => {
 const Container = styled.div`
   padding: 1rem;
   padding-top: 0;
-  /* border: 1px solid red; */
 `;
 
 const Header = styled.h1`

@@ -4,7 +4,7 @@ import { ColorThemeContext } from "../custom_hooks/ColorThemeContext";
 import { GiCardRandom } from "react-icons/gi";
 import { Link } from "react-router-dom";
 import FeaturedCards from "./FeaturedCards.js";
-import PopularDecks from "./PopularDecks.js"
+import DeckSlideshow from "../deck_slideshow/DeckSlideshow.js"
 
 const HomePage = () => {
   const theme = useContext(ColorThemeContext);
@@ -27,7 +27,7 @@ const HomePage = () => {
 
       <SecondRow>
         {/* <FeaturedCards /> */}
-        <PopularDecks />
+        <DeckSlideshow />
       </SecondRow>
       <br />
       <br />
@@ -85,8 +85,6 @@ const Button = styled.button`
 `;
 
 const SecondRow = styled.div`
-  /* background-color: rgba(0, 0, 0, 0.2);
-  margin: 5em; */
   margin-top: 12rem;
   display: flex;
   justify-content: space-around;

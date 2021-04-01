@@ -4,9 +4,8 @@ import { ColorThemeContext } from "../custom_hooks/ColorThemeContext";
 import { Link } from "react-router-dom";
 import cardsJSON from "../../resources/card-data.json";
 import CardsGallary from "./CardsGallary";
-import TinyCard from "./TinyCard";
 
-const HomePage2 = () => {
+const DeckSlideshow = () => {
   const theme = useContext(ColorThemeContext);
 
   // ToDo: Import decks from an API.
@@ -152,4 +151,4 @@ const DeckName = styled.div`
   border-radius: 10px;
 `;
 
-export default HomePage2;
+export default DeckSlideshow;
