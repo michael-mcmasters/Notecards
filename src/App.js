@@ -5,7 +5,7 @@ import {
   Route,
 } from "react-router-dom";
 import { ColorThemeProvider } from "./components/custom_hooks/ColorThemeContext";
-import NavbarTwo from "./components/navbar/NavbarTwo.js";
+import Navbar from "./components/navbar/Navbar.js";
 import HomePage from "./components/homepage/HomePage.js";
 import CardContainers from "./components/cards/CardContainers.js"
 
@@ -16,9 +16,7 @@ function App() {
       <ColorThemeProvider>
 
         <Router>
-
-          <NavbarTwo />
-
+          <Navbar />
           <Switch>
             <Route path="/cards">
               <h1 className="title App-logo">Java</h1>
@@ -30,7 +28,6 @@ function App() {
                 <p>And click a card to edit its content</p>
               </div>
             </Route>
-
             {/* Home path must be last path for router to work */}
             <Route path="/">
               <HomePage />
