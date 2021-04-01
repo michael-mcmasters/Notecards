@@ -7,7 +7,7 @@ export const COLORS = {
     btnText: "white",
     secBtnBG: "white",
     secBtnText: "#2A9D8F",
-    darkGreen: "#264653",
+    darkGreen: "#287271",
     yellow: "#E9C46A",
     blue: "#6183f4",
   },
