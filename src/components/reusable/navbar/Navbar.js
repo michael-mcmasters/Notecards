@@ -7,51 +7,62 @@ import { AiFillHome } from "react-icons/ai";
 const NavbarTwo = () => {
   const theme = useContext(ColorThemeContext);
 
-  // Can't override <Link>'s default styling with styled-component CSS. So must use inline styling instead.
   return (
     <Container>
 
-      <Link to="/">
+      <StyledLink theme={theme} to="/">
         <Home theme={theme}>
-          <AiFillHome style={{ color: theme.secBtnText, textDecoration: 'none' }} />
+          <AiFillHome />
         </Home>
-      </Link>
-      <Account theme={theme}>
-        <Link to="/account" style={{ color: theme.secBtnText, textDecoration: 'none' }}>
-          Account
-      </Link>
+      </StyledLink>
+
+      <StyledLink theme={theme} to="/account">
+        <Account theme={theme}>
+          Sign up
       </Account>
+      </StyledLink>
+
     </Container>
   );
 };
 
+const StyledLink = styled(Link)`
+  text-decoration: none;
+`;
+
 const Container = styled.div`
-  margin: 6rem 0;
+  padding: 1rem;
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  z-index: 5;
 `;
 
 const ButtonStyling = css`
-  margin: 1rem;
+  color: ${props => props.theme.secBtnText};
   padding: 0.7rem 1.2rem;
   width: fit-content;
   background-color: ${props => props.theme.secBtnBG};
-  border: none;
   border-radius: 10px;
   font-size: 1.3rem;
   font-weight: bold;
   text-decoration: none;
-  position: fixed;
   cursor: pointer;
+  border: 2px solid ${props => props.theme.secBtnBG};;
+  
+  &:focus, &:hover {
+    border: 2px solid ${props => props.theme.secBtnText};
+    outline: none;
+  }
 `;
 
-const Home = styled.div`
+const Home = styled.button`
   ${ButtonStyling};
-  top: 0;
 `;
 
-const Account = styled(Link)`
+const Account = styled.button`
   ${ButtonStyling};
-  right: 0;
-  top: 0;
 `;
 
 export default NavbarTwo;
