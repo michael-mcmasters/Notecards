@@ -56,21 +56,21 @@ const HomePage2 = () => {
         Popular Decks
       </Header>
 
-      <DeckRow>
+      <DeckRow theme={theme}>
         <DeckName theme={theme}>
           {decks[0].name}
         </DeckName>
         <CardsGallary deck={decks[0]} amntCardsToShow={amntCardsToShow} />
       </DeckRow>
 
-      <DeckRow>
+      <DeckRow theme={theme}>
         <DeckName theme={theme}>
           {decks[1].name}
         </DeckName>
         <CardsGallary deck={decks[1]} amntCardsToShow={amntCardsToShow} />
       </DeckRow>
 
-      <DeckRow>
+      <DeckRow theme={theme}>
         <DeckName theme={theme}>
           {decks[2].name}
         </DeckName>
@@ -99,11 +99,10 @@ const DeckRow = styled.div`
   display: flex;
   justify-content: space-evenly;
   margin-bottom: 1rem;
-  transition: background-color 0.2s;
   cursor: pointer;
   
   &:hover {
-    background-color: #287271;
+    background-color: ${props => props.theme.btnBG};
   }
   
   @media(max-width: 800px) {
