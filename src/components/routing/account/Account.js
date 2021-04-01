@@ -1,12 +1,10 @@
 import React from 'react';
+import styled from "styled-components";
 import { Link } from "react-router-dom";
+import PageNotFinished from "../../reusable/page_not_finished/PageNotFinished";
 
-const account = () => {
-  return (
-    <Link to="/">
-      This page is not yet ready.
-    </Link>
-  );
+const Account = () => {
+  return <PageNotFinished />;
 };
 
-export default account;
+export default Account;

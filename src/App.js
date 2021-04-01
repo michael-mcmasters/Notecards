@@ -20,7 +20,7 @@ function App() {
         <Router>
           <Navbar />
           <Switch>
-            <Route path="account">
+            <Route path="/account">
               <Account />
             </Route>
             <Route path="/cards">

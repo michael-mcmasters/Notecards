@@ -7,6 +7,9 @@ export const COLORS = {
     btnText: "white",
     secBtnBG: "white",
     secBtnText: "#2A9D8F",
+    darkGreen: "#264653",
+    yellow: "#E9C46A",
+    blue: "#6183f4",
   },
   darkMode: {
     icon: "red",
