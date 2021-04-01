@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import FeaturedCards from "./FeaturedCards.js";
 import PopularDecks from "./PopularDecks.js"
 
-const HomePage2 = () => {
+const HomePage = () => {
   const theme = useContext(ColorThemeContext);
 
   return (
@@ -97,4 +97,4 @@ const SecondRow = styled.div`
   }
 `;
 
-export default HomePage2;
+export default HomePage;

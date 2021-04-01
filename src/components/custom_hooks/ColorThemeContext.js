@@ -7,7 +7,6 @@ export const COLORS = {
     btnText: "white",
     secBtnBG: "white",
     secBtnText: "#2A9D8F",
-    deckRowHoverBG: "green"
   },
   darkMode: {
     icon: "red",

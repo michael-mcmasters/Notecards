@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import styled from "styled-components";
 import { ColorThemeContext } from "../custom_hooks/ColorThemeContext";
+import { Link } from "react-router-dom";
 import cardsJSON from "../../resources/card-data.json";
 import CardsGallary from "./CardsGallary";
 import TinyCard from "./TinyCard";
@@ -56,30 +57,46 @@ const HomePage2 = () => {
         Popular Decks
       </Header>
 
-      <DeckRow theme={theme}>
-        <DeckName theme={theme}>
-          {decks[0].name}
-        </DeckName>
-        <CardsGallary deck={decks[0]} amntCardsToShow={amntCardsToShow} />
-      </DeckRow>
+      <UnstyledLink to="/cards">
+        <DeckRow theme={theme}>
+          <DeckName theme={theme}>
+            {decks[0].name}
+          </DeckName>
+          <CardsGallary deck={decks[0]} amntCardsToShow={amntCardsToShow} />
+        </DeckRow>
+      </UnstyledLink>
 
-      <DeckRow theme={theme}>
-        <DeckName theme={theme}>
-          {decks[1].name}
-        </DeckName>
-        <CardsGallary deck={decks[1]} amntCardsToShow={amntCardsToShow} />
-      </DeckRow>
+      <UnstyledLink to="/cards">
+        <DeckRow theme={theme}>
+          <DeckName theme={theme}>
+            {decks[1].name}
+          </DeckName>
+          <CardsGallary deck={decks[1]} amntCardsToShow={amntCardsToShow} />
+        </DeckRow>
+      </UnstyledLink>
 
-      <DeckRow theme={theme}>
-        <DeckName theme={theme}>
-          {decks[2].name}
-        </DeckName>
-        <CardsGallary deck={decks[2]} amntCardsToShow={amntCardsToShow} />
-      </DeckRow>
+      <UnstyledLink to="/cards">
+        <DeckRow theme={theme}>
+          <DeckName theme={theme}>
+            {decks[2].name}
+          </DeckName>
+          <CardsGallary deck={decks[2]} amntCardsToShow={amntCardsToShow} />
+        </DeckRow>
+      </UnstyledLink>
 
     </Wrapper>
   );
 };
+
+// Remove default styling that Link comes with.
+const UnstyledLink = styled(Link)`
+    text-decoration: none;
+    color: black;
+
+    &:focus, &:hover, &:visited, &:link, &:active {
+        text-decoration: none;
+    }
+`;
 
 const Wrapper = styled.div`
   max-width: 60rem;
