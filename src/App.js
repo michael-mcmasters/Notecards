@@ -1,9 +1,9 @@
-import './App.css';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
 } from "react-router-dom";
+import styled from "styled-components";
 import { ColorThemeProvider } from "./components/custom_hooks/ColorThemeContext";
 import Navbar from "./components/navbar/Navbar.js";
 import HomePage from "./components/homepage/HomePage.js";
@@ -11,24 +11,17 @@ import CardContainers from "./components/cards/CardContainers.js"
 
 function App() {
 
+  // <HomePage> must be last component in <switch> for routing to work.
   return (
-    <div className="App">
+    <Container>
       <ColorThemeProvider>
 
         <Router>
           <Navbar />
           <Switch>
             <Route path="/cards">
-              <h1 className="title App-logo">Java</h1>
               <CardContainers></CardContainers>
-              <div className="controls-description">
-                <p>Use the arrow keys to cycle</p>
-                <p>Space bar to flip</p>
-                <p>Up key if you knew the answer</p>
-                <p>And click a card to edit its content</p>
-              </div>
             </Route>
-            {/* Home path must be last path for router to work */}
             <Route path="/">
               <HomePage />
             </Route>
@@ -36,8 +29,13 @@ function App() {
         </Router>
 
       </ColorThemeProvider>
-    </div>
+    </Container>
   );
 }
+
+const Container = styled.div`
+  text-align: center;
+  margin: 0 auto;
+`;
 
 export default App;
