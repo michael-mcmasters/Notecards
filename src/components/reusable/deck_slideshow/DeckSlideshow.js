@@ -118,7 +118,7 @@ const DeckRow = styled.div`
   cursor: pointer;
   
   &:hover {
-    background-color: ${props => props.theme.btnBG};
+    background-color: ${props => props.theme.darkGreen};
   }
   
   @media(max-width: 800px) {
