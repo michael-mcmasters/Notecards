@@ -1,51 +1,9 @@
 import React, { useEffect, useReducer } from 'react';
-import cardsJSON from "../../resources/card-data.json";
+import styled from "styled-components";
+import cardsJSON from "../../../resources/card-data.json";
 import CardContainer from "./CardContainer";
 
-function reducer(state, action) {
-  switch (action.type) {
-    case "enable-hot-keys":
-      return {
-        ...state,
-        allowHotKeys: action.payload
-      }
-    case "flip":
-      return {
-        ...state,
-        containers: flipContainer(state)
-      }
-    case "cycle-left":
-      return {
-        ...state,
-        containers: moveContainers(state, "left")
-      }
-    case "cycle-right":
-      return {
-        ...state,
-        containers: moveContainers(state, "right")
-      }
-    case "got-card-correct":
-      return {
-        ...state,
-        containers: addAnimation(state, "CardBumpUpAnimation")
-      }
-    case "got-card-wrong":
-      return {
-        ...state,
-        containers: addAnimation(state, "CardBumpDownAnimation")
-      }
-    case "update-text":
-      return {
-        ...state,
-        cardsArr: saveEditedText(state.cardsArr, action.payload)
-      }
-    default:
-      return state;
-  }
-}
-
 const CardContainers = () => {
-
   const [state, dispatch] = useReducer(reducer, {
     allowHotKeys: true,
     cardsArr: cardsJSON.cards,
@@ -117,7 +75,6 @@ const CardContainers = () => {
   });
 
   useEffect(() => {
-
     const handleKeyDown = (event) => {
       if (!state.allowHotKeys)
         return;
@@ -137,7 +94,6 @@ const CardContainers = () => {
         default: break;
       }
     }
-
     window.addEventListener('keydown', handleKeyDown);
 
     return () => {
@@ -154,7 +110,9 @@ const CardContainers = () => {
 
   return (
     <>
-      <div className="flex">
+      <Title>Java</Title>
+
+      <CardGallary>
         {state.containers.map((c, keyIndex) => (
           <CardContainer
             key={keyIndex}
@@ -163,13 +121,63 @@ const CardContainers = () => {
             dispatch={dispatch}
           />
         ))}
-      </div>
+      </CardGallary>
+
+      <ControlsDescription>
+        <p>Use the arrow keys to cycle</p>
+        <p>Space bar to flip</p>
+        <p>Up key if you knew the answer</p>
+        <p>And click a card to edit its content</p>
+      </ControlsDescription>
+
     </>
   );
 };
 
 
 
+
+function reducer(state, action) {
+  switch (action.type) {
+    case "enable-hot-keys":
+      return {
+        ...state,
+        allowHotKeys: action.payload
+      }
+    case "flip":
+      return {
+        ...state,
+        containers: flipContainer(state)
+      }
+    case "cycle-left":
+      return {
+        ...state,
+        containers: moveContainers(state, "left")
+      }
+    case "cycle-right":
+      return {
+        ...state,
+        containers: moveContainers(state, "right")
+      }
+    case "got-card-correct":
+      return {
+        ...state,
+        containers: addAnimation(state, "CardBumpUpAnimation")
+      }
+    case "got-card-wrong":
+      return {
+        ...state,
+        containers: addAnimation(state, "CardBumpDownAnimation")
+      }
+    case "update-text":
+      return {
+        ...state,
+        cardsArr: saveEditedText(state.cardsArr, action.payload)
+      }
+    default:
+      return state;
+  }
+}
 
 // Flips only the center container.
 function flipContainer({ containers }) {
@@ -268,5 +276,24 @@ function cardExistsInDirection(containers, cardsArr, direction) {
 
 //   // setCardsArr(newCardsArr);
 // }, [])
+
+
+
+const Title = styled.h1`
+  color: #1d3557;
+  font-size: 4rem;
+  padding-bottom: 15px;
+  margin-bottom: 0;
+  border-bottom: 1px solid #457b9d;
+`;
+
+const CardGallary = styled.div`
+  display: flex;
+`;
+
+const ControlsDescription = styled.div`
+  margin-top: 28rem;
+  font-size: 2.4em;
+`;
 
 export default CardContainers;

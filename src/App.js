@@ -1,20 +1,55 @@
-import './App.css';
-import CardContainers from "./components/CardContainers/CardContainers.js"
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
+import styled from "styled-components";
+import { ColorThemeProvider } from "./components/custom_hooks/ColorThemeContext";
+import ScrollToTop from "./components/utility/scroll_to_top/ScrollToTop";
+import Navbar from "./components/reusable/navbar/Navbar";
+import Account from "./components/pages/account/Account";
+import CreateDeck from "./components/pages/create_deck/CreateDeck";
+import PopularDecks from "./components/pages/popular_decks/PopularDecks";
+import HomePage from "./components/pages/homepage/HomePage";
+import CardContainers from "./components/pages/cards/CardContainers"
 
 function App() {
 
+  // <HomePage> must be last component in <switch> for routing to work.
   return (
-    <div className="App">
-      <h1 className="title App-logo">Java</h1>
-      <CardContainers></CardContainers>
-      <div className="controls-description">
-        <p>Use the arrow keys to cycle</p>
-        <p>Space bar to flip</p>
-        <p>Up key if you knew the answer</p>
-        <p>And click a card to edit its content</p>
-      </div>
-    </div>
+    <Container>
+      <ColorThemeProvider>
+
+        <Router>
+          <ScrollToTop />
+          <Navbar />
+          <Switch>
+            <Route path="/account">
+              <Account />
+            </Route>
+            <Route path="/create-deck">
+              <CreateDeck />
+            </Route>
+            <Route path="/popular-decks">
+              <PopularDecks />
+            </Route>
+            <Route path="/cards">
+              <CardContainers></CardContainers>
+            </Route>
+            <Route path="/">
+              <HomePage />
+            </Route>
+          </Switch>
+        </Router>
+
+      </ColorThemeProvider>
+    </Container>
   );
 }
+
+const Container = styled.div`
+  text-align: center;
+  margin: 0 auto;
+`;
 
 export default App;
