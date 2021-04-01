@@ -18,7 +18,6 @@ function App() {
   // <HomePage> must be last component in <switch> for routing to work.
   return (
     <Container>
-
       <ColorThemeProvider>
 
         <Router>
