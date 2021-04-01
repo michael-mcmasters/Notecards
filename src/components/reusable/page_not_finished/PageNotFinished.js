@@ -13,8 +13,8 @@ const PageNotFinished = () => {
           This page is a work in progress and will be completed soon.
           <br />
           <br />
-        Last worked on - 4/2/21.
-      </Text>
+          Last worked on - 4/2/21.
+        </Text>
         <LinkWrapper theme={theme}>
           <StyledLink to="/" theme={theme}>
             <P>Home</P>

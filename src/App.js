@@ -6,10 +6,10 @@ import {
 import styled from "styled-components";
 import { ColorThemeProvider } from "./components/custom_hooks/ColorThemeContext";
 import Navbar from "./components/reusable/navbar/Navbar";
-import Account from "./components/routing/account/Account";
-import CreateDeck from "./components/routing/create_deck/CreateDeck";
-import HomePage from "./components/routing/homepage/HomePage";
-import CardContainers from "./components/routing/cards/CardContainers"
+import Account from "./components/pages/account/Account";
+import CreateDeck from "./components/pages/create_deck/CreateDeck";
+import HomePage from "./components/pages/homepage/HomePage";
+import CardContainers from "./components/pages/cards/CardContainers"
 
 function App() {
 
