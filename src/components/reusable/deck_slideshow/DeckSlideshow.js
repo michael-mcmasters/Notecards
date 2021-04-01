@@ -50,11 +50,11 @@ const DeckSlideshow = () => {
 
   const amntCardsToShow = 100;
   return (
-    <Wrapper>
+    <Container>
 
       <Header>
         Popular Decks
-      </Header>
+        </Header>
 
       <UnstyledLink to="/cards">
         <DeckRow theme={theme}>
@@ -83,7 +83,7 @@ const DeckSlideshow = () => {
         </DeckRow>
       </UnstyledLink>
 
-    </Wrapper>
+    </Container>
   );
 };
 
@@ -97,10 +97,13 @@ const UnstyledLink = styled(Link)`
     }
 `;
 
-const Wrapper = styled.div`
+const Container = styled.div`
+width: fit-content;
+margin: auto auto;
   max-width: 60rem;
   background-color: rgba(1, 1, 1, 0.15);
   border-radius: 10px;
+  
   
   @media(max-width: 800px) {
     padding: 1rem 2rem;
@@ -118,7 +121,7 @@ const DeckRow = styled.div`
   cursor: pointer;
   
   &:hover {
-    background-color: ${props => props.theme.darkGreen};
+    background-color: ${props => props.theme.btnBG};
   }
   
   @media(max-width: 800px) {
