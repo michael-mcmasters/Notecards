@@ -47,8 +47,7 @@ const Container = styled.div`
   transform: translateX(-50%);
   -webkit-transform:translateX(-50%);
   
-  animation-name: ${props => props.animation === "CardBumpUpAnimation"  // prettier extension messing up formatting
-    ? CardBumpUpAnimation
+  animation-name: ${props => props.animation === "CardBumpUpAnimation" ? CardBumpUpAnimation
     : props.animation === "CardBumpDownAnimation" ? CardBumpDownAnimation
       : ""};
   animation-duration: 0.4s;
