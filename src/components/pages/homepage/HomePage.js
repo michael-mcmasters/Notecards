@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { ColorThemeContext } from "../../custom_hooks/ColorThemeContext";
 import { GiCardRandom } from "react-icons/gi";
 import { Link } from "react-router-dom";
-import FeaturedCards from "./FeaturedCards.js";
 import DeckSlideshow from "../../reusable/deck_slideshow/DeckSlideshow.js"
 
 const HomePage = () => {
@@ -26,24 +25,8 @@ const HomePage = () => {
       </FirstRow>
 
       <SecondRow>
-        {/* <FeaturedCards /> */}
-        <DeckSlideshow />
+        <DeckSlideshow title={"Popular Decks"} amntDecks={3} />
       </SecondRow>
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
     </>
   );
 };
@@ -86,6 +69,7 @@ const Button = styled.button`
 
 const SecondRow = styled.div`
   margin-top: 12rem;
+  padding-bottom: 10rem;
   display: flex;
   justify-content: space-around;
   

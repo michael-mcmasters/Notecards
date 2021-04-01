@@ -4,7 +4,7 @@ import DeckSlideshow from "../../reusable/deck_slideshow/DeckSlideshow";
 
 const PopularDecks = () => {
   return (
-    <DeckSlideshow />
+    <DeckSlideshow title={"Click a deck to view it"} amntDecks={10} />
   );
 };
 

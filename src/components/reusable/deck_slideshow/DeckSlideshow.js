@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import cardsJSON from "../../../resources/card-data.json";
 import CardsGallary from "./CardsGallary";
 
-const DeckSlideshow = () => {
+const DeckSlideshow = ({ title, amntDecks }) => {
   const theme = useContext(ColorThemeContext);
 
   // ToDo: Import decks from an API.
@@ -53,7 +53,7 @@ const DeckSlideshow = () => {
     <Container>
 
       <Header>
-        Popular Decks
+        {title}
       </Header>
 
       <UnstyledLink to="/cards">
