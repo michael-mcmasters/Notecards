@@ -16,7 +16,7 @@ const NavbarTwo = () => {
         </Home>
       </Link>
       <Account theme={theme}>
-        <Link to="/" style={{ color: theme.secBtnText, textDecoration: 'none' }}>
+        <Link to="/account" style={{ color: theme.secBtnText, textDecoration: 'none' }}>
           Account
       </Link>
       </Account>

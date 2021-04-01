@@ -6,8 +6,9 @@ import {
 import styled from "styled-components";
 import { ColorThemeProvider } from "./components/custom_hooks/ColorThemeContext";
 import Navbar from "./components/reusable/navbar/Navbar.js";
+import Account from "./components/routing/account/Account";
 import HomePage from "./components/routing/homepage/HomePage.js";
-import CardContainers from "./components/cards/CardContainers.js"
+import CardContainers from "./components/routing/cards/CardContainers.js"
 
 function App() {
 
@@ -19,6 +20,9 @@ function App() {
         <Router>
           <Navbar />
           <Switch>
+            <Route path="account">
+              <Account />
+            </Route>
             <Route path="/cards">
               <CardContainers></CardContainers>
             </Route>

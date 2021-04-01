@@ -1,6 +1,6 @@
 import React, { useEffect, useReducer } from 'react';
 import styled from "styled-components";
-import cardsJSON from "../../resources/card-data.json";
+import cardsJSON from "../../../resources/card-data.json";
 import CardContainer from "./CardContainer";
 
 const CardContainers = () => {
