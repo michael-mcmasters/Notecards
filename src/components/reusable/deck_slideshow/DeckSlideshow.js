@@ -54,7 +54,7 @@ const DeckSlideshow = () => {
 
       <Header>
         Popular Decks
-        </Header>
+      </Header>
 
       <UnstyledLink to="/cards">
         <DeckRow theme={theme}>
@@ -98,8 +98,8 @@ const UnstyledLink = styled(Link)`
 `;
 
 const Container = styled.div`
-width: fit-content;
-margin: auto auto;
+  width: fit-content;
+  margin: auto auto;
   max-width: 60rem;
   background-color: rgba(1, 1, 1, 0.15);
   border-radius: 10px;
@@ -112,6 +112,8 @@ margin: auto auto;
 
 const Header = styled.h1`
   color: white;
+  padding: 1.5rem;
+  margin: 0;
 `;
 
 const DeckRow = styled.div`
