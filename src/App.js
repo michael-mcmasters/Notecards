@@ -6,8 +6,7 @@ import {
 } from "react-router-dom";
 import { ColorThemeProvider } from "./components/custom_hooks/ColorThemeContext";
 import NavbarTwo from "./components/navbar/NavbarTwo.js";
-// import HomePage from "./components/homepage/HomePage.js";
-import HomePage2 from "./components/homepagetwo/HomePage2.js";
+import HomePage from "./components/homepage/HomePage.js";
 import CardContainers from "./components/cards/CardContainers.js"
 
 function App() {
@@ -18,7 +17,6 @@ function App() {
 
         <Router>
 
-          {/* <Navbar></Navbar> */}
           <NavbarTwo />
 
           <Switch>
@@ -35,8 +33,7 @@ function App() {
 
             {/* Home path must be last path for router to work */}
             <Route path="/">
-              {/* <HomePage></HomePage> */}
-              <HomePage2 />
+              <HomePage />
             </Route>
           </Switch>
         </Router>
