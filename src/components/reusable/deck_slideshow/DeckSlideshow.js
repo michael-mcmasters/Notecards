@@ -1,8 +1,8 @@
 import React, { useState, useContext, useEffect } from 'react';
 import styled from "styled-components";
-import { ColorThemeContext } from "../custom_hooks/ColorThemeContext";
+import { ColorThemeContext } from "../../custom_hooks/ColorThemeContext";
 import { Link } from "react-router-dom";
-import cardsJSON from "../../resources/card-data.json";
+import cardsJSON from "../../../resources/card-data.json";
 import CardsGallary from "./CardsGallary";
 
 const DeckSlideshow = () => {

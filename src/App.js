@@ -5,8 +5,8 @@ import {
 } from "react-router-dom";
 import styled from "styled-components";
 import { ColorThemeProvider } from "./components/custom_hooks/ColorThemeContext";
-import Navbar from "./components/navbar/Navbar.js";
-import HomePage from "./components/homepage/HomePage.js";
+import Navbar from "./components/reusable/navbar/Navbar.js";
+import HomePage from "./components/routing/homepage/HomePage.js";
 import CardContainers from "./components/cards/CardContainers.js"
 
 function App() {

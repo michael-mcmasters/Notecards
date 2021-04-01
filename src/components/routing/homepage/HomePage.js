@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 import styled from "styled-components";
-import { ColorThemeContext } from "../custom_hooks/ColorThemeContext";
+import { ColorThemeContext } from "../../custom_hooks/ColorThemeContext";
 import { GiCardRandom } from "react-icons/gi";
 import { Link } from "react-router-dom";
 import FeaturedCards from "./FeaturedCards.js";
-import DeckSlideshow from "../deck_slideshow/DeckSlideshow.js"
+import DeckSlideshow from "../../reusable/deck_slideshow/DeckSlideshow.js"
 
 const HomePage = () => {
   const theme = useContext(ColorThemeContext);

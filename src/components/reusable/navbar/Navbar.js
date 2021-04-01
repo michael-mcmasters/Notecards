@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
-import { ColorThemeContext } from "../custom_hooks/ColorThemeContext";
+import { ColorThemeContext } from "../../custom_hooks/ColorThemeContext";
 import { AiFillHome } from "react-icons/ai";
 
 const NavbarTwo = () => {

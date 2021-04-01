@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from "styled-components";
-import cardsJSON from "../../resources/card-data.json";
+import cardsJSON from "../../../resources/card-data.json";
 import Card from "./Card.js";
 
 const FeaturedCard = () => {
