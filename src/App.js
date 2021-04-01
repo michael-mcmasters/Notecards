@@ -5,6 +5,7 @@ import {
 } from "react-router-dom";
 import styled from "styled-components";
 import { ColorThemeProvider } from "./components/custom_hooks/ColorThemeContext";
+import ScrollToTop from "./components/utility/scroll_to_top/ScrollToTop";
 import Navbar from "./components/reusable/navbar/Navbar";
 import Account from "./components/pages/account/Account";
 import CreateDeck from "./components/pages/create_deck/CreateDeck";
@@ -17,9 +18,11 @@ function App() {
   // <HomePage> must be last component in <switch> for routing to work.
   return (
     <Container>
+
       <ColorThemeProvider>
 
         <Router>
+          <ScrollToTop />
           <Navbar />
           <Switch>
             <Route path="/account">
