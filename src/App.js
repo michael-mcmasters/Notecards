@@ -5,10 +5,11 @@ import {
 } from "react-router-dom";
 import styled from "styled-components";
 import { ColorThemeProvider } from "./components/custom_hooks/ColorThemeContext";
-import Navbar from "./components/reusable/navbar/Navbar.js";
+import Navbar from "./components/reusable/navbar/Navbar";
 import Account from "./components/routing/account/Account";
-import HomePage from "./components/routing/homepage/HomePage.js";
-import CardContainers from "./components/routing/cards/CardContainers.js"
+import CreateDeck from "./components/routing/create_deck/CreateDeck";
+import HomePage from "./components/routing/homepage/HomePage";
+import CardContainers from "./components/routing/cards/CardContainers"
 
 function App() {
 
@@ -22,6 +23,9 @@ function App() {
           <Switch>
             <Route path="/account">
               <Account />
+            </Route>
+            <Route path="/create-deck">
+              <CreateDeck />
             </Route>
             <Route path="/cards">
               <CardContainers></CardContainers>

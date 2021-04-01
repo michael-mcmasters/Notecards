@@ -8,24 +8,30 @@ const PageNotFinished = () => {
 
   return (
     <>
-      <Header theme={theme}>
-        This page is still a work in progress.
-        <br />
-        It will be completed soon.
-        <br />
+      <Container>
+        <Text theme={theme}>
+          This page is a work in progress and will be completed soon.
+          <br />
+          <br />
         Last worked on - 4/2/21.
-    </Header>
-      <LinkWrapper theme={theme}>
-        <StyledLink to="/" theme={theme}>
-          <p>Home</p>
-        </StyledLink>
-      </LinkWrapper>
+      </Text>
+        <LinkWrapper theme={theme}>
+          <StyledLink to="/" theme={theme}>
+            <P>Home</P>
+          </StyledLink>
+        </LinkWrapper>
+      </Container>
     </>
   );
 };
 
-const Header = styled.h1`
-  margin-top: 5rem;
+const Container = styled.div`
+  margin: 15rem auto 5rem auto;
+  width: 75%;
+`;
+
+const Text = styled.h1`
+  margin-top: 0;
   color: ${props => props.theme.secBtnText};
 `;
 
@@ -36,6 +42,11 @@ const LinkWrapper = styled.div`
 const StyledLink = styled(Link)`
   color: ${props => props.theme.blue};
   font-size: 2rem; 
+`;
+
+const P = styled.p`
+  margin: 0;
+  margin-bottom: 1rem;
 `;
 
 export default PageNotFinished;

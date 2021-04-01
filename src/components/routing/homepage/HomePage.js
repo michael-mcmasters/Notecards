@@ -16,7 +16,7 @@ const HomePage = () => {
           <GiCardRandom />
         </Icon>
         <ButtonContainer>
-          <Link to="/cards">
+          <Link to="/create-deck">
             <Button theme={theme}>Create Deck</Button>
           </Link>
           <Link to="/cards">
