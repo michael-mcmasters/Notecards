@@ -9,7 +9,8 @@ const NavbarTwo = () => {
 
   // Can't override <Link>'s default styling with styled-component CSS. So must use inline styling instead.
   return (
-    <>
+    <Container>
+
       <Link to="/">
         <Home theme={theme}>
           <AiFillHome style={{ color: theme.secBtnText, textDecoration: 'none' }} />
@@ -20,9 +21,13 @@ const NavbarTwo = () => {
           Account
       </Link>
       </Account>
-    </>
+    </Container>
   );
 };
+
+const Container = styled.div`
+  margin: 6rem 0;
+`;
 
 const ButtonStyling = css`
   margin: 1rem;

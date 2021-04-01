@@ -4,15 +4,8 @@ import DeckSlideshow from "../../reusable/deck_slideshow/DeckSlideshow";
 
 const PopularDecks = () => {
   return (
-    <Container>
-      <DeckSlideshow />
-    </Container>
+    <DeckSlideshow />
   );
 };
-
-const Container = styled.div`
-  /* display: flex; */
-  /* justify-content: space-around; */
-`;
 
 export default PopularDecks;

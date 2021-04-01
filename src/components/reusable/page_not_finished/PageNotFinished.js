@@ -26,7 +26,7 @@ const PageNotFinished = () => {
 };
 
 const Container = styled.div`
-  margin: 15rem auto 5rem auto;
+  margin: 10rem auto 5rem auto;
   width: 75%;
 `;
 
