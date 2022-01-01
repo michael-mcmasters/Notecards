@@ -1,0 +1,148 @@
+{
+  "cards": [
+    {
+      "backgroundColor": "#86d3cd",
+      "frontText": "What is a cluster?",
+      "backText": "Everything - Master nodes, worker nodes, and everything inside of them, such as pods",
+      "timesAccepted": "0"
+    },
+    {
+      "backgroundColor": "#86d3cd",
+      "frontText": "What is in a pod?",
+      "backText": "An wrapper over a container that lives inside worker nodes",
+      "timesAccepted": "0"
+    },
+    {
+      "backgroundColor": "#86d3cd",
+      "frontText": "How many master/worker nodes are in a typical Kubernetes cluster?",
+      "backText": "2 master nodes, 3 worker nodes",
+      "timesAccepted": "0"
+    },
+    {
+      "backgroundColor": "#86d3cd",
+      "frontText": "How can you create a local cluster?",
+      "backText": "Minikube CLI",
+      "timesAccepted": "0"
+    },
+    {
+      "backgroundColor": "#86d3cd",
+      "frontText": "How do you interact with your cluster?",
+      "backText": "kubectl (CLI) is the most powerful option. There are also GUIs and Kubernetes API",
+      "timesAccepted": "0"
+    },
+    {
+      "backgroundColor": "#86d3cd",
+      "frontText": "What is the entry point to a cluster?",
+      "backText": "API service on a master node",
+      "timesAccepted": "0"
+    },
+    {
+      "backgroundColor": "#86d3cd",
+      "frontText": "What processes are in a master node?",
+      "backText": "API Service, Controller Manager, Scheduler, etcd",
+      "timesAccepted": "0"
+    },
+    {
+      "backgroundColor": "#86d3cd",
+      "frontText": "What processes are in a worker node?",
+      "backText": "Container Runtime (such as Docker), Kubelet, Kube Proxy",
+      "timesAccepted": "0"
+    },
+    {
+      "backgroundColor": "#86d3cd",
+      "frontText": "What is an API Service?",
+      "backText": "A process on a master node. Entry point to the cluster. What the CLI connect to. Acts as a gatekeeper for autnetication. Can send it a Deployment in yaml/json to deploya pod",
+      "timesAccepted": "0"
+    },
+    {
+      "backgroundColor": "#86d3cd",
+      "frontText": "What is a Controller Manager?",
+      "backText": "A process on a master node. Keeps cluster healthy. Detects when a pod in a Node dies and tells Scheduler to re-create the broken pod",
+      "timesAccepted": "0"
+    },
+    {
+      "backgroundColor": "#86d3cd",
+      "frontText": "What is a Scheduler?",
+      "backText": "A process on a master node. API Service and Controller Manager send requests here. It looks at all worker nodes, sees their CPU, RAM, etc, and determines the best node to send a pod to",
+      "timesAccepted": "0"
+    },
+    {
+      "backgroundColor": "#86d3cd",
+      "frontText": "What is etcd?",
+      "backText": "A process on a master node. The brain of the cluster. A distributed key value pair store that saves information such as how many pods are deployed to a node, what resources are available, etc",
+      "timesAccepted": "0"
+    },
+    {
+      "backgroundColor": "#86d3cd",
+      "frontText": "What is a Container Runtime?",
+      "backText": "A process on the worker node. The container runtime environment that the pod uses to run the container. Such as Docker",
+      "timesAccepted": "0"
+    },
+    {
+      "backgroundColor": "#86d3cd",
+      "frontText": "What is Kubelet?",
+      "backText": "A process on the worker node. Manages pods in a worker node. When a mster node wants to deploy a pod, it speaks to the Kubelet, which then looks at the config and creates the pod as necessary",
+      "timesAccepted": "0"
+    },
+    {
+      "backgroundColor": "#86d3cd",
+      "frontText": "What is Kube proxy?",
+      "backText": "How pods speak to one another. If the frontend node wants to communicate with the datbaase node, it goes through the Kube proxy, which then sends it to that pod's Service",
+      "timesAccepted": "0"
+    },
+    {
+      "backgroundColor": "#86d3cd",
+      "frontText": "What is Service?",
+      "backText": "Each pod has a Service. Replicated pods share a service. When someone wants to interact with a pod, they go through an IP address that Service exposes. It acts as a load balancer and forwards the request to the appropriate pod",
+      "timesAccepted": "0"
+    },
+    {
+      "backgroundColor": "#86d3cd",
+      "frontText": "What is Ingress?",
+      "backText": "Service exposes an ip address and port http://124.89.101.2:8080. Ingress gives it DNS - https://my-app.com/",
+      "timesAccepted": "0"
+    },
+    {
+      "backgroundColor": "#86d3cd",
+      "frontText": "What is a ConfigMap?",
+      "backText": "External configuration for your application. Env variables (I think) for the app in your pod",
+      "timesAccepted": "0"
+    },
+    {
+      "backgroundColor": "#86d3cd",
+      "frontText": "What is Secrets?",
+      "backText": "Base64 encoded variabels for your container application. Similar to a ConfigMap but encrypted. Such as a database username and password",
+      "timesAccepted": "0"
+    },
+    {
+      "backgroundColor": "#86d3cd",
+      "frontText": "What is Volumes?",
+      "backText": "Attached to a database to save items to oustide of the cluser. Could be on the Node's/computer's harddrive, or to an external computer.",
+      "timesAccepted": "0"
+    },
+    {
+      "backgroundColor": "#86d3cd",
+      "frontText": "What is a Deployment?",
+      "backText": "yaml or json blueprint for a pod. For Stateless pods only. How many instances/replicas it should have. And some other information about the app",
+      "timesAccepted": "0"
+    },
+    {
+      "backgroundColor": "#86d3cd",
+      "frontText": "What is a StatefulSet?",
+      "backText": "Similar to a Deployment, but for Stateful pods only, such as a database. Checks what pods write and read to the pod, to make sure there are no data inconsistencies. Not used very often",
+      "timesAccepted": "0"
+    },
+    {
+      "backgroundColor": "#86d3cd",
+      "frontText": "What is a ReplicaSet",
+      "backText": "Similar to a Deployment - If we say we want 3 replicas of a pod, a ReplicaSet will hold all 3 and make sure to create new ones if old pods fail. If we create a new Deployment yaml to update pods, the old ReplicaSet will be destroyed and a new ReplicaSet will be created to hold the new pods to replace the old ones. (Some say it creates 'podreplicas')",
+      "timesAccepted": "0"
+    },
+    {
+      "backgroundColor": "#86d3cd",
+      "frontText": "What is a DaemonSet?",
+      "backText": "Makes sure all (or some) nodes run a copy of a pod. As new nodes are created, it makes sure the pods are replicated on to there also. If a DeamenSet is deleted, the pods it created are also destroyed",
+      "timesAccepted": "0"
+    }
+  ]
+}
