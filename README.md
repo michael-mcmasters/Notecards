@@ -5,11 +5,6 @@ Created with a modern design and smooth transitions, my inspiration for making t
 
 Still a work in progress.
 
-## Links
-[Live Site](https://master.d2u3nakn42rssp.amplifyapp.com/) deployed using AWS Amplify. <br>
-[Live API](http://springbootnotecardsrds-env.eba-bqdsyfni.us-east-1.elasticbeanstalk.com) <br>
-[Back-End Repository](https://github.com/michael-mcmasters/Notecards-Spring) developed using the Spring framework. <br>
-
 ## To Run Locally
 Using Node
 ```
